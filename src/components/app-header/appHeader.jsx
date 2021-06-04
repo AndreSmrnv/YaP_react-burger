@@ -14,7 +14,7 @@ const MenuItem = ({ item }) => {
   const MenuIcon = componentsIcon[item.icon];
   return (
     <li >
-      <a className={`${styles.menu_item_link}`} href={item.href} >
+      <a className={`${styles.menu_link}`} href={item.href} >
         <MenuIcon type="secondary" />
         <span className="text">{item.name}</span>
       </a>
