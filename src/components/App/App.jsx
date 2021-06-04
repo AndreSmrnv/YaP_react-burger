@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import AppHeader from "../app-header";
 
 import styles from './app.module.css';
-import data from "../../utils/data";
+import dataMosk from "../../utils/data-mock";
 
 function App() {
-  
+
   return (
-    <div className={styles.wrapper}>     
-      <main className={styles.main}> 
-        tmp  
-      </main>      
+    <div className={styles.wrapper}>
+      <AppHeader />
+      <main className={styles.main}>
+        tmp
+      </main>
     </div>
   );
 }
