@@ -1,26 +1,38 @@
-.ingredients {}
+.container {
+  width: calc(50% - 20px);
+  margin-right: 20px;
+}
 
 .scrollList {
   overflow-y: scroll;
-  max-height: 80vh;
+  max-height: 75vh;
+  scrollbar-width: thin;
 
 }
 
-.headerTabs {}
+.header_tabs {
+  width: 100%;
+  margin-bottom: 40px;
+}
 
 .tabs {
   width: 100%;
   display: flex;
 }
 
-.secTitle {}
+.sec_items {
+  margin-bottom: 40px;
+}
 
-.itemsList {
+.sec_title {}
+
+.items_list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 24px;
   row-gap: 32px;
-
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .item {
@@ -30,8 +42,12 @@
   align-items: center;
 }
 
-.itemName {}
+.item_image {
+  padding: 0 16px;
+}
 
-.itemDescription {}
-
-.itemImage {}
+.item_description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

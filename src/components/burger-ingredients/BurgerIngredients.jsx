@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 function BurgerIngredients({ prodData = [] }) {
   const [currentTab, setCurrentTab] = React.useState('bun');
   //console.log(prodData);
+
   const buhData = prodData && Array.isArray(prodData)
     && prodData.filter(
       item => item.type === 'bun'
@@ -30,8 +31,8 @@ function BurgerIngredients({ prodData = [] }) {
     ;
 
   return (
-    <section className={`${styles.ingredients}`}>
-      <div className={styles.headerTabs}>
+    <section className={`${styles.container}`}>
+      <div className={styles.header_tabs}>
         <h2 className="text text_type_main-large mt-10 mb-5 ">Соберите бургер</h2>
         <div className={`${styles.tabs}`}>
           <Tab value="bun" active={currentTab === 'bun'} onClick={setCurrentTab}>
@@ -45,11 +46,11 @@ function BurgerIngredients({ prodData = [] }) {
             </Tab>
         </div>
       </div>
-      <div className={styles.scrollList}>
+      <div className={`${styles.scrollList} pr-4`}>
 
-        <section>
-          <h2 className={`text text_type_main-medium ${styles.secTitle}`}>Булки</h2>
-          <ul className={`${styles.itemsList}`}>
+        <section className={styles.sec_items}>
+          <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Булки</h2>
+          <ul className={`${styles.items_list}`}>
             {buhData && Array.isArray(buhData) && buhData.map((item) => (
               <IngredientItem
                 key={item._id}
@@ -59,9 +60,9 @@ function BurgerIngredients({ prodData = [] }) {
             ))}
           </ul>
         </section>
-        <section>
-          <h2 className={`text text_type_main-medium ${styles.secTitle}`}>Соусы</h2>
-          <ul className={`${styles.itemsList}`}>
+        <section className={styles.sec_items}>
+          <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Соусы</h2>
+          <ul className={`${styles.items_list}`}>
             {sauceData && Array.isArray(sauceData) && sauceData.map((item) => (
               <IngredientItem
                 key={item._id}
@@ -71,9 +72,9 @@ function BurgerIngredients({ prodData = [] }) {
             ))}
           </ul>
         </section>
-        <section>
-          <h2 className={`text text_type_main-medium ${styles.secTitle}`}>Начинки</h2>
-          <ul className={`${styles.itemsList}`}>
+        <section className={styles.sec_items}>
+          <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Начинки</h2>
+          <ul className={`${styles.items_list}`}>
             {mainData && Array.isArray(mainData) && mainData.map((item) => (
               <IngredientItem
                 key={item._id}
@@ -96,9 +97,9 @@ const IngredientItem = ({ itemData }) => {
   return (
     <li className={styles.item}>
       <Counter count={1} size="default" />
-      <img src={itemData.image} className={`${styles.itemImage}`} alt={itemData.name} />
+      <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 
-      <p className={`text text_type_digits-default ${styles.itemDescription}`}>
+      <p className={`text text_type_digits-default ${styles.item_description} mt-1 mb-1`}>
         <span className="mr-2">{itemData.price}</span>
         <CurrencyIcon type="secondary" />
       </p>

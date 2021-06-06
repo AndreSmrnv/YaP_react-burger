@@ -18,7 +18,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  flex-direction: row-reverse;
+
 }
 
 .menu_link {
@@ -30,4 +30,9 @@
 
 .menu_link:hover {
   color: #F2F2F3;
+}
+
+.logo {
+  align-self: center;
+  
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppHeader from "../app-header";
+import BurgerConstructor from '../burger-constructor';
 import BurgerIngredients from '../burger-ingredients';
 
 import styles from './App.module.css';
@@ -11,16 +12,16 @@ function App() {
 
   const [state, setState] = useState(INIT_APP);
 
-  useEffect(() => {  
-    setState({ ...state, isFetching: true });
+  useEffect(() => {
+    setState(prevState => ({ ...prevState, isFetching: true }));
     fetch(
-      API_URL      
+      API_URL
     )
       .then(response => response.json())
-      .then(result => setState({ ...state, data: result.data, isFetching: false }))
+      .then(result => setState(prevState => ({ ...prevState, data: result.data, isFetching: false })))
       .catch(e => {
         console.log(e);
-        setState({ ...state, isFetching: false, error: e });
+        setState(prevState => ({ ...prevState, isFetching: false, error: e }));
       });
 
   }, [])
@@ -30,6 +31,7 @@ function App() {
       <AppHeader />
       <main className={styles.main}>
         <BurgerIngredients prodData={state.data} />
+        <BurgerConstructor prodData={state.data} />
       </main>
     </div>
   );
