@@ -1,3 +1,3 @@
-import page from './OrderDetails.jsx';
+import page from './OrderDetails';
 
 export default page;

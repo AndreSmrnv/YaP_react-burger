@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 
 
-function BurgerIngredients({ prodData = [] }) {
+function BurgerIngredients({ prodData = [], openModal }) {
   const [currentTab, setCurrentTab] = React.useState('bun');
   //console.log(prodData);
 
@@ -55,7 +55,7 @@ function BurgerIngredients({ prodData = [] }) {
               <IngredientItem
                 key={item._id}
                 itemData={item}
-
+                onItemClick={openModal}
               />
             ))}
           </ul>
@@ -67,7 +67,7 @@ function BurgerIngredients({ prodData = [] }) {
               <IngredientItem
                 key={item._id}
                 itemData={item}
-
+                onItemClick={openModal}
               />
             ))}
           </ul>
@@ -79,7 +79,7 @@ function BurgerIngredients({ prodData = [] }) {
               <IngredientItem
                 key={item._id}
                 itemData={item}
-
+                onItemClick={openModal}
               />
             ))}
           </ul>
@@ -92,10 +92,11 @@ function BurgerIngredients({ prodData = [] }) {
 
 }
 
-const IngredientItem = ({ itemData }) => {
+const IngredientItem = ({ itemData, onItemClick }) => {
+  const handleClick = () => onItemClick(itemData);
   //console.log(itemData);
   return (
-    <li className={styles.item}>
+    <li className={styles.item} onClick={handleClick}>
       <Counter count={1} size="default" />
       <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 

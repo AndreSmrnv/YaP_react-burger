@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppHeader from "../app-header";
 import BurgerConstructor from '../burger-constructor';
 import BurgerIngredients from '../burger-ingredients';
+import IngredientDetails from '../ingredient-details/IngredientDetails';
 
 import OrderDetails from '../order-details';
 
@@ -16,6 +17,9 @@ function App() {
   const [state, setState] = useState(INIT_APP);
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
+  const [dataIngredientDetails, setDataIngredientDetails] = useState({});
+  
+
   useEffect(() => {
     setState(prevState => ({ ...prevState, isFetching: true }));
     fetch(
@@ -34,11 +38,17 @@ function App() {
     const openModalOrderDetails = () => {
         setVisibleOrderDetails(true)
     }
+  const openModalIngredientDetails = (item) => {
+      setDataIngredientDetails(item);
+      setVisibleIngredientDetails(true)
+    }
     
     const closeModal = () => {
-        setVisibleOrderDetails(false)
-  }
-  
+      setVisibleOrderDetails(false);
+      setVisibleIngredientDetails(false);
+    }
+
+    
   
 
   console.log(state);
@@ -46,11 +56,12 @@ function App() {
     <div className={styles.wrapper}>
       <AppHeader />
       <main className={styles.main}>
-        <BurgerIngredients prodData={state.data} />
-        <BurgerConstructor prodData={state.data} openModal={openModalOrderDetails}/>
+        <BurgerIngredients prodData={state.data} openModal={openModalIngredientDetails}/>
+        <BurgerConstructor prodData={state.data} openModal={openModalOrderDetails} />
       </main>
       
             {visibleOrderDetails && <OrderDetails header={null} closeModal={closeModal} />}
+            {visibleIngredientDetails && <IngredientDetails header='Детали ингредиента' closeModal={closeModal} item={dataIngredientDetails} />}
         
     </div>
   );
