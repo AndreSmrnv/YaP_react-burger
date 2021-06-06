@@ -97,7 +97,7 @@ function BurgerConstructor({ prodData, openModal }) {
 const ConstructorItem = ({ itemData, type, isLocked }) => {
   //console.log(itemData);
   return (
-    <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-6' : 'pr-2'}`}>
+    <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`}>
       {!isLocked && (<span className={styles.drag_icon}>
         <DragIcon type='secondary' />
       </span>)}
