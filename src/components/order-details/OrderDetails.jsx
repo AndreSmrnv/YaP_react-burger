@@ -1,6 +1,6 @@
 import React from "react";
 import ModalOverlay from "../modal-overlay";
-
+import PropTypes from 'prop-types';
 import orderDone from '../../images/order-done.svg'
 import styles from './OrderDetails.module.css';
 
@@ -19,5 +19,10 @@ const OrderDetails = (props) => {
     </ModalOverlay>
   );
 }
+
+OrderDetails.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  header: PropTypes.string,
+};
 
 export default OrderDetails;

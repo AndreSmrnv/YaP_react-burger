@@ -1,4 +1,5 @@
 ﻿import React from "react";
+import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
 import {
   CloseIcon
@@ -17,5 +18,12 @@ const Modal = ({ children, closeModal, modalTitle }) => {
     </section>
   )
 }
+
+Modal.propTypes = {
+  modalTitle: PropTypes.string,
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.element,
+};
+
 
 export default Modal;

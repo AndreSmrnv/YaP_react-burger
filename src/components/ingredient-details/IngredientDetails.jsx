@@ -1,6 +1,6 @@
 import React from "react";
 import ModalOverlay from "../modal-overlay";
-
+import PropTypes from 'prop-types';
 import styles from './IngredientDetails.module.css';
 
 const ITEM_DETAILS = {
@@ -47,5 +47,24 @@ const IngredientDetails = (props) => {
     </ModalOverlay>
   );
 }
+
+IngredientDetails.propTypes = {
+  item: PropTypes.shape({
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    proteins: PropTypes.number,
+    fat: PropTypes.number,
+    carbohydrates: PropTypes.number,
+    calories: PropTypes.number,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    image_mobile: PropTypes.string,
+    image_large: PropTypes.string,
+    __v: PropTypes.number,
+  }).isRequired,
+  closeModal: PropTypes.func.isRequired,
+  header: PropTypes.string,
+};
 
 export default IngredientDetails;

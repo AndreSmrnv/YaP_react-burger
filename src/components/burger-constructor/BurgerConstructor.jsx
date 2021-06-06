@@ -114,4 +114,24 @@ const ConstructorItem = ({ itemData, type, isLocked }) => {
   )
 }
 
+BurgerConstructor.propTypes = {
+  prodData: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+      type: PropTypes.string,
+      proteins: PropTypes.number,
+      fat: PropTypes.number,
+      carbohydrates: PropTypes.number,
+      calories: PropTypes.number,
+      price: PropTypes.number,
+      image: PropTypes.string,
+      image_mobile: PropTypes.string,
+      image_large: PropTypes.string,
+      __v: PropTypes.number,
+    }),
+  ).isRequired,
+  openModal: PropTypes.func.isRequired,
+};
+
 export default BurgerConstructor;

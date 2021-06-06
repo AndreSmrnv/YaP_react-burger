@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
+import PropTypes from 'prop-types';
 import styles from './ModalOverlay.module.css';
 import Modal from "../modal";
 
@@ -29,5 +30,10 @@ function ModalOverlay({ children, closeModal, header }) {
   );
 }
 
+ModalOverlay.propTypes = {
+  header: PropTypes.string,
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.element,
+};
 
 export default ModalOverlay;
