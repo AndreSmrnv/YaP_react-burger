@@ -8,7 +8,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-function BurgerConstructor({ prodData }) {
+function BurgerConstructor({ prodData, openModal }) {
 
   let totalBurgerPrice = 610;
 
@@ -83,7 +83,7 @@ function BurgerConstructor({ prodData }) {
         <Button
           type="primary"
           size="large"
-
+          onClick={openModal}
         >
           Оформить заказ
           </Button>
