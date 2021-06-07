@@ -10,7 +10,8 @@ import PropTypes from "prop-types";
 
 function BurgerConstructor({ prodData, openModal }) {
 
-  let totalBurgerPrice = 610;
+
+
 
 
   const topData = prodData && Array.isArray(prodData)
@@ -26,8 +27,15 @@ function BurgerConstructor({ prodData, openModal }) {
       item => item.type === 'main'
     )
     ;
-  console.log(middleData);
-
+  const totalBurgerPrice = React.useMemo(
+    () =>
+      Array.isArray(prodData) &&
+      [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
+        return sum + item.price;
+      }, 0),
+    [prodData]
+  );
+  console.log(totalBurgerPrice);
 
   return (
     <section className={`${styles.container} pt-25`}>
