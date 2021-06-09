@@ -13,6 +13,18 @@
   padding-left: 0;
   scrollbar-width: thin;
 }
+.scroll_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll_list::-webkit-scrollbar-track {
+  background: #1C1C21; 
+}
+ 
+.scroll_list::-webkit-scrollbar-thumb {
+  background: #8585AD; 
+}
+
 
 .item_list {
   list-style: none;

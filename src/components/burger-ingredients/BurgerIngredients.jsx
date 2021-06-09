@@ -44,7 +44,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
             </Tab>
         </div>
       </div>
-      <div className={`${styles.scrollList} pr-4`}>
+      <div className={`${styles.scroll_list} pr-4`}>
 
         <section className={styles.sec_items}>
           <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Булки</h2>

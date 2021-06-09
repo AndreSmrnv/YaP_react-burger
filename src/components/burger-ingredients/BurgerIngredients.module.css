@@ -3,11 +3,23 @@
   margin-right: 20px;
 }
 
-.scrollList {
+.scroll_list {
   overflow-y: scroll;
   max-height: 65vh;
   scrollbar-width: thin;
 }
+.scroll_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll_list::-webkit-scrollbar-track {
+  background: #1C1C21; 
+}
+ 
+.scroll_list::-webkit-scrollbar-thumb {
+  background: #8585AD; 
+}
+
 
 .header_tabs {
   width: 100%;
