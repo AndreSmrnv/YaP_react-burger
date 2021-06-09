@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Button,
   CurrencyIcon
@@ -50,13 +49,10 @@ function BurgerConstructor({ prodData, openModal }) {
         <li>
           <ul className={styles.scroll_list}>
             {middleData && Array.isArray(middleData) && middleData.map(item => (
-
               <ConstructorItem
                 key={item._id}
                 itemData={item}
-
               />
-
             )
             )
             }

@@ -1,12 +1,10 @@
 import React from "react";
 import styles from './BurgerIngredients.module.css';
 import {
-  Tab,
-  CurrencyIcon,
-  Counter
+  Tab
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
 import PropTypes from 'prop-types';
+import IngredientItem from "./ingredient-item/IngredientItem";
 
 
 
@@ -92,26 +90,9 @@ function BurgerIngredients({ prodData = [], openModal }) {
 
 }
 
-const IngredientItem = ({ itemData, onItemClick }) => {
-  const handleClick = () => onItemClick(itemData);
-  //console.log(itemData);
-  return (
-    <li className={styles.item} onClick={handleClick}>
-      <Counter count={1} size="default" />
-      <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 
-      <p className={`text text_type_digits-default ${styles.item_description} mt-1 mb-1`}>
-        <span className="mr-2">{itemData.price}</span>
-        <CurrencyIcon type="secondary" />
-      </p>
 
-      <h3 className={`text text_type_main-default ${styles.itemName}`}>{itemData.name}</h3>
-
-    </li>
-  )
-}
-
-BurgerIngredients.propTypes = { 
+BurgerIngredients.propTypes = {
   prodData: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string,
@@ -128,7 +109,7 @@ BurgerIngredients.propTypes = {
       __v: PropTypes.number,
     }),
   ).isRequired,
-  openModal: PropTypes.func.isRequired, 
+  openModal: PropTypes.func.isRequired,
 };
 
 
