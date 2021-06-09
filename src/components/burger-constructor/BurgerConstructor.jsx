@@ -46,7 +46,7 @@ function BurgerConstructor({ prodData, openModal }) {
         )
         )
         }
-        <li>
+        <li className={`mb-4`} >
           <ul className={styles.scroll_list}>
             {middleData && Array.isArray(middleData) && middleData.map(item => (
               <ConstructorItem
@@ -62,15 +62,15 @@ function BurgerConstructor({ prodData, openModal }) {
         </li>
 
         {bottomData && Array.isArray(bottomData) && bottomData.map(item => (
-          <ConstructorItem
-            key={item._id}
-            itemData={item}
-            type='bottom'
-            isLocked
-          />
+            <ConstructorItem
+              key={item._id}
+              itemData={item}
+              type='bottom'
+              isLocked
+            />
 
-        )
-        )
+          )
+          )
         }
       </ul>
       <div className={`${styles.checkout_container} pr-8`}>
