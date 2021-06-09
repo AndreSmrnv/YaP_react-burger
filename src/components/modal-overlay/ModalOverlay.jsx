@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
+
 import PropTypes from 'prop-types';
 import styles from './ModalOverlay.module.css';
 import Modal from "../modal";
 
-const modalRoot = document.querySelector('#app-modals');
 
-function ModalOverlay({ children, closeModal, header }) {
+
+function ModalOverlay({ closeModal }) {
 
   const closeModalByEscKey = (e) => {
     if (e.key === 'Escape')
@@ -20,20 +20,17 @@ function ModalOverlay({ children, closeModal, header }) {
     };
   }, []);
 
-  return ReactDOM.createPortal(
-    <div className={styles.modal_overlay} onClick={closeModal} >
-      <Modal closeModal={closeModal} modalTitle={header}>
+  return (
+    <div className={styles.modal_overlay} onClick={closeModal}>
+      {/* <Modal closeModal={closeModal} modalTitle={header}>
         {children}
-      </Modal>
-    </div>,
-    modalRoot,
+      </Modal> */}
+    </div>
   );
 }
 
-ModalOverlay.propTypes = {
-  header: PropTypes.string,
-  closeModal: PropTypes.func.isRequired,
-  children: PropTypes.element,
+ModalOverlay.propTypes = {  
+  closeModal: PropTypes.func.isRequired
 };
 
 export default ModalOverlay;

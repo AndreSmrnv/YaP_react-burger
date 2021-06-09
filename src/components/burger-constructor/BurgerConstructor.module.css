@@ -8,7 +8,7 @@
   flex-direction: column;
   gap: 10px;
   overflow-y: scroll;
-  max-height: 55vh;
+  max-height: 44vh;
   list-style: none;
   padding-left: 0;
   scrollbar-width: thin;

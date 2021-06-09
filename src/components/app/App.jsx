@@ -3,6 +3,7 @@ import AppHeader from "../app-header";
 import BurgerConstructor from '../burger-constructor';
 import BurgerIngredients from '../burger-ingredients';
 import IngredientDetails from '../ingredient-details/IngredientDetails';
+import Modal from '../modal/Modal';
 
 import OrderDetails from '../order-details';
 
@@ -15,6 +16,7 @@ const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
 function App() {
 
   const [state, setState] = useState(INIT_APP);
+
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
   const [dataIngredientDetails, setDataIngredientDetails] = useState({});
@@ -25,7 +27,6 @@ function App() {
     fetch(
       API_URL
     )
-      //.then(response => response.json())
       .then(response => (response.ok)
         ? response.json()
         : Promise.reject(`api err: ${response.status}`)
@@ -64,9 +65,16 @@ function App() {
         <BurgerConstructor prodData={state.data} openModal={openModalOrderDetails} />
       </main>
 
-      {visibleOrderDetails && <OrderDetails header={null} closeModal={closeModal} />}
-      {visibleIngredientDetails && <IngredientDetails header='Детали ингредиента' closeModal={closeModal} item={dataIngredientDetails} />}
-
+      {visibleOrderDetails &&
+        <Modal header={null} closeModal={closeModal}>
+          <OrderDetails />
+        </Modal>
+      }
+      {visibleIngredientDetails &&
+        <Modal header='Детали ингредиента' closeModal={closeModal} >
+          <IngredientDetails item={dataIngredientDetails} />
+        </Modal>
+      }    
     </div>
   );
 }

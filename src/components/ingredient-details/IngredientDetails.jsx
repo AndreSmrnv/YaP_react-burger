@@ -1,5 +1,5 @@
 import React from "react";
-import ModalOverlay from "../modal-overlay";
+
 import PropTypes from 'prop-types';
 import styles from './IngredientDetails.module.css';
 
@@ -20,31 +20,29 @@ const IngredientDetailsItem = ({ title, value }) => (
   </li>
 );
 
-const IngredientDetails = (props) => {
-  const { item } = props;
+const IngredientDetails = ({ item }) => {
+  
   return (
-    <ModalOverlay  {...props} >
-      <div className={styles.container}>
-        <img
-          src={item.image_large}
-          alt={item.name}
-          title={item.name}
-        />
-        <h4 className='text text_type_main-medium mt-4 mb-8'>
-          {item.name}
-        </h4>
-        <ul className={`${styles.details_list} mb-15`}>
 
-          <IngredientDetailsItem title={ITEM_DETAILS.calories} value={item.calories} />
-          <IngredientDetailsItem title={ITEM_DETAILS.proteins} value={item.proteins} />
-          <IngredientDetailsItem title={ITEM_DETAILS.fat} value={item.fat} />
-          <IngredientDetailsItem title={ITEM_DETAILS.carbohydrates} value={item.carbohydrates} />
+    <div className={styles.container}>
+      <img
+        src={item.image_large}
+        alt={item.name}
+        title={item.name}
+      />
+      <h4 className='text text_type_main-medium mt-4 mb-8'>
+        {item.name}
+      </h4>
+      <ul className={`${styles.details_list} mb-15`}>
 
-        </ul>
-      </div>
+        <IngredientDetailsItem title={ITEM_DETAILS.calories} value={item.calories} />
+        <IngredientDetailsItem title={ITEM_DETAILS.proteins} value={item.proteins} />
+        <IngredientDetailsItem title={ITEM_DETAILS.fat} value={item.fat} />
+        <IngredientDetailsItem title={ITEM_DETAILS.carbohydrates} value={item.carbohydrates} />
 
+      </ul>
+    </div>
 
-    </ModalOverlay>
   );
 }
 
@@ -63,8 +61,7 @@ IngredientDetails.propTypes = {
     image_large: PropTypes.string,
     __v: PropTypes.number,
   }).isRequired,
-  closeModal: PropTypes.func.isRequired,
-  header: PropTypes.string,
+  
 };
 
 export default IngredientDetails;
