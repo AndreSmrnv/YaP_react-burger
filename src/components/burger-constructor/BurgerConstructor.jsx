@@ -1,18 +1,14 @@
 import React from "react";
-import styles from './BurgerConstructor.module.css';
+
 import {
-  ConstructorElement,
-  DragIcon,
   Button,
   CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import ConstructorItem from "./constructor-item";
 import PropTypes from "prop-types";
+import styles from './BurgerConstructor.module.css';
 
 function BurgerConstructor({ prodData, openModal }) {
-
-
-
-
 
   const topData = prodData && Array.isArray(prodData)
     && [prodData[0]]
@@ -33,7 +29,7 @@ function BurgerConstructor({ prodData, openModal }) {
       [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
         return sum + item.price;
       }, 0),
-    [prodData]
+    [prodData, topData, middleData, bottomData]
   );
   console.log(totalBurgerPrice);
 
@@ -100,26 +96,6 @@ function BurgerConstructor({ prodData, openModal }) {
     </section>
   )
 
-}
-
-const ConstructorItem = ({ itemData, type, isLocked }) => {
-  //console.log(itemData);
-  return (
-    <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`}>
-      {!isLocked && (<span className={styles.drag_icon}>
-        <DragIcon type='secondary' />
-      </span>)}
-      <ConstructorElement
-        type={type === 'top' ? 'top' : type === 'bottom' ? 'bottom' : null}
-
-        isLocked={isLocked}
-        text={`${itemData.name} ${type === 'top' ? '(верх)' : ''} ${type === 'bottom' ? '(низ)' : ''} `}
-        thumbnail={itemData.image_mobile}
-        price={itemData.price}
-      />
-
-    </li>
-  )
 }
 
 BurgerConstructor.propTypes = {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import PropTypes from 'prop-types';
 import styles from './ModalOverlay.module.css';
-import Modal from "../modal";
+
 
 
 
@@ -21,15 +21,11 @@ function ModalOverlay({ closeModal }) {
   }, []);
 
   return (
-    <div className={styles.modal_overlay} onClick={closeModal}>
-      {/* <Modal closeModal={closeModal} modalTitle={header}>
-        {children}
-      </Modal> */}
-    </div>
+    <div className={styles.modal_overlay} onClick={closeModal} />
   );
 }
 
-ModalOverlay.propTypes = {  
+ModalOverlay.propTypes = {
   closeModal: PropTypes.func.isRequired
 };
 

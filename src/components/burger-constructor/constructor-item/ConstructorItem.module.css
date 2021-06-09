@@ -1,0 +1,36 @@
+.container {
+  width: calc(50% - 20px);
+  margin-left: 20px;
+}
+
+.scroll_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  max-height: 44vh;
+  list-style: none;
+  padding-left: 0;
+  scrollbar-width: thin;
+}
+
+.item_list {
+  list-style: none;
+  padding: 0 16px 40px;
+}
+
+.item {
+  display: flex;
+
+  align-items: center;
+}
+
+.checkout_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.drag_icon {
+  padding-right: 8px;
+}

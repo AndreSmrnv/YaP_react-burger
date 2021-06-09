@@ -1,8 +1,8 @@
 import React from "react";
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import orderDone from '../../images/order-done.svg'
-import styles from './OrderDetails.module.css';
+// import styles from './OrderDetails.module.css';
 
 
 

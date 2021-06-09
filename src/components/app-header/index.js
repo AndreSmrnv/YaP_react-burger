@@ -1,3 +1,3 @@
-import page from './AppHeader.jsx';
+import page from './AppHeader';
 
 export default page;
