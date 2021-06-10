@@ -1,7 +1,8 @@
 import React from "react";
-
+import IngredientDetailsItem from "./ingredient-details-item";
 import PropTypes from 'prop-types';
 import styles from './IngredientDetails.module.css';
+
 
 const ITEM_DETAILS = {
   calories: 'Калории, ккал',
@@ -9,16 +10,7 @@ const ITEM_DETAILS = {
   fat: 'Жиры, г',
   carbohydrates: 'Углеводы, г'
 };
-const IngredientDetailsItem = ({ title, value }) => (
-  <li className={styles.details_list_item}>
-    <p className="text text_type_main-default text_color_inactive">
-      {title}
-    </p>
-    <p className="text text_type_digits-default text_color_inactive">
-      {value}
-    </p>
-  </li>
-);
+
 
 const IngredientDetails = ({ item }) => {
   
