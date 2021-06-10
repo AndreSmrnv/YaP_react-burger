@@ -12,11 +12,11 @@ function BurgerConstructor({ prodData, openModal }) {
   const topData = prodData && Array.isArray(prodData)
     && [prodData[0]]
     ;
-  console.log(topData);
+  //console.log(topData);
   const bottomData = topData && Array.isArray(topData)
     && [...topData]
     ;
-  console.log(bottomData);
+  //console.log(bottomData);
   const middleData = prodData && Array.isArray(prodData)
     && prodData.filter(
       item => item.type !== 'bun'
@@ -28,9 +28,9 @@ function BurgerConstructor({ prodData, openModal }) {
       [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
         return sum + item.price;
       }, 0),
-    [prodData, topData, middleData, bottomData]
+    [prodData]
   );
-  console.log(totalBurgerPrice);
+  //console.log(totalBurgerPrice);
 
   return (
     <section className={`${styles.container} pt-25`}>
