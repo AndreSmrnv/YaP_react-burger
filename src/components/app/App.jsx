@@ -24,9 +24,7 @@ function App() {
 
   useEffect(() => {
     setState(prevState => ({ ...prevState, isFetching: true }));
-    fetch(
-      API_URL
-    )
+    fetch(API_URL)
       .then(response => (response.ok)
         ? response.json()
         : Promise.reject(`api err: ${response.status}`)
@@ -74,7 +72,7 @@ function App() {
         <Modal header='Детали ингредиента' closeModal={closeModal} >
           <IngredientDetails item={dataIngredientDetails} />
         </Modal>
-      }    
+      }
     </div>
   );
 }
