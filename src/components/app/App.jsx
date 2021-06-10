@@ -9,7 +9,7 @@ import OrderDetails from '../order-details';
 
 import styles from './App.module.css';
 
-const INIT_APP = { data: {}, isFetching: false, error: null };
+const INIT_APP = { data: [], isFetching: false, error: null };
 const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
 // const API_HEADERS = { 'Content-Type': 'application/json' };
 
