@@ -9,7 +9,7 @@ import OrderDetails from '../order-details';
 
 import styles from './App.module.css';
 
-const INIT_APP = { data: [], isFetching: false, error: null };
+const INIT_APP = { data: null, isFetching: false, error: null };
 const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
 // const API_HEADERS = { 'Content-Type': 'application/json' };
 
@@ -58,11 +58,12 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <AppHeader />
-      <main className={styles.main}>
-        <BurgerIngredients prodData={state.data} openModal={openModalIngredientDetails} />
-        <BurgerConstructor prodData={state.data} openModal={openModalOrderDetails} />
-      </main>
-
+      {state.data &&
+        <main className={styles.main}>
+          <BurgerIngredients prodData={state.data} openModal={openModalIngredientDetails} />
+          <BurgerConstructor prodData={state.data} openModal={openModalOrderDetails} />
+        </main>
+      }
       {visibleOrderDetails &&
         <Modal header={null} closeModal={closeModal}>
           <OrderDetails />

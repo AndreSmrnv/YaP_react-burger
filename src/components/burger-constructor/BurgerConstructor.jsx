@@ -46,7 +46,7 @@ function BurgerConstructor({ prodData, openModal }) {
         )
         )
         }
-        <li className={`mb-4`} >
+        <li className={`mb-4`} key='middle'>
           <ul className={styles.scroll_list}>
             {middleData && Array.isArray(middleData) && middleData.map(item => (
               <ConstructorItem
