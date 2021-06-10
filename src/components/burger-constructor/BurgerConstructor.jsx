@@ -19,7 +19,7 @@ function BurgerConstructor({ prodData, openModal }) {
   console.log(bottomData);
   const middleData = prodData && Array.isArray(prodData)
     && prodData.filter(
-      item => item.type === 'main'
+      item => item.type !== 'bun'
     )
     ;
   const totalBurgerPrice = React.useMemo(
@@ -62,15 +62,15 @@ function BurgerConstructor({ prodData, openModal }) {
         </li>
 
         {bottomData && Array.isArray(bottomData) && bottomData.map(item => (
-            <ConstructorItem
-              key={item._id}
-              itemData={item}
-              type='bottom'
-              isLocked
-            />
+          <ConstructorItem
+            key={item._id}
+            itemData={item}
+            type='bottom'
+            isLocked
+          />
 
-          )
-          )
+        )
+        )
         }
       </ul>
       <div className={`${styles.checkout_container} pr-8`}>
