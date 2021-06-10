@@ -23,7 +23,7 @@ const MenuItem = ({ item }) => {
 }
 
 MenuItem.propTypes = {
-    MenuItem: PropTypes.shape(
+    item: PropTypes.shape(
         {
             id: PropTypes.string,
             name: PropTypes.string,
