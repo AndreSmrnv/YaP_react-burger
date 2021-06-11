@@ -67,12 +67,12 @@ function App() {
         </main>
       }
       {visibleOrderDetails &&
-        <Modal header={null} closeModal={closeModal}>
+        <Modal modalTitle={null} closeModal={closeModal}>
           <OrderDetails />
         </Modal>
       }
       {visibleIngredientDetails &&
-        <Modal header='Детали ингредиента' closeModal={closeModal} >
+        <Modal modalTitle='Детали ингредиента' closeModal={closeModal} >
           <IngredientDetails item={dataIngredientDetails} />
         </Modal>
       }
