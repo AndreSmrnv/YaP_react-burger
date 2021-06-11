@@ -19,7 +19,7 @@ function BurgerConstructor({ prodData, idDataSet, openModal }) {
   //console.log(bottomData);
   const middleData = prodData && Array.isArray(prodData)
     && prodData.filter(
-      item => item.type !== 'buh'
+      item => item.type !== 'bun'
     )
     ;
   const totalBurgerPrice = React.useMemo(
