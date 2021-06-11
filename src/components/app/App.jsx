@@ -57,7 +57,9 @@ function App() {
   console.log(state);
   return (
     <div className={styles.wrapper}>
-      <AppHeader />
+      <header className={styles.nav_panel}>
+        <AppHeader />
+      </header>  
       {state.data &&
         <main className={styles.main}>
           <BurgerIngredients prodData={state.data} openModal={openModalIngredientDetails} />

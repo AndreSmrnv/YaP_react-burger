@@ -12,7 +12,7 @@ import MenuItem from "./menu-item";
 function AppHeader() {
 
   return (
-    <header className={`${styles.container} pt-4 pb-4 p`}>
+    <div className={`${styles.container} pt-4 pb-4 p`}>
       <nav>
         <ul className={styles.menu}>
           {dataMenu.left.map((item) => (
@@ -30,7 +30,7 @@ function AppHeader() {
           ))}
         </ul>
       </nav>
-    </header>
+    </div>
   )
 }
 

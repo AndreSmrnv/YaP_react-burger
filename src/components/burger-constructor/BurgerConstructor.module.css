@@ -6,7 +6,6 @@
 .scroll_list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   overflow-y: scroll;
   max-height: 44vh;
   list-style: none;
