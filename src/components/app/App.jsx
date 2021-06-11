@@ -9,7 +9,7 @@ import OrderDetails from '../order-details';
 
 import styles from './App.module.css';
 
-const INIT_APP = { data: null, isFetching: false, error: null };
+const INIT_APP = { data: null, idDataSet: null,isFetching: false, error: null };
 const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
 // const API_HEADERS = { 'Content-Type': 'application/json' };
 
@@ -29,7 +29,7 @@ function App() {
         ? response.json()
         : Promise.reject(`api err: ${response.status}`)
       )
-      .then(result => setState(prevState => ({ ...prevState, data: result.data, isFetching: false, error: null })))
+      .then(result => setState(prevState => ({ ...prevState, data: result.data, idDataSet: Date.now(),isFetching: false, error: null })))
       .catch(e => {
         console.log(e);
         setState(prevState => ({ ...prevState, isFetching: false, error: e }));
@@ -62,8 +62,8 @@ function App() {
       </header>  
       {state.data &&
         <main className={styles.main}>
-          <BurgerIngredients prodData={state.data} openModal={openModalIngredientDetails} />
-          <BurgerConstructor prodData={state.data} openModal={openModalOrderDetails} />
+        <BurgerIngredients prodData={state.data} idDataSet={state.idDataSet } openModal={openModalIngredientDetails} />
+          <BurgerConstructor prodData={state.data} idDataSet={state.idDataSet } openModal={openModalOrderDetails} />
         </main>
       }
       {visibleOrderDetails &&

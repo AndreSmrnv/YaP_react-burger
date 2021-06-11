@@ -7,7 +7,7 @@ import ConstructorItem from "./constructor-item";
 import PropTypes from "prop-types";
 import styles from './BurgerConstructor.module.css';
 
-function BurgerConstructor({ prodData, openModal }) {
+function BurgerConstructor({ prodData, idDataSet, openModal }) {
 
   const topData = prodData && Array.isArray(prodData)
     && [prodData[0]]
@@ -28,7 +28,7 @@ function BurgerConstructor({ prodData, openModal }) {
       [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
         return sum + item.price;
       }, 0),
-    [prodData]
+    [idDataSet]
   );
   //console.log(totalBurgerPrice);
 
@@ -49,12 +49,12 @@ function BurgerConstructor({ prodData, openModal }) {
         <li className={`mb-4`} key='middle'>
           <ul className={styles.scroll_list}>
             {middleData && Array.isArray(middleData) && middleData.map(item => (
-              
-                <ConstructorItem
-                  key={item._id}
-                  itemData={item}
-                />
-             
+
+              <ConstructorItem
+                key={item._id}
+                itemData={item}
+              />
+
             )
             )
             }
