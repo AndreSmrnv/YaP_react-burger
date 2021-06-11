@@ -17,6 +17,7 @@ const ConstructorItem = ({ itemData, isLocked, type }) => {
                 </span>
             )
             }
+            {/* <div className={styles.item_elem}> */}
             <ConstructorElement
                 text={`${itemData.name} ${type === 'top' ? '(верх)' : ''} ${type === 'bottom' ? '(низ)' : ''} `}
                 thumbnail={itemData.image_mobile}
@@ -24,7 +25,7 @@ const ConstructorItem = ({ itemData, isLocked, type }) => {
                 isLocked={isLocked}
                 type={type}
             />
-
+            {/* </div> */}
         </li>
     )
 }

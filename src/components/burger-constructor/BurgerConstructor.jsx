@@ -19,7 +19,7 @@ function BurgerConstructor({ prodData, openModal }) {
   //console.log(bottomData);
   const middleData = prodData && Array.isArray(prodData)
     && prodData.filter(
-      item => item.type !== 'bun'
+      item => item.type !== 'buh'
     )
     ;
   const totalBurgerPrice = React.useMemo(
@@ -49,10 +49,12 @@ function BurgerConstructor({ prodData, openModal }) {
         <li className={`mb-4`} key='middle'>
           <ul className={styles.scroll_list}>
             {middleData && Array.isArray(middleData) && middleData.map(item => (
-              <ConstructorItem
-                key={item._id}
-                itemData={item}
-              />
+              
+                <ConstructorItem
+                  key={item._id}
+                  itemData={item}
+                />
+             
             )
             )
             }
