@@ -1,0 +1,19 @@
+.container {
+
+    padding: 0 100px;
+}
+
+.details_list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0;
+}
+
+.details_list_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}

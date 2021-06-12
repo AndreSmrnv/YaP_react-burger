@@ -1,0 +1,43 @@
+.container {
+  width: calc(50% - 20px);
+  margin-left: 20px;
+}
+
+.scroll_list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 44vh;
+  list-style: none;
+  padding-left: 0;
+  scrollbar-width: thin;
+}
+
+.scroll_list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll_list::-webkit-scrollbar-track {
+  background: #1C1C21;
+}
+
+.scroll_list::-webkit-scrollbar-thumb {
+  background: #8585AD;
+}
+
+
+.item_list {
+  list-style: none;
+  padding: 0 16px 40px;
+}
+
+
+
+
+
+
+.checkout_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
