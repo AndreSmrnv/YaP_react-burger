@@ -1,9 +1,7 @@
+import { GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED } from '../constants/actionTypes';
 import { getIngredientsRequest } from '../api';
 
-export const GET_INGREDIENTS = 'GET_INGREDIENTS';
-export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
-export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
-export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED';
+
 
 
 export function getIngredients() {
@@ -11,17 +9,26 @@ export function getIngredients() {
       dispatch({
         type: GET_INGREDIENTS_REQUEST
       });
-      getIngredientsRequest().then(res => {
-        if (res && res.success) {
-          dispatch({
-            type: GET_INGREDIENTS_SUCCESS,
-            items: res.data
-          });
-        } else {
-          dispatch({
-            type: GET_INGREDIENTS_FAILED
-          });
-        }
-      });
+      getIngredientsRequest()
+        .then(response => (response.ok)
+           ? response.json()
+           : Promise.reject(`api err: ${response.status}`)
+         )        
+        .then(          
+          result => {
+            console.log(result);
+          
+            dispatch({
+              type: GET_INGREDIENTS_SUCCESS,
+              items: result.data
+            });
+          
+        })
+        .catch(e => {
+              console.log(e);
+              dispatch({
+                type: GET_INGREDIENTS_FAILED
+              });
+            }) ;
     };
   }

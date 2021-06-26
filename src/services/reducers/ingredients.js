@@ -3,12 +3,14 @@ import {
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS,
     
-  } from '../actions/ingredients';
+  } from '../constants/actionTypes';
   
   const initialState = {
-    items: [],
-    itemsRequest: false,
-    itemsFailed: false    
+    data: [],
+    isFetching: false,
+    fetchingFailed: false,
+    lastUpdated: null,
+    error: null
   };
   
   export const ingredientsReducer = (state = initialState, action) => {
@@ -16,14 +18,14 @@ import {
       case GET_INGREDIENTS_REQUEST: {
         return {
           ...state,
-          itemsRequest: true
+          isFetching: true
         };
       }
       case GET_INGREDIENTS_SUCCESS: {
-        return { ...state, itemsFailed: false, items: action.items, itemsRequest: false };
+        return { ...state, fetchingFailed: false, data: action.items, lastUpdated: Date.now(), isFetching: false };
       }
       case GET_INGREDIENTS_FAILED: {
-        return { ...state, itemsFailed: true, itemsRequest: false };
+        return { ...state, fetchingFailed: true, isFetching: false };
       }
   
       
