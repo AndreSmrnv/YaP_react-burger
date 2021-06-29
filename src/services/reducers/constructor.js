@@ -6,10 +6,12 @@ import {
 
 const initialState = {
     data: [],
-    isFetching: false,
-    fetchingFailed: false,
-    lastUpdated: null,
-    error: null
+    sortedData: {
+        bun: {},
+        fillers: []
+    },
+    total: 0,
+    lastUpdated: null
   };
   
   export const constructorReducer = (state = initialState, action) => {
@@ -17,11 +19,16 @@ const initialState = {
       case ADD_CONSTRUCTOR_INGREDIENT: {
         return {
           ...state,
-          isFetching: true
+            data: action.items, 
+            lastUpdated: Date.now() 
         };
       }
       case DELETE_CONSTRUCTOR_INGREDIENT: {
-        return { ...state, fetchingFailed: false, data: action.items, lastUpdated: Date.now(), isFetching: false };
+        return {
+            ...state,
+            items: state.items.filter(item => action.payload !== item),
+            lastUpdated: Date.now() 
+          }
       }
       case RESET_CONSTRUCTOR: {
         return { ...state, initialState };
