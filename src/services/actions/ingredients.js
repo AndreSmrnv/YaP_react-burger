@@ -1,4 +1,8 @@
-import { GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED } from '../constants/actionTypes';
+import {
+  GET_INGREDIENTS_REQUEST,
+  GET_INGREDIENTS_SUCCESS,
+  GET_INGREDIENTS_FAILED
+} from '../constants/actionTypes';
 import { getIngredientsRequest } from '../api';
 
 
