@@ -36,7 +36,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
     )
     ;
   const countItem = (itemId) =>  cart.sortedData && cart.sortedData.fillers.filter(item => item._id === itemId).length ;
-  
+  const countItemBun = (itemId) =>  cart.sortedData && cart.sortedData.bun._id === itemId ;
 
   return (
     <section className={`${styles.container}`}>
@@ -64,6 +64,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
                 key={item._id}
                 itemData={item}
                 onItemClick={openModal}
+                itemCounter={countItemBun(item._id)? 1 : 0}
               />
             ))}
           </ul>
