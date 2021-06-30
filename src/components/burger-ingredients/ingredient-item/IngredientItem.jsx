@@ -11,7 +11,7 @@ import styles from './IngredientItem.module.css';
 const IngredientItem = ({ itemData, onItemClick }) => {
     const [{ isDragging }, dragRef] = useDrag({
         type: 'ingredient',
-        data:  itemData ,
+        item:  itemData ,
         collect: monitor => ({
             isDragging: monitor.isDragging()
         })

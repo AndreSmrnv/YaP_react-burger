@@ -22,22 +22,17 @@ const initialState = {
     switch (action.type) {
         case ADD_CONSTRUCTOR_INGREDIENT: {
 
-            
-            // if (action.payload.type === 'bun') {
-            //     // return {
-            //     //     ...state,
-            //     //     data: [...state.data, action.item],
-            //     //     sortedData: { ...state.sortedData, bun: action.payload.item },
-
-            //     //     lastUpdated: Date.now()
-            //     // };
-            // } else {
-                
-            // }
+            let sortedData = { ...state.sortedData };
+            console.log(sortedData);
+            if (action.payload.type === 'bun') {               
+                sortedData = { ...sortedData, bun: action.payload };
+            } else {
+                sortedData = { ...sortedData, fillers: [...sortedData.fillers, action.payload] };
+            }
             return {
                 ...state,
-               data: [...state.data, action.payload],
-               // sortedData: { ...state.sortedData, fillers: [...state.sortedData.fillers, action.payload.item] },
+                data: [...state.data, action.payload],
+                sortedData,
                 lastUpdated: Date.now()
             };
 
@@ -50,8 +45,7 @@ const initialState = {
                 lastUpdated: Date.now()
             };
         } 
-        case GET_CONSTRUCTOR_INGREDIENT: { 
-            
+        case GET_CONSTRUCTOR_INGREDIENT: {            
             return {
                 ...state,
                data: [...state.data, ...action.payload],               

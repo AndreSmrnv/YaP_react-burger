@@ -18,7 +18,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
   const cart = useSelector(state => state.cart);
   const prodData = [...cart.data];
 
-  const onDropHandler = (data) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data  });
+  const onDropHandler = (data) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data });
   const [, dropTarget] = useDrop({
     accept: 'ingredient',
     drop: onDropHandler
@@ -51,10 +51,10 @@ function BurgerConstructor({ idDataSet, openModal }) {
   return (
     <section className={`${styles.container} pt-25`} ref={dropTarget}>
       <ul className={styles.item_list}>
-        {topData && Array.isArray(topData) && topData.map(item => (
+        {topData && Array.isArray(topData) && topData.map((item, indx) => (
 
           <ConstructorItem
-            key={item._id}
+            key={item._id + indx}
             itemData={item}
             type='top'
             isLocked
@@ -64,10 +64,10 @@ function BurgerConstructor({ idDataSet, openModal }) {
         }
         <li className={`mb-4`} key='middle'>
           <ul className={styles.scroll_list}>
-            {middleData && Array.isArray(middleData) && middleData.map(item => (
+            {middleData && Array.isArray(middleData) && middleData.map((item, indx) => (
 
               <ConstructorItem
-                key={item._id}
+                key={item._id + indx}
                 itemData={item}
               />
 

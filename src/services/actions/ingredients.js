@@ -1,5 +1,6 @@
 import {
   GET_CONSTRUCTOR_INGREDIENT,
+  ADD_CONSTRUCTOR_INGREDIENT,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED
@@ -29,8 +30,8 @@ export function getIngredients() {
             });
 
             dispatch({
-              type: GET_CONSTRUCTOR_INGREDIENT,
-              payload: result.data
+              type: ADD_CONSTRUCTOR_INGREDIENT,
+              payload: result.data.find(item=>item.type === 'bun')
             });
 
           
