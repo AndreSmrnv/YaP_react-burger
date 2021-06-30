@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import AppHeader from "../app-header";
 import BurgerConstructor from '../burger-constructor';
 import BurgerIngredients from '../burger-ingredients';
@@ -18,6 +20,7 @@ function App() {
   const dispatch = useDispatch();
   //const [state, setState] = useState(INIT_APP);
   const state = useSelector(state => state.ingredients);
+  const cart = useSelector(state => state.cart);
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
   const [dataIngredientDetails, setDataIngredientDetails] = useState({});
@@ -63,16 +66,22 @@ function App() {
 
 
   console.log(state);
+  console.log(cart);
   return (
     <div className={styles.wrapper}>
       <header className={styles.nav_panel}>
         <AppHeader />
       </header>
-      {state.data && state.data.length &&
-        <main className={styles.main}>
-          <BurgerIngredients prodData={state.data} idDataSet={state.idDataSet} openModal={openModalIngredientDetails} />
-          <BurgerConstructor prodData={state.data} idDataSet={state.idDataSet} openModal={openModalOrderDetails} />
-        </main>
+      {state.data && state.data.length && (
+        <DndProvider backend={HTML5Backend}>
+          <main className={styles.main}>
+
+            <BurgerIngredients prodData={state.data} idDataSet={state.idDataSet} openModal={openModalIngredientDetails} />
+            {cart.data.length && <BurgerConstructor prodData={state.data} idDataSet={state.idDataSet} openModal={openModalOrderDetails} />}
+
+          </main>
+        </DndProvider>
+      )
       }
       {visibleOrderDetails &&
         <Modal modalTitle={null} closeModal={closeModal}>

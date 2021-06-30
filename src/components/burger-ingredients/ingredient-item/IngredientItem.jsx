@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useDrag } from 'react-dnd';
 import {
     CurrencyIcon,
     Counter
@@ -9,10 +9,17 @@ import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
 
 const IngredientItem = ({ itemData, onItemClick }) => {
+    const [{ isDragging }, dragRef] = useDrag({
+        type: 'ingredient',
+        data:  itemData ,
+        collect: monitor => ({
+            isDragging: monitor.isDragging()
+        })
+      });
     const handleClick = () => onItemClick(itemData);
     //console.log(itemData);
     return (
-        <li className={styles.item} onClick={handleClick}>
+        <li className={styles.item} onClick={handleClick} ref={dragRef}>
             <Counter count={1} size="default" />
             <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 

@@ -1,4 +1,5 @@
 import React from "react";
+//import { useDrag } from 'react-dnd';
 
 import {
     ConstructorElement,
@@ -8,9 +9,16 @@ import PropTypes from "prop-types";
 import styles from './ConstructorItem.module.css';
 
 const ConstructorItem = ({ itemData, isLocked, type }) => {
-
+    // const [{ isDragging }, dragRef] = useDrag({
+    //     type: 'ingredient',
+    //     item: itemData,
+    //     collect: monitor => ({
+    //         isDragging: monitor.isDragging()
+    //     })
+    //   });
+    
     return (
-        <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`}>
+        <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`} >
             {!isLocked && (
                 <span className={styles.drag_icon}>
                     <DragIcon type='secondary' />

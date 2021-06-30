@@ -1,4 +1,10 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
+import {
+  ADD_CONSTRUCTOR_INGREDIENT,
+  DELETE_CONSTRUCTOR_INGREDIENT
+} from '../../services/constants/actionTypes';
 import {
   Button,
   CurrencyIcon
@@ -7,7 +13,16 @@ import ConstructorItem from "./constructor-item";
 import PropTypes from "prop-types";
 import styles from './BurgerConstructor.module.css';
 
-function BurgerConstructor({ prodData, idDataSet, openModal }) {
+function BurgerConstructor({ idDataSet, openModal }) {
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
+  const prodData = [...cart.data];
+
+  const onDropHandler = (data) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data  });
+  const [, dropTarget] = useDrop({
+    accept: 'ingredient',
+    drop: onDropHandler
+  });
 
   const topData = prodData && Array.isArray(prodData)
     && [prodData[0]]
@@ -22,18 +37,19 @@ function BurgerConstructor({ prodData, idDataSet, openModal }) {
       item => item.type !== 'bun'
     )
     ;
-  const totalBurgerPrice = React.useMemo(
-    () =>
-      Array.isArray(prodData) &&
-      [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
-        return sum + item.price;
-      }, 0),
-    [idDataSet]
-  );
+  const totalBurgerPrice = cart.total;
+  // const totalBurgerPrice = React.useMemo(
+  //   () =>
+  //     Array.isArray(prodData) &&
+  //     [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
+  //       return sum + item.price;
+  //     }, 0),
+  //   [idDataSet]
+  // );
   //console.log(totalBurgerPrice);
 
   return (
-    <section className={`${styles.container} pt-25`}>
+    <section className={`${styles.container} pt-25`} ref={dropTarget}>
       <ul className={styles.item_list}>
         {topData && Array.isArray(topData) && topData.map(item => (
 

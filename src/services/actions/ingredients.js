@@ -1,4 +1,5 @@
 import {
+  GET_CONSTRUCTOR_INGREDIENT,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED
@@ -26,6 +27,12 @@ export function getIngredients() {
               type: GET_INGREDIENTS_SUCCESS,
               items: result.data
             });
+
+            dispatch({
+              type: GET_CONSTRUCTOR_INGREDIENT,
+              payload: result.data
+            });
+
           
         })
         .catch(e => {
