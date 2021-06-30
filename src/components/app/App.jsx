@@ -9,6 +9,7 @@ import IngredientDetails from '../ingredient-details/IngredientDetails';
 import Modal from '../modal/Modal';
 import OrderDetails from '../order-details';
 import { getIngredients } from '../../services/actions/ingredients';
+import { getOrderNumber } from '../../services/actions/order';
 
 import styles from './App.module.css';
 
@@ -50,7 +51,11 @@ function App() {
 
 
   const openModalOrderDetails = () => {
-    setVisibleOrderDetails(true)
+    let idsCard = cart.sortedData.fillers.map(item => item._id);
+    console.log(idsCard);
+    
+    dispatch(getOrderNumber(idsCard));
+    setVisibleOrderDetails(true);
   }
   const openModalIngredientDetails = (item) => {
     setDataIngredientDetails(item);
@@ -65,8 +70,8 @@ function App() {
 
 
 
-  console.log(state);
-  console.log(cart);
+  // console.log(state);
+   console.log(cart);
   return (
     <div className={styles.wrapper}>
       <header className={styles.nav_panel}>

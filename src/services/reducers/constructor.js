@@ -17,13 +17,13 @@ const initialState = {
   
   export const constructorReducer = (state = initialState, action) => {
     
-      console.log(action.type);
-      console.log(action.payload);
+      //console.log(action.type);
+      //console.log(action.payload);
     switch (action.type) {
         case ADD_CONSTRUCTOR_INGREDIENT: {
 
             let sortedData = { ...state.sortedData };
-            console.log(sortedData);
+            //console.log(sortedData);
             if (action.payload.type === 'bun') {               
                 sortedData = { ...sortedData, bun: action.payload };
             } else {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Tab
@@ -13,7 +13,12 @@ import styles from './BurgerIngredients.module.css';
 function BurgerIngredients({ prodData = [], openModal }) {
   const [currentTab, setCurrentTab] = React.useState('bun');
   //console.log(prodData);
-
+  useEffect(
+    () => {
+      window.location.href = `#${currentTab}`;
+    },
+    [currentTab]
+  );
   const buhData = prodData && Array.isArray(prodData)
     && prodData.filter(
       item => item.type === 'bun'
@@ -48,8 +53,8 @@ function BurgerIngredients({ prodData = [], openModal }) {
       </div>
       <div className={`${styles.scroll_list} pr-4`}>
 
-        <section className={styles.sec_items}>
-          <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Булки</h2>
+        <section className={styles.sec_items} id="bun">
+          <h2 className={`text text_type_main-medium ${styles.sec_title}`} >Булки</h2>
           <ul className={`${styles.items_list}`}>
             {buhData && Array.isArray(buhData) && buhData.map((item) => (
               <IngredientItem
@@ -60,7 +65,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
             ))}
           </ul>
         </section>
-        <section className={styles.sec_items}>
+        <section className={styles.sec_items} id="sauce" >
           <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Соусы</h2>
           <ul className={`${styles.items_list}`}>
             {sauceData && Array.isArray(sauceData) && sauceData.map((item) => (
@@ -72,7 +77,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
             ))}
           </ul>
         </section>
-        <section className={styles.sec_items}>
+        <section className={styles.sec_items} id="main" >
           <h2 className={`text text_type_main-medium ${styles.sec_title}`}>Начинки</h2>
           <ul className={`${styles.items_list}`}>
             {mainData && Array.isArray(mainData) && mainData.map((item) => (

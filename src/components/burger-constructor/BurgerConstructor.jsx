@@ -24,37 +24,31 @@ function BurgerConstructor({ idDataSet, openModal }) {
     drop: onDropHandler
   });
 
-  const topData = prodData && Array.isArray(prodData)
-    && [prodData[0]]
+  const coverData = prodData && Array.isArray(prodData)
+    && [cart.sortedData.bun]
     ;
-  //console.log(topData);
-  const bottomData = topData && Array.isArray(topData)
-    && [...topData]
-    ;
-  //console.log(bottomData);
+  
   const middleData = prodData && Array.isArray(prodData)
-    && prodData.filter(
-      item => item.type !== 'bun'
-    )
+    && cart.sortedData.fillers
     ;
-  const totalBurgerPrice = cart.total;
-  // const totalBurgerPrice = React.useMemo(
-  //   () =>
-  //     Array.isArray(prodData) &&
-  //     [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
-  //       return sum + item.price;
-  //     }, 0),
-  //   [idDataSet]
-  // );
+  //const totalBurgerPrice = cart.total;
+  const totalBurgerPrice = React.useMemo(
+    () =>
+      Array.isArray(prodData) &&
+      [...coverData, ...middleData].reduce((sum, item) => {
+        return sum + item.price;
+      }, 0),
+    [coverData,middleData]
+  );
   //console.log(totalBurgerPrice);
 
   return (
     <section className={`${styles.container} pt-25`} ref={dropTarget}>
       <ul className={styles.item_list}>
-        {topData && Array.isArray(topData) && topData.map((item, indx) => (
+        {coverData && Array.isArray(coverData) && coverData.map((item) => (
 
           <ConstructorItem
-            key={item._id + indx}
+            key={item._id}
             itemData={item}
             type='top'
             isLocked
@@ -79,7 +73,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
 
         </li>
 
-        {bottomData && Array.isArray(bottomData) && bottomData.map(item => (
+        {coverData && Array.isArray(coverData) && coverData.map(item => (
           <ConstructorItem
             key={item._id}
             itemData={item}

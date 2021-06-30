@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
 
-const IngredientItem = ({ itemData, onItemClick }) => {
+const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     const [{ isDragging }, dragRef] = useDrag({
         type: 'ingredient',
         item:  itemData ,
@@ -20,7 +20,7 @@ const IngredientItem = ({ itemData, onItemClick }) => {
     //console.log(itemData);
     return (
         <li className={styles.item} onClick={handleClick} ref={dragRef}>
-            <Counter count={1} size="default" />
+            {itemCounter && <Counter count={1} size="default" />}
             <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 
             <p className={`text text_type_digits-default ${styles.item_description} mt-1 mb-1`}>
