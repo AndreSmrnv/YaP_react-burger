@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Tab
 } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -12,6 +12,7 @@ import styles from './BurgerIngredients.module.css';
 
 function BurgerIngredients({ prodData = [], openModal }) {
   const [currentTab, setCurrentTab] = React.useState('bun');
+  const cart = useSelector(state => state.cart);
   //console.log(prodData);
   useEffect(
     () => {
@@ -34,6 +35,8 @@ function BurgerIngredients({ prodData = [], openModal }) {
       item => item.type === 'main'
     )
     ;
+  const countItem = (itemId) =>  cart.sortedData && cart.sortedData.fillers.filter(item => item._id === itemId).length ;
+  
 
   return (
     <section className={`${styles.container}`}>
@@ -73,6 +76,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
                 key={item._id}
                 itemData={item}
                 onItemClick={openModal}
+                itemCounter={countItem(item._id)}
               />
             ))}
           </ul>
@@ -85,6 +89,7 @@ function BurgerIngredients({ prodData = [], openModal }) {
                 key={item._id}
                 itemData={item}
                 onItemClick={openModal}
+                itemCounter={countItem(item._id)}
               />
             ))}
           </ul>

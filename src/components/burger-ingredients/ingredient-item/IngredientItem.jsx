@@ -11,16 +11,16 @@ import styles from './IngredientItem.module.css';
 const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     const [{ isDragging }, dragRef] = useDrag({
         type: 'ingredient',
-        item:  itemData ,
+        item: itemData,
         collect: monitor => ({
             isDragging: monitor.isDragging()
         })
-      });
+    });
     const handleClick = () => onItemClick(itemData);
     //console.log(itemData);
     return (
         <li className={styles.item} onClick={handleClick} ref={dragRef}>
-            {itemCounter && <Counter count={1} size="default" />}
+            {itemCounter && (itemCounter > 0) ? <Counter count={itemCounter} size="default" /> : null}
             <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 
             <p className={`text text_type_digits-default ${styles.item_description} mt-1 mb-1`}>
