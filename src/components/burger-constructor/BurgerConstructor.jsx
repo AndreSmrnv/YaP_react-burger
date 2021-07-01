@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import {
   ADD_CONSTRUCTOR_INGREDIENT,
-  DELETE_CONSTRUCTOR_INGREDIENT
+  SWAP_CONSTRUCTOR_INGREDIENT
 } from '../../services/constants/actionTypes';
 import {
   Button,
   CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorItem from "./constructor-item";
+import ConstructorItemSwap from "./constructor-item-swap";
 import PropTypes from "prop-types";
 import styles from './BurgerConstructor.module.css';
+
+
 
 function BurgerConstructor({ idDataSet, openModal }) {
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
   const coverData = prodData && Array.isArray(prodData)
     && [cart.sortedData.bun]
     ;
-  
+
   const middleData = prodData && Array.isArray(prodData)
     && cart.sortedData.fillers
     ;
@@ -38,9 +41,27 @@ function BurgerConstructor({ idDataSet, openModal }) {
       [...coverData, ...middleData].reduce((sum, item) => {
         return sum + item.price;
       }, 0),
-    [coverData,middleData]
+    [coverData, middleData]
   );
+  const renderMiddle = (item, indx) => {
+    return (
+      <ConstructorItemSwap
+        key={indx}
+        itemData={item}
+        handlerId={indx}
+        moveElem={moveElem}
+        index={indx} id={item._id}
+      />
+    );
+  };
+  const moveElem = (dragIndex, hoverIndex) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
   //console.log(totalBurgerPrice);
+
+  //   useCallback((dragIndex, hoverIndex) => {
+  //   console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
+  //   dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
+
+  // }, [dispatch]);
 
   return (
     <section className={`${styles.container} pt-25`} ref={dropTarget}>
@@ -58,16 +79,12 @@ function BurgerConstructor({ idDataSet, openModal }) {
         }
         <li className={`mb-4`} key='middle'>
           <ul className={styles.scroll_list}>
-            {middleData && Array.isArray(middleData) && middleData.map((item, indx) => (
-
-              <ConstructorItem
-                key={item._id + indx}
-                itemData={item}
-                handlerId={indx }
-              />
-
-            )
-            )
+            {
+              middleData &&
+              Array.isArray(middleData) &&
+              middleData.map(
+                (item, i) => renderMiddle(item, i)
+              )
             }
           </ul>
 
