@@ -24,7 +24,7 @@ function App() {
   const cart = useSelector(state => state.cart);
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
-  const [dataIngredientDetails, setDataIngredientDetails] = useState({});
+  //const [dataIngredientDetails, setDataIngredientDetails] = useState({});
 
 
   // useEffect(() => {
@@ -95,7 +95,7 @@ function App() {
       }
       {visibleIngredientDetails &&
         <Modal modalTitle='Детали ингредиента' closeModal={closeModal} >
-          <IngredientDetails item={dataIngredientDetails} />
+          <IngredientDetails  />
         </Modal>
       }
     </div>

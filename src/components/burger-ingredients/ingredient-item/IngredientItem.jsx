@@ -10,10 +10,12 @@ import {
 } from '../../../services/constants/actionTypes';
 import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
-
+const style = {
+    cursor: 'move',
+};
 const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     const dispatch = useDispatch();
-    
+
     const [{ isDragging }, dragRef] = useDrag({
         type: 'ingredient',
         item: itemData,
@@ -21,7 +23,7 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
             isDragging: monitor.isDragging()
         })
     });
-    function handleClick() { 
+    function handleClick() {
         dispatch({
             type: SET_VIEW_ITEM,
             payload: itemData
@@ -29,9 +31,10 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
         onItemClick(itemData);
         return false;
     };
+    const opacity = isDragging ? 0.2 : 1;
     //console.log(itemData);
     return (
-        <li className={styles.item} onClick={handleClick} ref={dragRef}>
+        <li className={styles.item} onClick={handleClick} ref={dragRef} style={{ ...style, opacity }}>
             {itemCounter && (itemCounter > 0) ? <Counter count={itemCounter} size="default" /> : null}
             <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 
