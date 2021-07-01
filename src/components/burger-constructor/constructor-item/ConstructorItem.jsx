@@ -16,6 +16,7 @@ const ConstructorItem = ({ itemData, isLocked, type }) => {
     //         isDragging: monitor.isDragging()
     //     })
     //   });
+    // ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}
     
     return (
         <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`} >

@@ -25,10 +25,20 @@ export const ingredientsReducer = (state = initialState, action) => {
         };
       }
       case GET_INGREDIENTS_SUCCESS: {
-        return { ...state, fetchingFailed: false, data: action.items, lastUpdated: Date.now(), isFetching: false };
+        return {
+          ...state,
+          fetchingFailed: false,
+          data: action.items,
+          lastUpdated: Date.now(),
+          isFetching: false
+        };
       }
       case GET_INGREDIENTS_FAILED: {
-        return { ...state, fetchingFailed: true, isFetching: false };
+        return {
+          ...state,
+          fetchingFailed: true,
+          isFetching: false
+        };
       }
   
       

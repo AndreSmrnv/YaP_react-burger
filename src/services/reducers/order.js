@@ -25,10 +25,21 @@ export const orderReducer = (state = initialState, action) => {
         };
       }
       case GET_ORDER_SUCCESS: {
-        return { ...state, fetchingFailed: false, data: action.payload, numberOrd: action.payload.order.number, lastUpdated: Date.now(), isFetching: false };
+            return {
+                ...state,
+                fetchingFailed: false,
+                data: action.payload,
+                numberOrd: action.payload.order.number,
+                lastUpdated: Date.now(),
+                isFetching: false
+            };
       }
       case GET_ORDER_FAILED: {
-        return { ...state, fetchingFailed: true, isFetching: false };
+            return {
+                ...state,
+                fetchingFailed: true,
+                isFetching: false
+            };
       }
   
       
