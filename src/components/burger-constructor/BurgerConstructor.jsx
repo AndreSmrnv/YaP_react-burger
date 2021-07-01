@@ -63,6 +63,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
               <ConstructorItem
                 key={item._id + indx}
                 itemData={item}
+                handlerId={indx }
               />
 
             )

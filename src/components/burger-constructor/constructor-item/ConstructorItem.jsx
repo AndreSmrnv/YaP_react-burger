@@ -1,6 +1,10 @@
 import React from "react";
 //import { useDrag } from 'react-dnd';
-
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    ADD_CONSTRUCTOR_INGREDIENT,
+    DELETE_CONSTRUCTOR_INGREDIENT
+  } from '../../../services/constants/actionTypes';
 import {
     ConstructorElement,
     DragIcon
@@ -8,7 +12,8 @@ import {
 import PropTypes from "prop-types";
 import styles from './ConstructorItem.module.css';
 
-const ConstructorItem = ({ itemData, isLocked, type }) => {
+const ConstructorItem = ({ itemData, handlerId, isLocked, type }) => {
+    const dispatch = useDispatch();
     // const [{ isDragging }, dragRef] = useDrag({
     //     type: 'ingredient',
     //     item: itemData,
@@ -17,7 +22,7 @@ const ConstructorItem = ({ itemData, isLocked, type }) => {
     //     })
     //   });
     // ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}
-    
+    const handleClose = () =>  dispatch({ type: DELETE_CONSTRUCTOR_INGREDIENT, payload: handlerId });
     return (
         <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`} >
             {!isLocked && (
@@ -33,6 +38,7 @@ const ConstructorItem = ({ itemData, isLocked, type }) => {
                 price={itemData.price}
                 isLocked={isLocked}
                 type={type}
+                handleClose={ handleClose}
             />
             {/* </div> */}
         </li>

@@ -39,16 +39,18 @@ const initialState = {
 
         }
         case DELETE_CONSTRUCTOR_INGREDIENT: {
+            const sortedData = { ...state.sortedData };
+            sortedData.fillers = sortedData.fillers.filter((item,indx) => action.payload !== indx);
             return {
                 ...state,
-                //data: state.data.filter(item => action.payload !== item),
+                sortedData,
                 lastUpdated: Date.now()
             };
         } 
         case GET_CONSTRUCTOR_INGREDIENT: {            
             return {
                 ...state,
-               data: [...state.data, ...action.payload],               
+                data: [...state.data, ...action.payload],               
                 lastUpdated: Date.now()
             };
         }    
