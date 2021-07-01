@@ -2,7 +2,8 @@ import {
     GET_CONSTRUCTOR_INGREDIENT,
     ADD_CONSTRUCTOR_INGREDIENT,
     DELETE_CONSTRUCTOR_INGREDIENT,
-    RESET_CONSTRUCTOR
+    RESET_CONSTRUCTOR,
+    SWAP_CONSTRUCTOR_INGREDIENT
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -47,6 +48,17 @@ const initialState = {
                 lastUpdated: Date.now()
             };
         } 
+        case SWAP_CONSTRUCTOR_INGREDIENT: {
+            const { dragIndex, hoverIndex } = action.payload;
+            const sortedData = { ...state.sortedData };
+            sortedData.fillers[dragIndex] = sortedData.fillers.splice(hoverIndex, 1, sortedData.fillers[dragIndex])[0];
+            return {
+                ...state,
+                sortedData,
+                lastUpdated: Date.now()
+            };
+          }
+          
         case GET_CONSTRUCTOR_INGREDIENT: {            
             return {
                 ...state,

@@ -45,7 +45,7 @@ function App() {
     () => {
       dispatch(getIngredients());
     },
-    [dispatch]
+    []
   );
 
 
