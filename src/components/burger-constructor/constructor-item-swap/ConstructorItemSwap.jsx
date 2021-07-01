@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import {
-    DELETE_CONSTRUCTOR_INGREDIENT
+    DELETE_CONSTRUCTOR_INGREDIENT,
+    SWAP_CONSTRUCTOR_INGREDIENT
 } from '../../../services/constants/actionTypes';
 import { ItemTypes } from '../../../services/constants/itemTypes';
 import {
@@ -20,6 +21,7 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
     const handleClose = () => dispatch({ type: DELETE_CONSTRUCTOR_INGREDIENT, payload: index });
 
     const ref = useRef(null);
+
     const [{ handlerId }, drop] = useDrop({
         accept: ItemTypes.FILLERS,
         collect(monitor) {
@@ -39,21 +41,17 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
             }
 
             const hoverBoundingRect = ref.current?.getBoundingClientRect();
-
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
             const clientOffset = monitor.getClientOffset();
-
             const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
                 return;
             }
-
             if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
                 return;
             }
 
+            //dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
             moveElem(dragIndex, hoverIndex);
             //console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
             item.index = hoverIndex;
@@ -68,7 +66,7 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
             isDragging: monitor.isDragging(),
         }),
     });
-    const opacity = isDragging ? 0 : 1;
+    const opacity = isDragging ? 1 : 1;
     drag(drop(ref));
 
 

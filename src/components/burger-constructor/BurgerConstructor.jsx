@@ -14,6 +14,8 @@ import ConstructorItemSwap from "./constructor-item-swap";
 import PropTypes from "prop-types";
 import styles from './BurgerConstructor.module.css';
 
+
+
 function BurgerConstructor({ idDataSet, openModal }) {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
@@ -41,16 +43,10 @@ function BurgerConstructor({ idDataSet, openModal }) {
       }, 0),
     [coverData, middleData]
   );
-  //console.log(totalBurgerPrice);
-  const moveElem = useCallback((dragIndex, hoverIndex) => {
-    console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
-    dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
-
-  }, [dispatch]);
   const renderMiddle = (item, indx) => {
     return (
       <ConstructorItemSwap
-        key={item._id + indx}
+        key={indx}
         itemData={item}
         handlerId={indx}
         moveElem={moveElem}
@@ -58,6 +54,15 @@ function BurgerConstructor({ idDataSet, openModal }) {
       />
     );
   };
+  const moveElem = (dragIndex, hoverIndex) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
+  //console.log(totalBurgerPrice);
+
+  //   useCallback((dragIndex, hoverIndex) => {
+  //   console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
+  //   dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
+
+  // }, [dispatch]);
+
   return (
     <section className={`${styles.container} pt-25`} ref={dropTarget}>
       <ul className={styles.item_list}>
