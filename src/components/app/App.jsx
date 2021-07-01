@@ -58,7 +58,7 @@ function App() {
     setVisibleOrderDetails(true);
   }
   const openModalIngredientDetails = (item) => {
-    setDataIngredientDetails(item);
+    //setDataIngredientDetails(item);
     setVisibleIngredientDetails(true)
   }
 

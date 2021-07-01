@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import IngredientDetailsItem from "./ingredient-details-item";
 import PropTypes from 'prop-types';
 import styles from './IngredientDetails.module.css';
@@ -13,24 +14,26 @@ const ITEM_DETAILS = {
 
 
 const IngredientDetails = ({ item }) => {
-  
+  const viewedItem = useSelector(state => state.viewedItem.data);
+  console.log(viewedItem);
+   
   return (
 
     <div className={styles.container}>
       <img
-        src={item.image_large}
-        alt={item.name}
-        title={item.name}
+        src={viewedItem.image_large}
+        alt={viewedItem.name}
+        title={viewedItem.name}
       />
       <h4 className='text text_type_main-medium mt-4 mb-8'>
-        {item.name}
+        {viewedItem.name}
       </h4>
       <ul className={`${styles.details_list} mb-15`}>
 
-        <IngredientDetailsItem title={ITEM_DETAILS.calories} value={item.calories} />
-        <IngredientDetailsItem title={ITEM_DETAILS.proteins} value={item.proteins} />
-        <IngredientDetailsItem title={ITEM_DETAILS.fat} value={item.fat} />
-        <IngredientDetailsItem title={ITEM_DETAILS.carbohydrates} value={item.carbohydrates} />
+        <IngredientDetailsItem title={ITEM_DETAILS.calories} value={viewedItem.calories} />
+        <IngredientDetailsItem title={ITEM_DETAILS.proteins} value={viewedItem.proteins} />
+        <IngredientDetailsItem title={ITEM_DETAILS.fat} value={viewedItem.fat} />
+        <IngredientDetailsItem title={ITEM_DETAILS.carbohydrates} value={viewedItem.carbohydrates} />
 
       </ul>
     </div>

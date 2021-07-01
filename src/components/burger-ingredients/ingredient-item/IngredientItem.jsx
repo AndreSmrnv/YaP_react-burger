@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import {
     CurrencyIcon,
     Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
+import {
+    SET_VIEW_ITEM
+} from '../../../services/constants/actionTypes';
 import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
 
 const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
+    const dispatch = useDispatch();
+    
     const [{ isDragging }, dragRef] = useDrag({
         type: 'ingredient',
         item: itemData,
@@ -16,7 +21,14 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
             isDragging: monitor.isDragging()
         })
     });
-    const handleClick = () => onItemClick(itemData);
+    function handleClick() { 
+        dispatch({
+            type: SET_VIEW_ITEM,
+            payload: itemData
+        });
+        onItemClick(itemData);
+        return false;
+    };
     //console.log(itemData);
     return (
         <li className={styles.item} onClick={handleClick} ref={dragRef}>
