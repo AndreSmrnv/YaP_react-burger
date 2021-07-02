@@ -20,7 +20,7 @@ function AppHeader() {
           ))}
         </ul>
       </nav>
-      <a href="/" title="Stellar burgers" className={styles.logo}>
+      <a href="##" title="Stellar burgers" className={styles.logo}>
         <Logo />
       </a>
       <nav>
