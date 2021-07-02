@@ -1,29 +1,23 @@
 import React from "react";
 
 import {
-    ConstructorElement,
-    DragIcon
+    ConstructorElement
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import styles from './ConstructorItem.module.css';
 
-const ConstructorItem = ({ itemData, isLocked, type }) => {
-
+const ConstructorItem = ({ itemData, type, isLocked }) => {
+    
     return (
-        <li className={`${styles.item} mb-4 ${isLocked ? 'pl-8 pr-4' : 'pr-2'}`}>
-            {!isLocked && (
-                <span className={styles.drag_icon}>
-                    <DragIcon type='secondary' />
-                </span>
-            )
-            }
+        <li className={`${styles.item} mb-4 pl-8 pr-4'}`}>
+            
             {/* <div className={styles.item_elem}> */}
             <ConstructorElement
                 text={`${itemData.name} ${type === 'top' ? '(верх)' : ''} ${type === 'bottom' ? '(низ)' : ''} `}
                 thumbnail={itemData.image_mobile}
                 price={itemData.price}
-                isLocked={isLocked}
                 type={type}
+                isLocked={ isLocked}
             />
             {/* </div> */}
         </li>

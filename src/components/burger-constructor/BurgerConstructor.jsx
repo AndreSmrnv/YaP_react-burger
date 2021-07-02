@@ -1,41 +1,74 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
+import {
+  ADD_CONSTRUCTOR_INGREDIENT,
+  SWAP_CONSTRUCTOR_INGREDIENT
+} from '../../services/constants/actionTypes';
 import {
   Button,
   CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorItem from "./constructor-item";
+import ConstructorItemSwap from "./constructor-item-swap";
 import PropTypes from "prop-types";
 import styles from './BurgerConstructor.module.css';
 
-function BurgerConstructor({ prodData, idDataSet, openModal }) {
 
-  const topData = prodData && Array.isArray(prodData)
-    && [prodData[0]]
-    ;
-  //console.log(topData);
-  const bottomData = topData && Array.isArray(topData)
-    && [...topData]
-    ;
-  //console.log(bottomData);
+
+function BurgerConstructor({ openModal }) {
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
+  const prodData = [...cart.data];
+
+  const onDropHandler = (data) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data });
+  const [, dropTarget] = useDrop({
+    accept: 'ingredient',
+    drop: onDropHandler
+  });
+
+  // const coverData = prodData && Array.isArray(prodData)
+  //   &&
+  //   Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty]
+  //   ;
+    const coverData = Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty] ;
+  console.log(coverData);
   const middleData = prodData && Array.isArray(prodData)
-    && prodData.filter(
-      item => item.type !== 'bun'
-    )
+    && cart.sortedData.fillers
     ;
+  //const totalBurgerPrice = cart.total;
   const totalBurgerPrice = React.useMemo(
     () =>
       Array.isArray(prodData) &&
-      [...topData, ...middleData, ...bottomData].reduce((sum, item) => {
+      [...coverData, ...middleData, ...coverData].reduce((sum, item) => {
         return sum + item.price;
       }, 0),
-    [idDataSet]
+    [coverData, middleData]
   );
+  const renderMiddle = (item, indx) => {
+    return (
+      <ConstructorItemSwap
+        key={indx}
+        itemData={item}
+        handlerId={indx}
+        moveElem={moveElem}
+        index={indx} id={item._id}
+      />
+    );
+  };
+  const moveElem = (dragIndex, hoverIndex) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
   //console.log(totalBurgerPrice);
 
+  //   useCallback((dragIndex, hoverIndex) => {
+  //   console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
+  //   dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
+
+  // }, [dispatch]); (item, i) => renderMiddle(item, i)
+
   return (
-    <section className={`${styles.container} pt-25`}>
+    <section className={`${styles.container} pt-25`} ref={dropTarget}>
       <ul className={styles.item_list}>
-        {topData && Array.isArray(topData) && topData.map(item => (
+        {coverData && Array.isArray(coverData) && coverData.map((item) => (
 
           <ConstructorItem
             key={item._id}
@@ -48,22 +81,19 @@ function BurgerConstructor({ prodData, idDataSet, openModal }) {
         }
         <li className={`mb-4`} key='middle'>
           <ul className={styles.scroll_list}>
-            {middleData && Array.isArray(middleData) && middleData.map(item => (
-
-              <ConstructorItem
-                key={item._id}
-                itemData={item}
-              />
-
-            )
-            )
+            {
+              middleData &&
+              Array.isArray(middleData) &&
+              middleData.map(
+                renderMiddle
+              )
             }
           </ul>
 
 
         </li>
 
-        {bottomData && Array.isArray(bottomData) && bottomData.map(item => (
+        {coverData && Array.isArray(coverData) && coverData.map(item => (
           <ConstructorItem
             key={item._id}
             itemData={item}
@@ -96,23 +126,7 @@ function BurgerConstructor({ prodData, idDataSet, openModal }) {
 
 }
 
-BurgerConstructor.propTypes = {
-  prodData: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      type: PropTypes.string,
-      proteins: PropTypes.number,
-      fat: PropTypes.number,
-      carbohydrates: PropTypes.number,
-      calories: PropTypes.number,
-      price: PropTypes.number,
-      image: PropTypes.string,
-      image_mobile: PropTypes.string,
-      image_large: PropTypes.string,
-      __v: PropTypes.number,
-    }),
-  ).isRequired,
+BurgerConstructor.propTypes = { 
   openModal: PropTypes.func.isRequired,
 };
 

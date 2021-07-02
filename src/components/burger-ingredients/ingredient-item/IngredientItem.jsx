@@ -1,19 +1,41 @@
 import React from "react";
-
+import { useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd';
 import {
     CurrencyIcon,
     Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
+import {
+    SET_VIEW_ITEM
+} from '../../../services/constants/actionTypes';
 import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
+const style = {
+    cursor: 'move',
+};
+const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
+    const dispatch = useDispatch();
 
-const IngredientItem = ({ itemData, onItemClick }) => {
-    const handleClick = () => onItemClick(itemData);
+    const [{ isDragging }, dragRef] = useDrag({
+        type: 'ingredient',
+        item: itemData,
+        collect: monitor => ({
+            isDragging: monitor.isDragging()
+        })
+    });
+    function handleClick() {
+        dispatch({
+            type: SET_VIEW_ITEM,
+            payload: itemData
+        });
+        onItemClick(itemData);
+        return false;
+    };
+    const opacity = isDragging ? 0.2 : 1;
     //console.log(itemData);
     return (
-        <li className={styles.item} onClick={handleClick}>
-            <Counter count={1} size="default" />
+        <li className={styles.item} onClick={handleClick} ref={dragRef} style={{ ...style, opacity }}>
+            {itemCounter && (itemCounter > 0) ? <Counter count={itemCounter} size="default" /> : null}
             <img src={itemData.image} className={`${styles.item_image}`} alt={itemData.name} />
 
             <p className={`text text_type_digits-default ${styles.item_description} mt-1 mb-1`}>
