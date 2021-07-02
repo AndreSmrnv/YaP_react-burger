@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import {
-    DELETE_CONSTRUCTOR_INGREDIENT,
-    SWAP_CONSTRUCTOR_INGREDIENT
+    DELETE_CONSTRUCTOR_INGREDIENT
 } from '../../../services/constants/actionTypes';
 import { ItemTypes } from '../../../services/constants/itemTypes';
 import {
@@ -53,7 +52,7 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
 
             //dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
             moveElem(dragIndex, hoverIndex);
-            //console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
+           
             item.index = hoverIndex;
         },
     });
@@ -66,7 +65,7 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
             isDragging: monitor.isDragging(),
         }),
     });
-    const opacity = isDragging ? 1 : 1;
+    const opacity = 1; // TODO проработать позже логику перемещения прозрачности за элементомisDragging ? 0.2 : 1;
     drag(drop(ref));
 
 

@@ -17,12 +17,12 @@ function BurgerIngredients({ openModal }) {
   // const ingredients = useSelector(state => state.ingredients);
   const prodData = [...ingredients.data];
   //console.log(prodData);
-  useEffect(
-    () => {
-      window.location.href = `#${currentTab}`;
-    },
-    [currentTab]
-  );
+  // useEffect(
+  //   () => {
+  //     window.location.href = `#${currentTab}`;      
+  //   },
+  //   [currentTab]
+  // );
 
   const [bunsRef, inViewBuns] = useInView({ threshold: 0 });
   const [mainsRef, inViewFilling] = useInView({ threshold: 0 });
@@ -43,6 +43,11 @@ function BurgerIngredients({ openModal }) {
     }
   }, [inViewBuns, inViewFilling, inViewSauces]);
 
+  const setTab = (tab) => {
+    setCurrentTab(tab);
+    const element = document.getElementById(tab);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  };
   const buhData = prodData && Array.isArray(prodData)
     && prodData.filter(
       item => item.type === 'bun'
@@ -66,13 +71,13 @@ function BurgerIngredients({ openModal }) {
       <div className={styles.header_tabs}>
         <h2 className="text text_type_main-large mt-10 mb-5 ">Соберите бургер</h2>
         <div className={`${styles.tabs}`}>
-          <Tab value="buns" active={currentTab === 'buns'} onClick={setCurrentTab}>
+          <Tab value="buns" active={currentTab === 'buns'} onClick={setTab}>
             Булки
             </Tab>
-          <Tab value="sauces" active={currentTab === 'sauces'} onClick={setCurrentTab}>
+          <Tab value="sauces" active={currentTab === 'sauces'} onClick={setTab}>
             Соусы
             </Tab>
-          <Tab value="mains" active={currentTab === 'mains'} onClick={setCurrentTab}>
+          <Tab value="mains" active={currentTab === 'mains'} onClick={setTab}>
             Начинки
             </Tab>
         </div>

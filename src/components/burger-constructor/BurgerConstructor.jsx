@@ -38,7 +38,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
   const totalBurgerPrice = React.useMemo(
     () =>
       Array.isArray(prodData) &&
-      [...coverData, ...middleData].reduce((sum, item) => {
+      [...coverData, ...middleData, ...coverData].reduce((sum, item) => {
         return sum + item.price;
       }, 0),
     [coverData, middleData]
