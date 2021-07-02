@@ -11,9 +11,11 @@ import styles from './BurgerIngredients.module.css';
 
 
 
-function BurgerIngredients({ prodData = [], openModal }) {
+function BurgerIngredients({ openModal }) {
   const [currentTab, setCurrentTab] = React.useState('buns');
-  const cart = useSelector(state => state.cart);
+  const { cart, ingredients } = useSelector(state => ({ cart: state.cart, ingredients: state.ingredients }));
+  // const ingredients = useSelector(state => state.ingredients);
+  const prodData = [...ingredients.data];
   //console.log(prodData);
   useEffect(
     () => {

@@ -51,7 +51,7 @@ function App() {
 
 
   const openModalOrderDetails = () => {
-    let idsCard = cart.sortedData.fillers.map(item => item._id);
+    const idsCard = cart.sortedData.fillers.map(item => item._id);
     console.log(idsCard);
     
     dispatch(getOrderNumber(idsCard));
@@ -81,8 +81,8 @@ function App() {
         <DndProvider backend={HTML5Backend}>
           <main className={styles.main}>
 
-            <BurgerIngredients prodData={state.data} idDataSet={state.idDataSet} openModal={openModalIngredientDetails} />
-            {cart.data.length && <BurgerConstructor prodData={state.data} idDataSet={state.idDataSet} openModal={openModalOrderDetails} />}
+            <BurgerIngredients openModal={openModalIngredientDetails} />
+            {cart.data.length && <BurgerConstructor openModal={openModalOrderDetails} />}
 
           </main>
         </DndProvider>
