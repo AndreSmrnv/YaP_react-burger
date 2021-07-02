@@ -9,9 +9,7 @@ const initialState = {
   };
   
 export const viewedItemReducer = (state = initialState, action) => {
-  if (typeof state === 'undefined') {
-    return initialState
-  }
+  
     switch (action.type) {
       
       case SET_VIEW_ITEM: {

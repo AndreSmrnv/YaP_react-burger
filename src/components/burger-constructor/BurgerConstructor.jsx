@@ -61,7 +61,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
   //   console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
   //   dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
 
-  // }, [dispatch]);
+  // }, [dispatch]); (item, i) => renderMiddle(item, i)
 
   return (
     <section className={`${styles.container} pt-25`} ref={dropTarget}>
@@ -83,7 +83,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
               middleData &&
               Array.isArray(middleData) &&
               middleData.map(
-                (item, i) => renderMiddle(item, i)
+                renderMiddle
               )
             }
           </ul>

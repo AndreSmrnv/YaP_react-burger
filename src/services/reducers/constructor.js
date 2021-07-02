@@ -18,13 +18,11 @@ const initialState = {
   
   export const constructorReducer = (state = initialState, action) => {
     
-      //console.log(action.type);
-      //console.log(action.payload);
+     
     switch (action.type) {
         case ADD_CONSTRUCTOR_INGREDIENT: {
 
-            let sortedData = { ...state.sortedData };
-            //console.log(sortedData);
+            let sortedData = { ...state.sortedData };            
             if (action.payload.type === 'bun') {               
                 sortedData = { ...sortedData, bun: action.payload };
             } else {
@@ -51,8 +49,7 @@ const initialState = {
         case SWAP_CONSTRUCTOR_INGREDIENT: {
             const { dragIndex, hoverIndex } = action.payload;
             const sortedData = { ...state.sortedData };
-            console.log(`SWAP - ${dragIndex} - ${hoverIndex}`);
-            //sortedData.fillers[dragIndex] = [sortedData.fillers[hoverIndex], sortedData.fillers[hoverIndex] = sortedData.fillers[dragIndex]][0];
+            console.log(`SWAP - ${dragIndex} - ${hoverIndex}`);            
             sortedData.fillers[dragIndex] = sortedData.fillers.splice(hoverIndex, 1, sortedData.fillers[dragIndex])[0];
             return {
                 ...state,

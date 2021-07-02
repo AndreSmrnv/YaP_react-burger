@@ -14,9 +14,7 @@ const initialState = {
   };
   
 export const orderReducer = (state = initialState, action) => {
-  if (typeof state === 'undefined') {
-    return initialState
-  }
+ 
     switch (action.type) {
       case GET_ORDER_REQUEST: {
         return {

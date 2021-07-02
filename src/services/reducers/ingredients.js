@@ -14,9 +14,7 @@ import {
   };
   
 export const ingredientsReducer = (state = initialState, action) => {
-  if (typeof state === 'undefined') {
-    return initialState
-  }
+ 
     switch (action.type) {
       case GET_INGREDIENTS_REQUEST: {
         return {
