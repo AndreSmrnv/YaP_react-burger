@@ -13,8 +13,8 @@ import { getOrderNumber } from '../../services/actions/order';
 
 import styles from './App.module.css';
 
-const INIT_APP = { data: null, idDataSet: null, isFetching: false, error: null };
-const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
+// const INIT_APP = { data: null, idDataSet: null, isFetching: false, error: null };
+// const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
 // const API_HEADERS = { 'Content-Type': 'application/json' };
 
 function App() {
@@ -24,28 +24,12 @@ function App() {
   const cart = useSelector(state => state.cart);
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
-  //const [dataIngredientDetails, setDataIngredientDetails] = useState({});
-
-
-  // useEffect(() => {
-  // setState(prevState => ({ ...prevState, isFetching: true }));
-  // fetch(API_URL)
-  //   .then(response => (response.ok)
-  //     ? response.json()
-  //     : Promise.reject(`api err: ${response.status}`)
-  //   )
-  //   .then(result => setState(prevState => ({ ...prevState, data: result.data, idDataSet: Date.now(),isFetching: false, error: null })))
-  //   .catch(e => {
-  //     console.log(e);
-  //     setState(prevState => ({ ...prevState, isFetching: false, error: e }));
-  //   });
-
-  // }, [])
+  
   useEffect(
     () => {
       dispatch(getIngredients());
     },
-    []
+    [dispatch]
   );
 
 
@@ -57,14 +41,13 @@ function App() {
     dispatch(getOrderNumber(idsCard));
     setVisibleOrderDetails(true);
   }
-  const openModalIngredientDetails = (item) => {
-    //setDataIngredientDetails(item);
+  const openModalIngredientDetails = (item) => {    
     setVisibleIngredientDetails(true)
   }
 
   const closeModal = () => {
-    setVisibleOrderDetails(false);
-    setVisibleIngredientDetails(false);
+    visibleOrderDetails &&  setVisibleOrderDetails(false);
+    visibleIngredientDetails && setVisibleIngredientDetails(false);
   }
 
 

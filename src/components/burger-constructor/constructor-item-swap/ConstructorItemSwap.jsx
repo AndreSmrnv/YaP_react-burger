@@ -65,7 +65,7 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
             isDragging: monitor.isDragging(),
         }),
     });
-    const opacity = 1; // TODO проработать позже логику перемещения прозрачности за элементомisDragging ? 0.2 : 1;
+    const opacity = 1; // TODO проработать позже логику перемещения прозрачности за элементом isDragging ? 0.2 : 1;
     drag(drop(ref));
 
 

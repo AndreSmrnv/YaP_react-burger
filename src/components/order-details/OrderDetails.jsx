@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 // import PropTypes from 'prop-types';
 import orderDone from '../../images/order-done.svg'
 // import styles from './OrderDetails.module.css';
