@@ -6,6 +6,7 @@ import {
   GET_INGREDIENTS_FAILED
 } from '../constants/actionTypes';
 import { getIngredientsRequest } from '../api';
+import  dataEmpty from '../../utils/data-mock-empty';
 
 
 
@@ -31,7 +32,7 @@ export function getIngredients() {
 
             dispatch({
               type: ADD_CONSTRUCTOR_INGREDIENT,
-              payload: result.data.find(item=>item.type === 'bun')
+              payload: dataEmpty.find(item=>item.type === 'empty')
             });
 
           

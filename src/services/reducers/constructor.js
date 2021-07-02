@@ -10,8 +10,10 @@ const initialState = {
     data: [],
     sortedData: {
         bun: {},
-        fillers: []
+        fillers: [],
+        empty: {} 
     },
+
     total: 0,
     lastUpdated: null
   };
@@ -22,10 +24,14 @@ const initialState = {
     switch (action.type) {
         case ADD_CONSTRUCTOR_INGREDIENT: {
 
-            let sortedData = { ...state.sortedData };            
-            if (action.payload.type === 'bun') {               
+            let sortedData = { ...state.sortedData };
+            if (action.payload.type === 'empty') {               
+                sortedData = { ...sortedData, empty: action.payload };
+            }
+            else if (action.payload.type === 'bun') {               
                 sortedData = { ...sortedData, bun: action.payload };
-            } else {
+            }
+            else {
                 sortedData = { ...sortedData, fillers: [...sortedData.fillers, action.payload] };
             }
             return {

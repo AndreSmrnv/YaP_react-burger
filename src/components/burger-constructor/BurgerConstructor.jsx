@@ -16,7 +16,7 @@ import styles from './BurgerConstructor.module.css';
 
 
 
-function BurgerConstructor({ idDataSet, openModal }) {
+function BurgerConstructor({ openModal }) {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   const prodData = [...cart.data];
@@ -27,10 +27,12 @@ function BurgerConstructor({ idDataSet, openModal }) {
     drop: onDropHandler
   });
 
-  const coverData = prodData && Array.isArray(prodData)
-    && [cart.sortedData.bun]
-    ;
-
+  // const coverData = prodData && Array.isArray(prodData)
+  //   &&
+  //   Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty]
+  //   ;
+    const coverData = Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty] ;
+  console.log(coverData);
   const middleData = prodData && Array.isArray(prodData)
     && cart.sortedData.fillers
     ;
@@ -124,23 +126,7 @@ function BurgerConstructor({ idDataSet, openModal }) {
 
 }
 
-BurgerConstructor.propTypes = {
-  prodData: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      type: PropTypes.string,
-      proteins: PropTypes.number,
-      fat: PropTypes.number,
-      carbohydrates: PropTypes.number,
-      calories: PropTypes.number,
-      price: PropTypes.number,
-      image: PropTypes.string,
-      image_mobile: PropTypes.string,
-      image_large: PropTypes.string,
-      __v: PropTypes.number,
-    }),
-  ).isRequired,
+BurgerConstructor.propTypes = { 
   openModal: PropTypes.func.isRequired,
 };
 
