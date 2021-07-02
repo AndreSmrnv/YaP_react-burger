@@ -10,7 +10,7 @@ import Modal from '../modal/Modal';
 import OrderDetails from '../order-details';
 import OrderFailed from '../order-failed';
 import { getIngredients } from '../../services/actions/ingredients';
-import { getOrderNumber } from '../../services/actions/order';
+import { getOrderNumber, setOrderError } from '../../services/actions/order';
 
 import styles from './App.module.css';
 
@@ -37,11 +37,16 @@ function App() {
 
 
   const openModalOrderDetails = () => {
-    const idsCard = cart.sortedData.fillers.map(item => item._id);
-    console.log(idsCard);
+    if (cart.sortedData.fillers.length && Object.keys(cart.sortedData.bun).length) {
+      const idsCard = cart.sortedData.fillers.map(item => item._id);
+      //console.log(idsCard);      
+      dispatch(getOrderNumber(idsCard));
+      setVisibleOrderDetails(true);
+    } else {
+      dispatch(setOrderError("Пустой заказ"));
+      setVisibleOrderFailed(true);
+    } 
     
-    dispatch(getOrderNumber(idsCard));
-    setVisibleOrderDetails(true);
   }
   const openModalIngredientDetails = (item) => {    
     setVisibleIngredientDetails(true)
@@ -50,6 +55,7 @@ function App() {
   const closeModal = () => {
     visibleOrderDetails &&  setVisibleOrderDetails(false);
     visibleIngredientDetails && setVisibleIngredientDetails(false);
+    visibleOrderFailed && setVisibleOrderFailed(false);
   }
 
 

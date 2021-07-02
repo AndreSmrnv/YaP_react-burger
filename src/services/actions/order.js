@@ -1,7 +1,8 @@
 import {
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
-    GET_ORDER_FAILED
+    GET_ORDER_FAILED,
+    SET_ORDER_ERROR
 } from '../constants/actionTypes';
 import { checkoutRequest } from '../api';
 
@@ -35,5 +36,14 @@ export function getOrderNumber(data) {
                 type: GET_ORDER_FAILED
               });
             }) ;
+    };
+}
+  
+export function setOrderError(data) {
+    return function(dispatch) {   
+        dispatch({
+            type: SET_ORDER_ERROR,
+            payload: data
+          }); 
     };
   }
