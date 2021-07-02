@@ -1,7 +1,8 @@
 import {
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
-    GET_ORDER_FAILED
+    GET_ORDER_FAILED,
+    SET_ORDER_ERROR
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -18,8 +19,9 @@ export const orderReducer = (state = initialState, action) => {
     switch (action.type) {
       case GET_ORDER_REQUEST: {
         return {
-          ...state,
-          isFetching: true
+            ...state,
+            fetchingFailed: false,  
+            isFetching: true
         };
       }
       case GET_ORDER_SUCCESS: {
@@ -39,7 +41,13 @@ export const orderReducer = (state = initialState, action) => {
                 isFetching: false
             };
       }
-  
+      case SET_ORDER_ERROR: {
+        return {
+            ...state,
+            fetchingFailed: true,
+            error: action.payload
+        };
+  }
       
       default: {
         return state;

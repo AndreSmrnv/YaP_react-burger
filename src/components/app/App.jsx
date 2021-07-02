@@ -8,6 +8,7 @@ import BurgerIngredients from '../burger-ingredients';
 import IngredientDetails from '../ingredient-details/IngredientDetails';
 import Modal from '../modal/Modal';
 import OrderDetails from '../order-details';
+import OrderFailed from '../order-failed';
 import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber } from '../../services/actions/order';
 
@@ -23,6 +24,7 @@ function App() {
   const state = useSelector(state => state.ingredients);
   const cart = useSelector(state => state.cart);
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
+  const [visibleOrderFailed, setVisibleOrderFailed] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
   
   useEffect(
@@ -74,6 +76,11 @@ function App() {
       {visibleOrderDetails &&
         <Modal modalTitle={null} closeModal={closeModal}>
           <OrderDetails />
+        </Modal>
+      }
+      {visibleOrderFailed &&
+        <Modal modalTitle={null} closeModal={closeModal}>
+          <OrderFailed />
         </Modal>
       }
       {visibleIngredientDetails &&
