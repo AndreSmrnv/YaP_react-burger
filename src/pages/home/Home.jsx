@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-
-import AppHeader from "../app-header";
-import { HomePage } from '../../pages'
-
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import {
+  AppHeader,
+  BurgerConstructor,
+  BurgerIngredients,
+  IngredientDetails,
+  Modal,
+  OrderDetails,
+  OrderFailed
+} from '../../components';
+//import AppHeader from "../app-header";
+//import BurgerConstructor from '../burger-constructor';
+//import BurgerIngredients from '../burger-ingredients';
+//import IngredientDetails from '../ingredient-details/IngredientDetails';
+//import Modal from '../modal/Modal';
+//import OrderDetails from '../order-details';
+//import OrderFailed from '../order-failed';
 import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber, setOrderError } from '../../services/actions/order';
 
-import styles from './App.module.css';
-import { isImportSpecifier } from 'typescript';
+import styles from './Home.module.css';
 
 // const INIT_APP = { data: null, idDataSet: null, isFetching: false, error: null };
 // const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
 // const API_HEADERS = { 'Content-Type': 'application/json' };
 
-function App() {
+function HomePage() {
   const dispatch = useDispatch();
   //const [state, setState] = useState(INIT_APP);
   const state = useSelector(state => state.ingredients);
@@ -65,14 +78,35 @@ function App() {
       <header className={styles.nav_panel}>
         <AppHeader />
       </header>
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-      </Switch>      
+      {state.data && state.data.length && (
+        <DndProvider backend={HTML5Backend}>
+          <main className={styles.main}>
+
+            <BurgerIngredients openModal={openModalIngredientDetails} />
+            {cart.data.length && <BurgerConstructor openModal={openModalOrderDetails} />}
+
+          </main>
+        </DndProvider>
+      )
+      }
+      {visibleOrderDetails &&
+        <Modal modalTitle={null} closeModal={closeModal}>
+          <OrderDetails />
+        </Modal>
+      }
+      {visibleOrderFailed &&
+        <Modal modalTitle={null} closeModal={closeModal}>
+          <OrderFailed />
+        </Modal>
+      }
+      {visibleIngredientDetails &&
+        <Modal modalTitle='Детали ингредиента' closeModal={closeModal} >
+          <IngredientDetails  />
+        </Modal>
+      }
     </div>
   );
 }
 
 
-export default App;
+export default HomePage;

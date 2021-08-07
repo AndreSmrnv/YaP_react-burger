@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import  rootReducer from './services/reducers';
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { BrowserRouter as Router} from 'react-router-dom';
+
+
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
@@ -17,7 +20,9 @@ console.log(store.getState())
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router> 
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
