@@ -75,9 +75,9 @@ function HomePage() {
    console.log(cart);
   return (
     <div className={styles.wrapper}>
-      <header className={styles.nav_panel}>
+      {/* <header className={styles.nav_panel}>
         <AppHeader />
-      </header>
+      </header> */}
       {state.data && state.data.length && (
         <DndProvider backend={HTML5Backend}>
           <main className={styles.main}>

@@ -1,8 +1,10 @@
 
-import  HomePage  from './home';
-//import { NotFound404 } from './not-found';
+import HomePage from './home';
+import LoginPage from './login'
+import  NotFound404Page  from './not-found';
 
 export {
     HomePage,
-    //NotFound404
+    LoginPage,
+    NotFound404Page
 };

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useHistory, Link, useLocation } from 'react-router-dom';
 
-import styles from './not-found.module.css';
+import styles from './NotFound.module.css';
 
 //import { Breadcrumbs } from '../components/breadcrumbs';
 //import { HOME_CRUMB } from '../services/breadcrumbs';
 
-export function NotFound404() {
+export default function NotFound404Page() {
   const history = useHistory();
   const { pathname } = useLocation();
 

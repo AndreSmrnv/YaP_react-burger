@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import AppHeader from "../app-header";
-import { HomePage } from '../../pages'
+import {
+  HomePage,
+  LoginPage,
+  NotFound404Page
+} from '../../pages'
 
 import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber, setOrderError } from '../../services/actions/order';
@@ -68,6 +72,12 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route>
+          <NotFound404Page />
         </Route>
       </Switch>      
     </div>
