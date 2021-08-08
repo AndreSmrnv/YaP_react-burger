@@ -39,7 +39,7 @@ function Login() {
   return (
     <div className={styles.login}>
       <h3 className={`${styles.title} text text_type_main-medium`}>Вход</h3>
-      <form className={styles.form} onSubmit={onSubmit} noValidate>
+      <form className={styles.form} onSubmit={onSubmit} >
         <div className={styles.input_container}>
           <Input onChange={onFieldChange} value={form.email} name={"email"} size="default" placeholder={"E-mail"} />
           <PasswordInput onChange={onFieldChange} value={form.password} name="password" size="default" />

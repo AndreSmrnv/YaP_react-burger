@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import {
   ProtectedRoute,
+  SignRoute,
   AppHeader
 } from '../../components';
 
@@ -46,18 +47,18 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/login">
+        <SignRoute path="/login">
           <LoginPage />
-        </Route>
-        <Route path="/register">
+        </SignRoute>
+        <SignRoute path="/register">
           <RegisterPage />
-        </Route>
-        <Route path="/forgot-password">
+        </SignRoute>
+        <SignRoute path="/forgot-password">
           <ForgotPasswordPage />
-        </Route>
-        <Route path="/reset-password">
+        </SignRoute>
+        <SignRoute path="/reset-password">
           <ResetPasswordPage />
-        </Route>
+        </SignRoute>
         <ProtectedRoute path="/profile">
           <ProfilePage />
         </ProtectedRoute>

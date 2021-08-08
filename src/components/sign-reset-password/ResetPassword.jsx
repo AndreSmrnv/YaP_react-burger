@@ -39,7 +39,7 @@ function ResetPassword() {
   return (
     <div className={styles.login}>
       <h3 className={`${styles.title} text text_type_main-medium`}>Восстановление пароля</h3>
-      <form className={styles.form} onSubmit={onSubmit} noValidate>
+      <form className={styles.form} onSubmit={onSubmit} >
         <div className={styles.input_container}>
           <PasswordInput onChange={onFieldChange} value={form.password} name="password" size="default" />
           <PasswordInput onChange={onFieldChange} value={form.passwordRepeate} name="passwordRepeate" size="default" />

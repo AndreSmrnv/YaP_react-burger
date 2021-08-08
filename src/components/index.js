@@ -13,8 +13,8 @@ import Register from './sign-register';
 import Profile from './sign-profile';
 import ForgotPassword from './sign-forgot-password';
 import ResetPassword from './sign-reset-password';
-import ProtectedRoute from './protected-route'
-
+import ProtectedRoute from './protected-route';
+import SignRoute from './sign-route'
 
 export {
     App,
@@ -31,5 +31,6 @@ export {
     Profile,
     ForgotPassword,
     ResetPassword,
-    ProtectedRoute
+    ProtectedRoute,
+    SignRoute
 };
