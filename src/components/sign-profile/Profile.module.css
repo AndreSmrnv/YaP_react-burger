@@ -1,8 +1,9 @@
 .profile {
-  margin-top: calc(120px + 88px);
+  
   width: 100%;
   max-width: 1240px;
   display: flex;
+  margin: calc(120px + 88px) auto 0;
 }
 
 .nav_container {
@@ -49,7 +50,7 @@
 
 .button_container {
   width: fit-content;
-  margin: 0 auto;
+  margin: 0 0 0 auto;
 }
 
 .error {

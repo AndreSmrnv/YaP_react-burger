@@ -9,7 +9,8 @@ import {
   PasswordInput
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Profile.module.css';
-import { INITIAL_FORM_PROFILE } from '../../services/constants/initialValue'
+import { INITIAL_FORM_PROFILE } from '../../services/constants/initialValue';
+import { getLogout }  from '../../services/actions/sign';
 
 
 
@@ -27,6 +28,17 @@ function Profile() {
     },
     [isAuthorized]
   ); 
+
+  useEffect(() => {
+    if (location.pathname === '/profile/logout') {
+      const token = localStorage.getItem('refreshToken');
+      if (token) {
+        dispatch(getLogout(token));
+        history.push('/login');        
+      }
+    }
+  }, [location]);
+
   const onFieldChange = (e) => {
     const { name: fieldName, type } = e.target;
     const value = type === 'checkbox' ? e.target.checked : e.target.value;
@@ -74,7 +86,7 @@ function Profile() {
         <EmailInput onChange={onFieldChange} value={form.email} name="email" />
         
         <PasswordInput onChange={onFieldChange} value={form.password} name="password" />
-        <div className={styles.buttonContainer}>
+        <div className={styles.button_container}>
           <Button type="primary" size="medium">Сохранить</Button>
         </div>
       </form>

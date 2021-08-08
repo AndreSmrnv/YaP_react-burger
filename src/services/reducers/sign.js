@@ -105,7 +105,13 @@ export const signReduser = (state = initialState, action) => {
       };
     case SET_PROFILE_CLEAR:
         return {
-          ...state,        
+          ...state, 
+          user: {
+            name: null,
+            email: null,
+            password: null
+          },
+          isAuthorized: false
         };
       
     default:

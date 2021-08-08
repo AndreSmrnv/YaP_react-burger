@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { postRefreshToken } from '../api';
+import { postRefreshTokenRequest } from '../api';
 
 const setToken = ({ accessToken, refreshToken }) => {
     const expTime = new Date(new Date().getTime() + 20 * 60 * 1000);
@@ -13,7 +13,7 @@ const clearToken = () => {
   };
   
 const refreshToken = () => {
-      postRefreshToken(localStorage.getItem("refreshToken"))
+      postRefreshTokenRequest(localStorage.getItem("refreshToken"))
       .then(response => (response.ok)
            ? response.json()
            : Promise.reject(`api err: ${response.status}`)

@@ -39,15 +39,27 @@ export const postLoginRequest = async (data) => {
   ;
 };
 
-export const postRefreshToken = async (token) => {
+export const postRefreshTokenRequest = async (token) => {
   console.log("fetch post registerRequest");
-  return await fetch(`${API_URL}/auth/register`, {
+  return await fetch(`${API_URL}/auth/token`, {
     method: 'POST',
     headers: headers.post,
     body: JSON.stringify({ token })
   })    
   ;
 };
+
+
+export const postLogoutRequest = async (token) => {
+  console.log("fetch post registerRequest");
+  return await fetch(`${API_URL}/auth/logout`, {
+    method: 'POST',
+    headers: headers.post,
+    body: JSON.stringify({ token })
+  })    
+  ;
+};
+
 
 
 

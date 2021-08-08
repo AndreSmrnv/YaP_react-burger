@@ -21,7 +21,8 @@ import {
   
 import {
     postRegisterRequest,
-    postLoginRequest
+    postLoginRequest,
+    postLogoutRequest
 } from '../api';
 
 function getRegister(data) {
@@ -88,7 +89,39 @@ function getLogin(data) {
     };
 }
 
+function getLogout(token) {
+    console.log('getLogout', token);
+    return function(dispatch) {
+   
+      dispatch({
+        type: GET_AUTH_REQUEST
+      });
+        
+      postLogoutRequest(token)
+        .then(response => (response.ok)
+           ? response.json()
+           : Promise.reject(`api err: ${response.status}`)
+         )        
+        .then(          
+          result => {
+                console.log(result); 
+                clearToken();    
+            dispatch({
+              type: SET_PROFILE_CLEAR
+            });
+                
+        })
+        .catch(e => {
+              console.log(e);
+              dispatch({
+                type: GET_AUTH_FAILED
+              });
+            }) ;
+    };
+}
+
  export {
     getRegister,
-    getLogin
+    getLogin,
+    getLogout
  };
