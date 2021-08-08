@@ -70,6 +70,16 @@ export const patchProfileRequest = async (data, token) => {
   ;
 };
 
+export const getProfileRequest = async (token) => {
+  console.log("fetch get profileRequest");
+  return await fetch(`${API_URL}/auth/user`, {
+    method: 'GET',
+    headers: { ...headers.get, authorization: token}
+    
+  })    
+  ;
+};
+
 
 
 

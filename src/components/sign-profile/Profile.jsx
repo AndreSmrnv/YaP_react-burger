@@ -10,7 +10,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Profile.module.css';
 import { INITIAL_FORM_PROFILE } from '../../services/constants/initialValue';
-import { getLogout, updateProfile }  from '../../services/actions/sign';
+import { getLogout, updateProfile, getProfile }  from '../../services/actions/sign';
 
 
 
@@ -21,9 +21,14 @@ function Profile() {
   const location = useLocation();
   const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
   const [form, setForm] = useState(INITIAL_FORM_PROFILE);
-
   useEffect(
     () => {
+      dispatch(getProfile());      
+    },
+    []
+  ); 
+  useEffect(
+    () => {      
       setForm(prev => ( { ...prev, ...user }))
     },
     [isAuthorized, lastUpdated]

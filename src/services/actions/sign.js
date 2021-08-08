@@ -24,7 +24,8 @@ import {
     postRegisterRequest,
     postLoginRequest,
     postLogoutRequest,
-    patchProfileRequest
+    patchProfileRequest,
+    getProfileRequest
 } from '../api';
 
 function getRegister(data) {
@@ -154,9 +155,42 @@ function updateProfile(data) {
     };
 }
 
+function getProfile() {
+    console.log('updateProfile');
+    return function(dispatch) {
+   
+      dispatch({
+        type: GET_PROFILE_REQUEST
+      });
+         
+      getProfileRequest(getToken())
+        .then(response => (response.ok)
+           ? response.json()
+           : Promise.reject(`api err: ${response.status}`)
+         )        
+        .then(          
+          result => {
+                console.log(result); 
+                   
+                dispatch({
+                    type: GET_PROFILE_SUCCESS,
+                    payload: result.user
+                  });
+                
+        })
+        .catch(e => {
+              console.log(e);
+              dispatch({
+                type: GET_PROFILE_FAILED
+              });
+            }) ;
+    };
+}
+
  export {
     getRegister,
     getLogin,
     getLogout,
-    updateProfile
+    updateProfile,
+    getProfile
  };
