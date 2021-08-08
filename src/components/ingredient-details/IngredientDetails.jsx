@@ -13,7 +13,7 @@ const ITEM_DETAILS = {
 };
 
 
-const IngredientDetails = ({ item }) => {
+function IngredientDetails ({ item }) {
   const viewedItem = useSelector(state => state.viewedItem.data);
   console.log(viewedItem);
    

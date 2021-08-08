@@ -1,19 +1,19 @@
 import React from 'react';
 
 import {
-  Login
+  Register
 } from '../../components';
-import styles from './Login.module.css';
+import styles from './Register.module.css';
 
 
 
-function LoginPage() {
+function RegisterPage() {
   return (
     <div className={styles.wrapper}>
-      <Login />
+      <Register />
     </div>  
   );
 }
 
 
-export default LoginPage;
+export default RegisterPage;

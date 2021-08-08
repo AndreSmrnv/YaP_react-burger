@@ -12,21 +12,13 @@ import {
   OrderDetails,
   OrderFailed
 } from '../../components';
-//import AppHeader from "../app-header";
-//import BurgerConstructor from '../burger-constructor';
-//import BurgerIngredients from '../burger-ingredients';
-//import IngredientDetails from '../ingredient-details/IngredientDetails';
-//import Modal from '../modal/Modal';
-//import OrderDetails from '../order-details';
-//import OrderFailed from '../order-failed';
+
 import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber, setOrderError } from '../../services/actions/order';
 
 import styles from './Home.module.css';
 
-// const INIT_APP = { data: null, idDataSet: null, isFetching: false, error: null };
-// const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
-// const API_HEADERS = { 'Content-Type': 'application/json' };
+
 
 function HomePage() {
   const dispatch = useDispatch();

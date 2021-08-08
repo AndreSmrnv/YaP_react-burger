@@ -7,7 +7,12 @@ import  IngredientDetails  from './ingredient-details';
 import  Modal  from './modal';
 import  ModalOverlay  from './modal-overlay';
 import  OrderDetails from './order-details';
-import  OrderFailed  from './order-failed';
+import OrderFailed from './order-failed';
+import Login from './sign-login';
+import Register from './sign-register';
+import Profile from './sign-profile';
+import ForgotPassword from './sign-forgot-password';
+import ResetPassword from './sign-reset-password'
 
 
 export {
@@ -19,5 +24,10 @@ export {
     Modal,
     ModalOverlay,
     OrderDetails,
-    OrderFailed
+    OrderFailed,
+    Login,
+    Register,
+    Profile,
+    ForgotPassword,
+    ResetPassword
 };
