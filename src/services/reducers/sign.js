@@ -90,8 +90,7 @@ export const signReduser = (state = initialState, action) => {
     case GET_PROFILE_REQUEST:
       return {
         ...state,
-        fetchingFailed: false,  
-        isAuthorized: false,    
+        fetchingFailed: false,            
         isFetching: true
       };
     case GET_PROFILE_SUCCESS:
