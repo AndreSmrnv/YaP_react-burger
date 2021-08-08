@@ -12,7 +12,8 @@ import Login from './sign-login';
 import Register from './sign-register';
 import Profile from './sign-profile';
 import ForgotPassword from './sign-forgot-password';
-import ResetPassword from './sign-reset-password'
+import ResetPassword from './sign-reset-password';
+import ProtectedRoute from './protected-route'
 
 
 export {
@@ -29,5 +30,6 @@ export {
     Register,
     Profile,
     ForgotPassword,
-    ResetPassword
+    ResetPassword,
+    ProtectedRoute
 };

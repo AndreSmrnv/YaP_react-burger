@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import {
+  ProtectedRoute,
+  AppHeader
+} from '../../components';
 
-import AppHeader from "../app-header";
 import {
   HomePage,
   LoginPage,
@@ -32,13 +35,6 @@ function App() {
     [dispatch]
   );
 
-
-
- 
-
-
-
-
   // console.log(state);
    console.log(cart);
   return (
@@ -62,9 +58,9 @@ function App() {
         <Route path="/reset-password">
           <ResetPasswordPage />
         </Route>
-        <Route path="/profile">
+        <ProtectedRoute path="/profile">
           <ProfilePage />
-        </Route>
+        </ProtectedRoute>
         <Route>
           <NotFound404Page />
         </Route>
