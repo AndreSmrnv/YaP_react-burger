@@ -25,7 +25,9 @@ import {
     postLoginRequest,
     postLogoutRequest,
     patchProfileRequest,
-    getProfileRequest
+    getProfileRequest,
+    postForgotPasswordRequest,
+    postResetPasswordRequest
 } from '../api';
 
 function getRegister(data) {
@@ -130,8 +132,9 @@ function updateProfile(data) {
       dispatch({
         type: GET_PROFILE_REQUEST
       });
-         
-      patchProfileRequest(data, getToken())
+        
+      const accessToken = getToken();  
+      patchProfileRequest(data, accessToken)
         .then(response => (response.ok)
            ? response.json()
            : Promise.reject(`api err: ${response.status}`)
@@ -156,14 +159,15 @@ function updateProfile(data) {
 }
 
 function getProfile() {
-    console.log('updateProfile');
+    console.log('getProfile');
     return function(dispatch) {
    
       dispatch({
         type: GET_PROFILE_REQUEST
       });
-         
-      getProfileRequest(getToken())
+        
+      const accessToken = getToken();  
+      getProfileRequest(accessToken)
         .then(response => (response.ok)
            ? response.json()
            : Promise.reject(`api err: ${response.status}`)
@@ -187,10 +191,69 @@ function getProfile() {
     };
 }
 
+function getForgotPassword(data, history) {
+    console.log('getForgotPassword');
+    return function() {
+   
+     
+      postForgotPasswordRequest(data)
+        .then(response => (response.ok)
+           ? response.json()
+           : Promise.reject(`api err: ${response.status}`)
+         )        
+        .then(          
+          result => {
+                console.log(result); 
+                history.push({
+                    pathname: "/reset-password",
+                    state: { resetPassword: true },
+                  });
+                 
+                
+                
+        })
+        .catch(e => {
+              console.log(e);
+              
+            }) ;
+    };
+}
+
+function getResetPassword(data, history) {
+    console.log('getForgotPassword');
+    return function() {
+   
+     
+      postResetPasswordRequest(data)
+        .then(response => (response.ok)
+           ? response.json()
+           : Promise.reject(`api err: ${response.status}`)
+         )        
+        .then(          
+          result => {
+                console.log(result); 
+                history.push({
+                    pathname: "/login",
+                    state: { resetPassword: true },
+                  });
+                 
+                
+                
+        })
+        .catch(e => {
+              console.log(e);
+              
+            }) ;
+    };
+}
+
+
  export {
     getRegister,
     getLogin,
     getLogout,
     updateProfile,
-    getProfile
+    getProfile,
+    getForgotPassword,
+    getResetPassword
  };

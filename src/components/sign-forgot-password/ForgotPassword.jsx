@@ -8,7 +8,8 @@ import {
   PasswordInput
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ForgotPassword.module.css';
-import { INITIAL_FORM_FORGOT_PASSWD } from '../../services/constants/initialValue'
+import { INITIAL_FORM_FORGOT_PASSWD } from '../../services/constants/initialValue';
+import { getForgotPassword }  from '../../services/actions/sign';
 
 
 
@@ -26,8 +27,9 @@ function ForgotPassword() {
   };
 
   const onSubmit = (e) => {
-    console.log('onSubmit Login');
+    console.log('onSubmit ForgotPassword');
     console.log(form);
+    dispatch(getForgotPassword(form, history));
     e.preventDefault();
     onReset();
   };
@@ -41,7 +43,7 @@ function ForgotPassword() {
       <h3 className={`${styles.title} text text_type_main-medium`}>Восстановление пароля</h3>
       <form className={styles.form} onSubmit={onSubmit} noValidate>
         <div className={styles.input_container}>
-          <Input onChange={onFieldChange} value={form.email} name={"email"} size="default" placeholder={"E-mail"} />          
+          <Input onChange={onFieldChange} value={form.email} name={"email"} size="default" placeholder={"Укажите e-mail"} />          
           <div className={styles.button_container}>
             <Button type="primary" size="medium">Восстановить</Button>
           </div>

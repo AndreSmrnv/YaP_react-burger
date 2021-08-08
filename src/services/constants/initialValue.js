@@ -9,7 +9,7 @@ const INITIAL_FORM_REGISTER = {
 };
 const INITIAL_FORM_RESET_PASSWD = {
     password: '',
-    passwordRepeate: ''    
+    token: ''    
 };
 const INITIAL_FORM_FORGOT_PASSWD = {
     email: ''   
