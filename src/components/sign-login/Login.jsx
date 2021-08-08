@@ -9,7 +9,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Login.module.css';
 import { INITIAL_FORM_LOGIN } from '../../services/constants/initialValue'
-
+import { getLogin }  from '../../services/actions/sign';
 
 
 function Login() {
@@ -28,6 +28,7 @@ function Login() {
   const onSubmit = (e) => {
     console.log('onSubmit Login');
     console.log(form);
+    dispatch(getLogin(form));
     e.preventDefault();
     onReset();
   };

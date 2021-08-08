@@ -27,41 +27,65 @@ const initialState = {
   error: null
 };
 
-export const signReduser = (state = initialState, {
-  type, formData,
-}) => {
-  switch (type) {
+export const signReduser = (state = initialState, action) => {
+  switch (action.type) {
     case GET_AUTH_REQUEST:
       return {
-        ...state,        
+        ...state,
+        fetchingFailed: false,  
+        isAuthorized: false,    
+        isFetching: true
       };
     case GET_AUTH_SUCCESS:
       return {
-        ...state,        
+        ...state, 
+        fetchingFailed: false,
+        isAuthorized: true,
+        user: action.payload,        
+        lastUpdated: Date.now(),
+        isFetching: false
       };
     case GET_AUTH_FAILED:
       return {
-        ...state,        
+        ...state, 
+        fetchingFailed: true,
+        isAuthorized: false, 
+        isFetching: false
       };
     case SET_AUTH_ERROR:
       return {
-        ...state,        
+        ...state, 
+        fetchingFailed: true,
+            error: action.payload
       };
     case GET_REGISTER_REQUEST:
       return {
-        ...state,        
+        ...state,
+        fetchingFailed: false,  
+        isAuthorized: false,    
+        isFetching: true
       };
     case GET_REGISTER_SUCCESS:
       return {
-        ...state,        
+        ...state, 
+        fetchingFailed: false,
+        isAuthorized: true,
+        user: action.payload,        
+        lastUpdated: Date.now(),
+        isFetching: false
       };
     case GET_REGISTER_FAILED:
       return {
-        ...state,        
+        ...state,  
+        fetchingFailed: true,
+        isAuthorized: false, 
+        isFetching: false
       };
     case SET_REGISTER_ERROR:
       return {
-        ...state,        
+        ...state,
+        fetchingFailed: true,
+            error: action.payload
       };
     case GET_PROFILE_REQUEST:
       return {

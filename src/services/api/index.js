@@ -1,7 +1,3 @@
-
-
-
-
 const API_URL = 'https://norma.nomoreparties.space/api';
 const headers = {
   post: { 'Content-Type': 'application/json' },
@@ -14,7 +10,7 @@ export const getIngredientsRequest = async () => {
 };
   
 export const checkoutRequest = async (idOrderIngredients) => {
-  console.log("fetch post");
+  console.log("fetch post checkoutRequest");
   return await fetch(`${API_URL}/orders`, {
     method: 'POST',
     headers: headers.post,
@@ -22,6 +18,38 @@ export const checkoutRequest = async (idOrderIngredients) => {
   })    
   ;
 };
+
+export const postRegisterRequest = async (data) => {
+  console.log("fetch post registerRequest");
+  return await fetch(`${API_URL}/auth/register`, {
+    method: 'POST',
+    headers: headers.post,
+    body: JSON.stringify({ ...data })
+  })    
+  ;
+};
+
+export const postLoginRequest = async (data) => {
+  console.log("fetch post loginRequest");
+  return await fetch(`${API_URL}/auth/login`, {
+    method: 'POST',
+    headers: headers.post,
+    body: JSON.stringify({ ...data })
+  })    
+  ;
+};
+
+export const postRefreshToken = async (token) => {
+  console.log("fetch post registerRequest");
+  return await fetch(`${API_URL}/auth/register`, {
+    method: 'POST',
+    headers: headers.post,
+    body: JSON.stringify({ token })
+  })    
+  ;
+};
+
+
 
 // TODO : { 'Content-Type': 'application/json' }
 // TODO ingredients https://norma.nomoreparties.space/api/ingredients

@@ -8,7 +8,8 @@ import {
   PasswordInput
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Register.module.css';
-import { INITIAL_FORM_REGISTER } from '../../services/constants/initialValue'
+import { INITIAL_FORM_REGISTER } from '../../services/constants/initialValue';
+import { getRegister }  from '../../services/actions/sign';
 
 
 
@@ -26,9 +27,11 @@ function Register() {
   };
 
   const onSubmit = (e) => {
-    console.log('onSubmit Login');
+    console.log('onSubmit Register');
+    dispatch(getRegister(form));
     console.log(form);
     e.preventDefault();
+    
     onReset();
   };
 
