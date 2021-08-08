@@ -89,15 +89,26 @@ export const signReduser = (state = initialState, action) => {
       };
     case GET_PROFILE_REQUEST:
       return {
-        ...state,        
+        ...state,
+        fetchingFailed: false,  
+        isAuthorized: false,    
+        isFetching: true
       };
     case GET_PROFILE_SUCCESS:
       return {
-        ...state,        
+        ...state,
+        fetchingFailed: false,
+        isAuthorized: true,
+        user: action.payload,        
+        lastUpdated: Date.now(),
+        isFetching: false
       };
     case GET_PROFILE_FAILED:
       return {
-        ...state,        
+        ...state, 
+        fetchingFailed: true,
+        isAuthorized: false, 
+        isFetching: false
       };
     case SET_PROFILE_ERROR:
       return {

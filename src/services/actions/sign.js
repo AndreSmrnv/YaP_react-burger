@@ -16,13 +16,15 @@ import {
 import {
     setToken,
     refreshToken,
-    clearToken
+    clearToken,
+    getToken
 } from './token'
   
 import {
     postRegisterRequest,
     postLoginRequest,
-    postLogoutRequest
+    postLogoutRequest,
+    patchProfileRequest
 } from '../api';
 
 function getRegister(data) {
@@ -120,8 +122,41 @@ function getLogout(token) {
     };
 }
 
+function updateProfile(data) {
+    console.log('updateProfile', data);
+    return function(dispatch) {
+   
+      dispatch({
+        type: GET_PROFILE_REQUEST
+      });
+         
+      patchProfileRequest(data, getToken())
+        .then(response => (response.ok)
+           ? response.json()
+           : Promise.reject(`api err: ${response.status}`)
+         )        
+        .then(          
+          result => {
+                console.log(result); 
+                   
+                dispatch({
+                    type: GET_PROFILE_SUCCESS,
+                    payload: result.user
+                  });
+                
+        })
+        .catch(e => {
+              console.log(e);
+              dispatch({
+                type: GET_PROFILE_FAILED
+              });
+            }) ;
+    };
+}
+
  export {
     getRegister,
     getLogin,
-    getLogout
+    getLogout,
+    updateProfile
  };

@@ -10,7 +10,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Profile.module.css';
 import { INITIAL_FORM_PROFILE } from '../../services/constants/initialValue';
-import { getLogout }  from '../../services/actions/sign';
+import { getLogout, updateProfile }  from '../../services/actions/sign';
 
 
 
@@ -19,14 +19,14 @@ function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const { isAuthorized, user } = useSelector((store) => store.sign);
+  const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
   const [form, setForm] = useState(INITIAL_FORM_PROFILE);
 
   useEffect(
     () => {
       setForm(prev => ( { ...prev, ...user }))
     },
-    [isAuthorized]
+    [isAuthorized, lastUpdated]
   ); 
 
   useEffect(() => {
@@ -48,9 +48,9 @@ function Profile() {
   const onSubmit = (e) => {
     console.log('onSubmit Profile');
     console.log(form);
-    //dispatch(getLogin(form));
+    dispatch(updateProfile(form));
     e.preventDefault();
-    onReset();
+    
   };
 
   const onReset = () => {
@@ -87,7 +87,7 @@ function Profile() {
         
         <PasswordInput onChange={onFieldChange} value={form.password} name="password" />
         <div className={styles.button_container}>
-          <Button type="primary" size="medium">Сохранить</Button>
+          <Button type="primary" size="medium">{isFetching ? 'Идет сохранение' : 'Сохранить' }</Button>
         </div>
       </form>
     </div>

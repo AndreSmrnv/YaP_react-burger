@@ -60,6 +60,16 @@ export const postLogoutRequest = async (token) => {
   ;
 };
 
+export const patchProfileRequest = async (data, token) => {
+  console.log("fetch patch profileRequest");
+  return await fetch(`${API_URL}/auth/user`, {
+    method: 'PATCH',
+    headers: { ...headers.post, authorization: token},
+    body: JSON.stringify({ ...data })
+  })    
+  ;
+};
+
 
 
 
