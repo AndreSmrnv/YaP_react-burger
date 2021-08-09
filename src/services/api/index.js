@@ -84,7 +84,7 @@ export const postForgotPasswordRequest = async (data) => {
   console.log("fetch post forgotPasswordRequest");
   return await fetch(`${API_URL}/password-reset`, {
     method: 'POST',
-    headers: { ...headers.POST},
+    headers: { ...headers.post},
     body: JSON.stringify({ ...data })
   })    
   ;
@@ -94,7 +94,7 @@ export const postResetPasswordRequest = async (data) => {
   console.log("fetch post resetPasswordRequest");
   return await fetch(`${API_URL}/password-reset/reset`, {
     method: 'POST',
-    headers: { ...headers.POST},
+    headers: { ...headers.post},
     body: JSON.stringify({ ...data })
   })    
   ;
