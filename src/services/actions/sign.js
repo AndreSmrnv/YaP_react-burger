@@ -220,7 +220,7 @@ function getForgotPassword(data, history) {
 }
 
 function getResetPassword(data, history) {
-    console.log('getForgotPassword');
+    console.log('getResetPassword');
     return function() {
    
      
