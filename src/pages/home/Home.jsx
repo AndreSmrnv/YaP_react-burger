@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
+import { Route, Switch, useLocation, useRouteMatch, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
-  AppHeader,
   BurgerConstructor,
   BurgerIngredients,
   IngredientDetails,
@@ -12,7 +11,10 @@ import {
   OrderDetails,
   OrderFailed
 } from '../../components';
+import {
 
+  IngredientPage
+} from '../../pages'
 import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber, setOrderError } from '../../services/actions/order';
 
@@ -28,13 +30,15 @@ function HomePage() {
   const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
   const [visibleOrderFailed, setVisibleOrderFailed] = useState(false);
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
-  
-  useEffect(
-    () => {
-      dispatch(getIngredients());
-    },
-    [dispatch]
-  );
+  const location = useLocation();
+  const history = useHistory();
+
+  // useEffect(
+  //   () => {
+  //     dispatch(getIngredients());
+  //   },
+  //   [dispatch]
+  // );
 
 
 
@@ -47,24 +51,36 @@ function HomePage() {
     } else {
       dispatch(setOrderError("Пустой заказ"));
       setVisibleOrderFailed(true);
-    } 
-    
+    }
+
   }
-  const openModalIngredientDetails = (item) => {    
+  const openModalIngredientDetails = () => {
     setVisibleIngredientDetails(true)
   }
 
   const closeModal = () => {
-    visibleOrderDetails &&  setVisibleOrderDetails(false);
+    visibleOrderDetails && setVisibleOrderDetails(false);
     visibleIngredientDetails && setVisibleIngredientDetails(false);
     visibleOrderFailed && setVisibleOrderFailed(false);
   }
 
+  const match = useRouteMatch('/ingredients/:id');
+  console.log(match)
+  const background = location.state?.background;
+  console.log(background);
+  console.log('prePopItem', history.action);
+  if (history.action === 'POP' && match && match.isExact) {
+    console.log('popItem', history.action);
+    return (
+      <Switch>
+        <Route path="/ingredients/:id">
+          <IngredientPage />
+        </Route>
+      </Switch>
+    );
+  };
 
 
-
-  // console.log(state);
-   console.log(cart);
   return (
     <div className={styles.wrapper}>
       {/* <header className={styles.nav_panel}>
@@ -93,7 +109,7 @@ function HomePage() {
       }
       {visibleIngredientDetails &&
         <Modal modalTitle='Детали ингредиента' closeModal={closeModal} >
-          <IngredientDetails  />
+          <IngredientDetails />
         </Modal>
       }
     </div>

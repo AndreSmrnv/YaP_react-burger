@@ -16,7 +16,7 @@ import {
   ProfilePage,
   IngredientPage,
   NotFound404Page
-} from '../../pages'
+} from '../../pages';
 
 import { getIngredients } from '../../services/actions/ingredients';
 import { getProfile } from '../../services/actions/sign';
@@ -35,16 +35,17 @@ function App() {
     },
     [dispatch]
   );
-  // useEffect(
-  //   () => {
-  //     //dispatch(getProfile());
-  //     dispatch(getIngredients());
-  //   },
-  //   [dispatch]
-  // );
+  useEffect(
+    () => {
+      //dispatch(getProfile());
+      dispatch(getIngredients());
+    },
+    [dispatch]
+  );
 
   // console.log(state);
-   console.log(cart);
+  console.log(cart);
+  
   return (
     <div className={styles.wrapper}>
       <header className={styles.nav_panel}>
@@ -70,7 +71,7 @@ function App() {
           <ProfilePage />
         </ProtectedRoute>
         <Route path="/ingredients/:id">
-            <IngredientPage />
+            <HomePage />
         </Route>
         <Route>
           <NotFound404Page />
