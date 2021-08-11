@@ -1,0 +1,26 @@
+.menu_link {  
+  color: #8585AD;
+  text-decoration: none;
+  display: block;
+  margin: 17px 0;
+  line-height: 30px;
+  width: fit-content;
+  
+}
+
+.menu_link:hover {
+  color: #F2F2F3;
+}
+
+.menu_link_active {
+  color: #f2f2f3;
+}
+
+.nav_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+

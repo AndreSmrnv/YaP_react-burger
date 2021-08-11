@@ -11,12 +11,14 @@
   width: 100%;
 }
 
+
+
 .nav__text {
   margin: 80px 0 0;
   opacity: 0.4;
 }
 
-.form {
+.orders_container {
   margin-left: 60px;
   max-width: 480px;
   width: 100%;

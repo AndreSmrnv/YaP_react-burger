@@ -15,6 +15,8 @@ import {
   ResetPasswordPage,
   ProfilePage,
   IngredientPage,
+  OrdersPage,
+  //FeedPage,
   NotFound404Page
 } from '../../pages';
 
@@ -55,6 +57,10 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
+        <Route exact path="/feed">
+          <OrdersPage />
+          {/* <FeedPage /> */}
+        </Route>
         <SignRoute path="/login">
           <LoginPage />
         </SignRoute>
@@ -67,6 +73,13 @@ function App() {
         <SignRoute path="/reset-password">
           <ResetPasswordPage />
         </SignRoute>
+        <ProtectedRoute path="/profile/orders">
+          <OrdersPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/logout">
+          <ProfilePage />
+        </ProtectedRoute>
+
         <ProtectedRoute path="/profile">
           <ProfilePage />
         </ProtectedRoute>

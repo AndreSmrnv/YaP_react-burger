@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-
+import { ProfileNav } from '../../components';
 import {
   Button,
   EmailInput,
@@ -66,13 +66,7 @@ function Profile() {
   return (
     <div className={styles.profile}>
       <div className={styles.nav_container}>
-        <nav>
-          <ul className={styles.nav__list}>
-            <NavLink to="/profile" exact className={`${styles.nav__item} text text_type_main-medium text_color_inactive`} activeClassName={styles.nav__item_active}>Профиль</NavLink>
-            <NavLink to="/profile/orders" className={`${styles.nav__item} text text_type_main-medium text_color_inactive`} activeClassName={styles.nav__item_active}>История заказов</NavLink>
-            <NavLink to="/profile/logout" className={`${styles.nav__item} text text_type_main-medium text_color_inactive`} activeClassName={styles.nav__item_active}>Выход</NavLink>
-          </ul>
-        </nav>
+        <ProfileNav />
         <p className={`${styles.nav__text} text text_type_main-default text_color_inactive`}>
           В этом разделе вы можете
           изменить свои персональные данные

@@ -14,7 +14,9 @@ import Profile from './sign-profile';
 import ForgotPassword from './sign-forgot-password';
 import ResetPassword from './sign-reset-password';
 import ProtectedRoute from './protected-route';
-import SignRoute from './sign-route'
+import SignRoute from './sign-route';
+import Orders from './orders';
+import ProfileNav from './sign-profile-nav';
 
 export {
     App,
@@ -29,8 +31,10 @@ export {
     Login,
     Register,
     Profile,
+    ProfileNav,
     ForgotPassword,
     ResetPassword,
     ProtectedRoute,
-    SignRoute
+    SignRoute,
+    Orders
 };

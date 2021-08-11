@@ -6,7 +6,8 @@ import RegisterPage from './register';
 import ForgotPasswordPage from './forgot-password';
 import ResetPasswordPage from './reset-password';
 import NotFound404Page from './not-found';
-import IngredientPage from './ingredient'
+import IngredientPage from './ingredient';
+import OrdersPage from './orders'
 
 export {
     HomePage,
@@ -16,5 +17,6 @@ export {
     ForgotPasswordPage,
     ResetPasswordPage,
     IngredientPage,
+    OrdersPage,
     NotFound404Page
 };
