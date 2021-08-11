@@ -17,7 +17,7 @@ import {
 } from '../../pages'
 import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber, setOrderError } from '../../services/actions/order';
-
+import { resetViewItem } from '../../services/actions/viewedItem'
 import styles from './Home.module.css';
 
 
@@ -32,7 +32,7 @@ function HomePage() {
   const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
   const location = useLocation();
   const history = useHistory();
-
+  const { isAuthorized } = useSelector((store) => store.sign);
   // useEffect(
   //   () => {
   //     dispatch(getIngredients());
@@ -43,14 +43,18 @@ function HomePage() {
 
 
   const openModalOrderDetails = () => {
-    if (cart.sortedData.fillers.length && Object.keys(cart.sortedData.bun).length) {
-      const idsCard = cart.sortedData.fillers.map(item => item._id);
-      //console.log(idsCard);      
-      dispatch(getOrderNumber(idsCard));
-      setVisibleOrderDetails(true);
+    if (isAuthorized) {
+      if (cart.sortedData.fillers.length && Object.keys(cart.sortedData.bun).length) {
+        const idsCard = cart.sortedData.fillers.map(item => item._id);
+        //console.log(idsCard);      
+        dispatch(getOrderNumber(idsCard));
+        setVisibleOrderDetails(true);
+      } else {
+        dispatch(setOrderError("Пустой заказ"));
+        setVisibleOrderFailed(true);
+      }
     } else {
-      dispatch(setOrderError("Пустой заказ"));
-      setVisibleOrderFailed(true);
+      history.push(`/login`, { from: location });      
     }
 
   }
@@ -60,17 +64,13 @@ function HomePage() {
 
   const closeModal = () => {
     visibleOrderDetails && setVisibleOrderDetails(false);
+    visibleIngredientDetails && dispatch(resetViewItem());;
     visibleIngredientDetails && setVisibleIngredientDetails(false);
     visibleOrderFailed && setVisibleOrderFailed(false);
   }
 
-  const match = useRouteMatch('/ingredients/:id');
-  console.log(match)
-  const background = location.state?.background;
-  console.log(background);
-  console.log('prePopItem', history.action);
-  if (history.action === 'POP' && match && match.isExact) {
-    console.log('popItem', history.action);
+  const match = useRouteMatch('/ingredients/:id');    
+  if (history.action === 'POP' && !location.state?.background && match && match.isExact) {    
     return (
       <Switch>
         <Route path="/ingredients/:id">

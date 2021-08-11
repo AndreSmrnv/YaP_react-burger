@@ -23,15 +23,7 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     });
     function handleClick() {
         onItemClick();
-        history.replace(`/ingredients/${itemData._id}`, { background: true });
-
-        // dispatch({
-        //     type: SET_VIEW_ITEM,
-        //     payload: itemData
-        // });
-         
-        // return false;
-
+        history.push(`/ingredients/${itemData._id}`, { background: true });
     };
     const opacity = isDragging ? 0.2 : 1;
     //console.log(itemData);
