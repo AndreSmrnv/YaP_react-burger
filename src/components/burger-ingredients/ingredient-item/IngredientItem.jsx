@@ -5,7 +5,7 @@ import {
     CurrencyIcon,
     Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {  useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
 const style = {
@@ -23,7 +23,7 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     });
     function handleClick() {
         onItemClick();
-        history.push(`/ingredients/${itemData._id}`, { background: true });
+        history.replace(`/ingredients/${itemData._id}`, { background: true });
     };
     const opacity = isDragging ? 0.2 : 1;
     //console.log(itemData);

@@ -69,8 +69,8 @@ function HomePage() {
     visibleOrderFailed && setVisibleOrderFailed(false);
   }
 
-  const match = useRouteMatch('/ingredients/:id');    
-  if (history.action === 'POP' && !location.state?.background && match && match.isExact) {    
+  const match = useRouteMatch('/ingredients/:id'); 
+  if (history.action === 'POP' && match && match.isExact) {    
     return (
       <Switch>
         <Route path="/ingredients/:id">
