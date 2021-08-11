@@ -11,7 +11,7 @@ const dataMenu = {
     {
       "id": "2",
       "name": "Лента заказов",
-      "href": "/profile/orders",
+      "href": "/feed",
       "icon": "listIcon",
       "exact": false   
     },

@@ -16,7 +16,7 @@ import {
   ProfilePage,
   IngredientPage,
   OrdersPage,
-  //FeedPage,
+  OrdersFeedPage,
   NotFound404Page
 } from '../../pages';
 
@@ -57,9 +57,8 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route exact path="/feed">
-          <OrdersPage />
-          {/* <FeedPage /> */}
+        <Route exact path="/feed">          
+          <OrdersFeedPage />
         </Route>
         <SignRoute path="/login">
           <LoginPage />

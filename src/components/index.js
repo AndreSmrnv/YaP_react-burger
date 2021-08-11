@@ -17,6 +17,7 @@ import ProtectedRoute from './protected-route';
 import SignRoute from './sign-route';
 import Orders from './orders';
 import ProfileNav from './sign-profile-nav';
+import OrdersFeed from './orders-feed'
 
 export {
     App,
@@ -36,5 +37,6 @@ export {
     ResetPassword,
     ProtectedRoute,
     SignRoute,
-    Orders
+    Orders,
+    OrdersFeed
 };

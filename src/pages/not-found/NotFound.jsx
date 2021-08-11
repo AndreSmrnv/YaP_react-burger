@@ -3,17 +3,13 @@ import { useHistory, Link, useLocation } from 'react-router-dom';
 
 import styles from './NotFound.module.css';
 
-//import { Breadcrumbs } from '../components/breadcrumbs';
-//import { HOME_CRUMB } from '../services/breadcrumbs';
+
 
 export default function NotFound404Page() {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  // useEffect(() => {
-  //   //const errorBreadcrumb = [HOME_CRUMB, { path: pathname, url: pathname, title: '404' }];
-  //   history.replace({ state: errorBreadcrumb });
-  // }, [history, pathname])
+  
 
   return (
     <div className={styles.wrapper}>
