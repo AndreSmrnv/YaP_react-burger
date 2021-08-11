@@ -33,15 +33,15 @@ function App() {
     () => {
       dispatch(getProfile());      
     },
-    []
-  );
-  useEffect(
-    () => {
-      //dispatch(getProfile());
-      dispatch(getIngredients());
-    },
     [dispatch]
   );
+  // useEffect(
+  //   () => {
+  //     //dispatch(getProfile());
+  //     dispatch(getIngredients());
+  //   },
+  //   [dispatch]
+  // );
 
   // console.log(state);
    console.log(cart);

@@ -24,10 +24,10 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
         })
     });
     function handleClick() {
-        dispatch({
-            type: SET_VIEW_ITEM,
-            payload: itemData
-        });
+        // dispatch({
+        //     type: SET_VIEW_ITEM,
+        //     payload: itemData
+        // });
         onItemClick(itemData);
         return false;
     };

@@ -173,13 +173,11 @@ function getProfile() {
         
       const accessToken = getToken();  
       getProfileRequest(accessToken)
-        .then(response => (response.ok)
-           ? response.json()
-           : Promise.reject(`api err: ${response.status}`)
+        .then(response => response.json()          
          )        
         .then(          
           result => {
-                console.log(result); 
+                //console.log(result); 
             if (!result.success) throw result;
                 dispatch({
                     type: GET_PROFILE_SUCCESS,
@@ -187,9 +185,10 @@ function getProfile() {
                   });
                 
         })
-        .catch(e => {
-          console.log(e);
-          if (e.message === 'jwt expired') {
+        .catch(res => {
+          //console.log(res);
+          
+          if (res.message === 'jwt expired') {
             dispatch(
               refreshToken( getProfile() )
               )
