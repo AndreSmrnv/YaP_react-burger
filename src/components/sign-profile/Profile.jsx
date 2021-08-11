@@ -11,7 +11,7 @@ import {
 import styles from './Profile.module.css';
 import { INITIAL_FORM_PROFILE } from '../../services/constants/initialValue';
 import { getLogout, updateProfile, getProfile }  from '../../services/actions/sign';
-
+import { getRefreshToken }  from '../../services/actions/token';
 
 
 function Profile() {
@@ -36,7 +36,7 @@ function Profile() {
 
   useEffect(() => {
     if (location.pathname === '/profile/logout') {
-      const token = localStorage.getItem('refreshToken');
+      const token = getRefreshToken();
       if (token) {
         dispatch(getLogout(token));
         history.push('/login');        

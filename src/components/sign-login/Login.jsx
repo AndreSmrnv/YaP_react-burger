@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation, Redirect } from 'react-router-dom';
 import {
   Button,
   EmailInput,
@@ -9,7 +9,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Login.module.css';
 import { INITIAL_FORM_LOGIN } from '../../services/constants/initialValue'
-import { getLogin }  from '../../services/actions/sign';
+import { getLogin } from '../../services/actions/sign';
 
 
 function Login() {
@@ -18,7 +18,7 @@ function Login() {
   const history = useHistory();
   const location = useLocation();
   const [form, setForm] = useState(INITIAL_FORM_LOGIN);
-
+  const { isAuthorized } = useSelector((store) => store.sign);
   const onFieldChange = (e) => {
     const { name: fieldName, type } = e.target;
     const value = type === 'checkbox' ? e.target.checked : e.target.value;
@@ -36,7 +36,7 @@ function Login() {
   const onReset = () => {
     setForm(INITIAL_FORM_LOGIN);
   }
-
+  
   return (
     <div className={styles.login}>
       <h3 className={`${styles.title} text text_type_main-medium`}>Вход</h3>

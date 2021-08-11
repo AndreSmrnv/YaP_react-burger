@@ -142,7 +142,7 @@ function updateProfile(data) {
         .then(          
           result => {
                 console.log(result); 
-                   
+                if (!result.success) throw result;   
                 dispatch({
                     type: GET_PROFILE_SUCCESS,
                     payload: result.user
@@ -150,7 +150,12 @@ function updateProfile(data) {
                 
         })
         .catch(e => {
-              console.log(e);
+          console.log(e);
+          if (e.message === 'jwt expired') {
+            dispatch(
+              refreshToken( getProfile() )
+              )
+          }
               dispatch({
                 type: GET_PROFILE_FAILED
               });
@@ -175,7 +180,7 @@ function getProfile() {
         .then(          
           result => {
                 console.log(result); 
-                   
+            if (!result.success) throw result;
                 dispatch({
                     type: GET_PROFILE_SUCCESS,
                     payload: result.user
@@ -183,13 +188,20 @@ function getProfile() {
                 
         })
         .catch(e => {
-              console.log(e);
+          console.log(e);
+          if (e.message === 'jwt expired') {
+            dispatch(
+              refreshToken( getProfile() )
+              )
+          }
               dispatch({
                 type: GET_PROFILE_FAILED
               });
             }) ;
     };
 }
+
+
 
 function getForgotPassword(data, history) {
     console.log('getForgotPassword');

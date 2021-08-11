@@ -1,9 +1,10 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const SignRoute = ({ children, ...rest }) => {
   const { isAuthorized } = useSelector((store) => store.sign);
-
+  const location = useLocation();
+  console.log('SignRoute isAuthorized ', isAuthorized);
   return (
     <Route
       {...rest}
@@ -11,7 +12,7 @@ const SignRoute = ({ children, ...rest }) => {
         return isAuthorized ? (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: location.state?.from ? location.state?.from.pathname : "/",
             }}
           />
         ) : (

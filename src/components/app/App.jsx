@@ -19,7 +19,7 @@ import {
 } from '../../pages'
 
 import { getIngredients } from '../../services/actions/ingredients';
-
+import { getProfile } from '../../services/actions/sign';
 
 import styles from './App.module.css';
 
@@ -29,9 +29,15 @@ function App() {
   const state = useSelector(state => state.ingredients);
   const cart = useSelector(state => state.cart);
   
-  
   useEffect(
     () => {
+      dispatch(getProfile());      
+    },
+    []
+  );
+  useEffect(
+    () => {
+      //dispatch(getProfile());
       dispatch(getIngredients());
     },
     [dispatch]

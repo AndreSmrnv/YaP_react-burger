@@ -7,17 +7,24 @@ import {
 
 const setToken = ({ accessToken, refreshToken }) => {
     const expTime = new Date(new Date().getTime() + 20 * 60 * 1000);
-    Cookies.set(ACCESS_TOKEN, accessToken, { expires: expTime });
+  Cookies.set(
+    ACCESS_TOKEN,
+    accessToken,
+   // { expires: expTime }
+  );
     localStorage.setItem(REFRESH_TOKEN, refreshToken);
   };
-const getToken = () => Cookies.get(ACCESS_TOKEN); 
+const getToken = () => Cookies.get(ACCESS_TOKEN);
+  
+
+const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN);
 
 const clearToken = () => {
     Cookies.remove(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
   };
   
-const refreshToken = () => {
+const refreshToken = (afterRefresh) => (dispatch) => {
       postRefreshTokenRequest(localStorage.getItem(REFRESH_TOKEN))
       .then(response => (response.ok)
            ? response.json()
@@ -26,7 +33,8 @@ const refreshToken = () => {
         .then(          
           result => {
                 console.log(result); 
-                setToken({ accessToken: result.accessToken, refreshToken: result.refreshToken });                
+            setToken({ accessToken: result.accessToken, refreshToken: result.refreshToken });
+            dispatch(afterRefresh);
         })
         .catch(e => {
               console.log(e);              
@@ -34,10 +42,11 @@ const refreshToken = () => {
   };
 
   
-  export {
+export {
     setToken,
     refreshToken,
     clearToken,
-    getToken
+  getToken,
+  getRefreshToken
 };
 
