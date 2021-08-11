@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 
 
 
-console.log(store.getState())
+//console.log(store.getState())
 
 ReactDOM.render(
   <React.StrictMode>

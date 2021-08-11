@@ -16,7 +16,7 @@ function IngredientDetails() {
  
   useEffect(() => {
       const itemData = ingredients.data?.find(item => item._id == id);
-      console.log(itemData);
+      //console.log(itemData);
       itemData && dispatch(setViewItem(itemData));
     }, [id,ingredients.data]
   );

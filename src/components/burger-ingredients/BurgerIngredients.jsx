@@ -31,15 +31,15 @@ function BurgerIngredients({ openModal }) {
 
     if (inViewBuns) {
       setCurrentTab("buns");
-      console.log('set TAB buns');
+
     }
     else if (inViewSauces) {
       setCurrentTab("sauces");
-      console.log('set TAB sauces');
+
     }
     else if (inViewFilling) {
       setCurrentTab("mains");
-      console.log('set TAB mains');
+
     }
   }, [inViewBuns, inViewFilling, inViewSauces]);
 
@@ -134,7 +134,7 @@ function BurgerIngredients({ openModal }) {
 
 
 BurgerIngredients.propTypes = {
- 
+
   openModal: PropTypes.func.isRequired,
 };
 

@@ -31,7 +31,7 @@ import {
 } from '../api';
 
 function getRegister(data) {
-    console.log('getRegister', data);
+    //console.log('getRegister', data);
     return function(dispatch) {
    
       dispatch({
@@ -63,7 +63,7 @@ function getRegister(data) {
 }
 
 function getLogin(data) {
-    console.log('getLogin', data);
+    //console.log('getLogin', data);
     return function(dispatch) {
    
       dispatch({
@@ -77,7 +77,7 @@ function getLogin(data) {
          )        
         .then(          
           result => {
-                console.log(result); 
+                //console.log(result); 
                 setToken({ accessToken: result.accessToken, refreshToken: result.refreshToken });    
             dispatch({
               type: GET_AUTH_SUCCESS,
@@ -95,7 +95,7 @@ function getLogin(data) {
 }
 
 function getLogout(token) {
-    console.log('getLogout', token);
+    //console.log('getLogout', token);
     return function(dispatch) {
    
       dispatch({
@@ -109,7 +109,7 @@ function getLogout(token) {
          )        
         .then(          
           result => {
-                console.log(result); 
+                //console.log(result); 
                 clearToken();    
             dispatch({
               type: SET_PROFILE_CLEAR
@@ -126,7 +126,7 @@ function getLogout(token) {
 }
 
 function updateProfile(data) {
-    console.log('updateProfile', data);
+    //console.log('updateProfile', data);
     return function(dispatch) {
    
       dispatch({
@@ -164,7 +164,7 @@ function updateProfile(data) {
 }
 
 function getProfile() {
-    console.log('getProfile');
+    //console.log('getProfile');
     return function(dispatch) {
    
       dispatch({
@@ -203,7 +203,7 @@ function getProfile() {
 
 
 function getForgotPassword(data, history) {
-    console.log('getForgotPassword');
+    //console.log('getForgotPassword');
     return function() {
    
      
@@ -214,7 +214,7 @@ function getForgotPassword(data, history) {
          )        
         .then(          
           result => {
-                console.log(result); 
+                //console.log(result); 
                 history.push({
                     pathname: "/reset-password",
                     state: { resetPassword: true },
@@ -231,7 +231,7 @@ function getForgotPassword(data, history) {
 }
 
 function getResetPassword(data, history) {
-    console.log('getResetPassword');
+    //console.log('getResetPassword');
     return function() {
    
      

@@ -28,10 +28,10 @@ function App() {
   const dispatch = useDispatch();
   const state = useSelector(state => state.ingredients);
   const cart = useSelector(state => state.cart);
-  
+
   useEffect(
     () => {
-      dispatch(getProfile());      
+      dispatch(getProfile());
     },
     [dispatch]
   );
@@ -44,8 +44,8 @@ function App() {
   );
 
   // console.log(state);
-  console.log(cart);
-  
+  //console.log(cart);
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.nav_panel}>
@@ -71,12 +71,12 @@ function App() {
           <ProfilePage />
         </ProtectedRoute>
         <Route path="/ingredients/:id">
-            <HomePage />
+          <HomePage />
         </Route>
         <Route>
           <NotFound404Page />
         </Route>
-      </Switch>      
+      </Switch>
     </div>
   );
 }

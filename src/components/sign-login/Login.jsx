@@ -26,8 +26,8 @@ function Login() {
   };
 
   const onSubmit = (e) => {
-    console.log('onSubmit Login');
-    console.log(form);
+    //console.log('onSubmit Login');
+    //console.log(form);
     dispatch(getLogin(form));
     e.preventDefault();
     onReset();

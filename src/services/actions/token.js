@@ -32,7 +32,7 @@ const refreshToken = (afterRefresh) => (dispatch) => {
          )        
         .then(          
           result => {
-                console.log(result); 
+                //console.log(result); 
             setToken({ accessToken: result.accessToken, refreshToken: result.refreshToken });
             dispatch(afterRefresh);
         })

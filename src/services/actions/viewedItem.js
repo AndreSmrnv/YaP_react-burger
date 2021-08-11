@@ -4,7 +4,7 @@ import {
 } from '../constants/actionTypes';
 
 function setViewItem(itemData) {
-    console.log('setViewItem', itemData);
+    //console.log('setViewItem', itemData);
     return function (dispatch) {
    
         dispatch({
@@ -16,15 +16,11 @@ function setViewItem(itemData) {
     };
 }
 
-function resetViewItem() {
-    
-    return function (dispatch) {
-   
+function resetViewItem() {    
+    return function (dispatch) {   
         dispatch({
             type: RESET_VIEW_ITEM
-          });
-        
-      
+          });      
     };
 }
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const SignRoute = ({ children, ...rest }) => {
   const { isAuthorized } = useSelector((store) => store.sign);
   const location = useLocation();
-  console.log('SignRoute isAuthorized ', isAuthorized);
+  //console.log('SignRoute isAuthorized ', isAuthorized);
   return (
     <Route
       {...rest}

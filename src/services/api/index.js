@@ -10,7 +10,7 @@ export const getIngredientsRequest = async () => {
 };
   
 export const checkoutRequest = async (idOrderIngredients) => {
-  console.log("fetch post checkoutRequest");
+  //console.log("fetch post checkoutRequest");
   return await fetch(`${API_URL}/orders`, {
     method: 'POST',
     headers: headers.post,
@@ -20,7 +20,7 @@ export const checkoutRequest = async (idOrderIngredients) => {
 };
 
 export const postRegisterRequest = async (data) => {
-  console.log("fetch post registerRequest");
+  //console.log("fetch post registerRequest");
   return await fetch(`${API_URL}/auth/register`, {
     method: 'POST',
     headers: headers.post,
@@ -30,7 +30,7 @@ export const postRegisterRequest = async (data) => {
 };
 
 export const postLoginRequest = async (data) => {
-  console.log("fetch post loginRequest");
+  //console.log("fetch post loginRequest");
   return await fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: headers.post,
@@ -40,7 +40,7 @@ export const postLoginRequest = async (data) => {
 };
 
 export const postRefreshTokenRequest = async (token) => {
-  console.log("fetch post registerRequest");
+  //console.log("fetch post registerRequest");
   return await fetch(`${API_URL}/auth/token`, {
     method: 'POST',
     headers: headers.post,
@@ -51,7 +51,7 @@ export const postRefreshTokenRequest = async (token) => {
 
 
 export const postLogoutRequest = async (token) => {
-  console.log("fetch post registerRequest");
+  //console.log("fetch post registerRequest");
   return await fetch(`${API_URL}/auth/logout`, {
     method: 'POST',
     headers: headers.post,
@@ -61,7 +61,7 @@ export const postLogoutRequest = async (token) => {
 };
 
 export const patchProfileRequest = async (data, token) => {
-  console.log("fetch patch profileRequest");
+  //console.log("fetch patch profileRequest");
   return await fetch(`${API_URL}/auth/user`, {
     method: 'PATCH',
     headers: { ...headers.post, authorization: token},
@@ -71,7 +71,7 @@ export const patchProfileRequest = async (data, token) => {
 };
 
 export const getProfileRequest = async (token) => {
-  console.log("fetch get profileRequest");
+  //console.log("fetch get profileRequest");
   return await fetch(`${API_URL}/auth/user`, {
     method: 'GET',
     headers: { ...headers.get, authorization: token}
@@ -81,7 +81,7 @@ export const getProfileRequest = async (token) => {
 };
 
 export const postForgotPasswordRequest = async (data) => {
-  console.log("fetch post forgotPasswordRequest");
+  //console.log("fetch post forgotPasswordRequest");
   return await fetch(`${API_URL}/password-reset`, {
     method: 'POST',
     headers: { ...headers.post},
@@ -91,7 +91,7 @@ export const postForgotPasswordRequest = async (data) => {
 };
 
 export const postResetPasswordRequest = async (data) => {
-  console.log("fetch post resetPasswordRequest");
+  //console.log("fetch post resetPasswordRequest");
   return await fetch(`${API_URL}/password-reset/reset`, {
     method: 'POST',
     headers: { ...headers.post},
