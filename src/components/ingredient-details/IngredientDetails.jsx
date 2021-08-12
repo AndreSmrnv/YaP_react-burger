@@ -1,22 +1,37 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from "react-router-dom";
 import IngredientDetailsItem from "./ingredient-details-item";
 import PropTypes from 'prop-types';
 import styles from './IngredientDetails.module.css';
+import { ITEM_DETAILS } from '../../services/constants/constValue'
+import { setViewItem } from '../../services/actions/viewedItem'
 
 
-const ITEM_DETAILS = {
-  calories: 'Калории, ккал',
-  proteins: 'Белки, г',
-  fat: 'Жиры, г',
-  carbohydrates: 'Углеводы, г'
-};
 
+function IngredientDetails() {
+  const { id } = useParams();;
+  const dispatch = useDispatch();
+  const ingredients = useSelector(state => state.ingredients);
+ 
+  useEffect(() => {
+      const itemData = ingredients.data?.find(item => item._id == id);
+      //console.log(itemData);
+      itemData && dispatch(setViewItem(itemData));
+    }, [id,ingredients.data]
+  );
+  
 
-const IngredientDetails = ({ item }) => {
   const viewedItem = useSelector(state => state.viewedItem.data);
-  console.log(viewedItem);
-   
+ 
+  if (!viewedItem._id) {
+    return (
+      <h4 className='text text_type_main-medium mt-4 mb-8'>
+        Загрузка данных...
+      </h4>
+    )
+  };
+
   return (
 
     <div className={styles.container}>
@@ -41,22 +56,6 @@ const IngredientDetails = ({ item }) => {
   );
 }
 
-IngredientDetails.propTypes = {
-  item: PropTypes.shape({
-    _id: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-    image_mobile: PropTypes.string,
-    image_large: PropTypes.string,
-    __v: PropTypes.number,
-  }).isRequired,
-  
-};
+
 
 export default IngredientDetails;

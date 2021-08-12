@@ -1,99 +1,94 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import AppHeader from "../app-header";
-import BurgerConstructor from '../burger-constructor';
-import BurgerIngredients from '../burger-ingredients';
-import IngredientDetails from '../ingredient-details/IngredientDetails';
-import Modal from '../modal/Modal';
-import OrderDetails from '../order-details';
-import OrderFailed from '../order-failed';
+import { Route, Switch } from 'react-router-dom';
+import {
+  ProtectedRoute,
+  SignRoute,
+  AppHeader
+} from '../../components';
+
+import {
+  HomePage,
+  LoginPage,
+  RegisterPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  ProfilePage,
+  IngredientPage,
+  OrdersPage,
+  OrdersFeedPage,
+  NotFound404Page
+} from '../../pages';
+
 import { getIngredients } from '../../services/actions/ingredients';
-import { getOrderNumber, setOrderError } from '../../services/actions/order';
+import { getProfile } from '../../services/actions/sign';
 
 import styles from './App.module.css';
 
-// const INIT_APP = { data: null, idDataSet: null, isFetching: false, error: null };
-// const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
-// const API_HEADERS = { 'Content-Type': 'application/json' };
 
 function App() {
   const dispatch = useDispatch();
-  //const [state, setState] = useState(INIT_APP);
   const state = useSelector(state => state.ingredients);
   const cart = useSelector(state => state.cart);
-  const [visibleOrderDetails, setVisibleOrderDetails] = useState(false);
-  const [visibleOrderFailed, setVisibleOrderFailed] = useState(false);
-  const [visibleIngredientDetails, setVisibleIngredientDetails] = useState(false);
-  
+
   useEffect(
     () => {
+      dispatch(getProfile());
+    },
+    [dispatch]
+  );
+  useEffect(
+    () => {
+      //dispatch(getProfile());
       dispatch(getIngredients());
     },
     [dispatch]
   );
 
-
-
-  const openModalOrderDetails = () => {
-    if (cart.sortedData.fillers.length && Object.keys(cart.sortedData.bun).length) {
-      const idsCard = cart.sortedData.fillers.map(item => item._id);
-      //console.log(idsCard);      
-      dispatch(getOrderNumber(idsCard));
-      setVisibleOrderDetails(true);
-    } else {
-      dispatch(setOrderError("Пустой заказ"));
-      setVisibleOrderFailed(true);
-    } 
-    
-  }
-  const openModalIngredientDetails = (item) => {    
-    setVisibleIngredientDetails(true)
-  }
-
-  const closeModal = () => {
-    visibleOrderDetails &&  setVisibleOrderDetails(false);
-    visibleIngredientDetails && setVisibleIngredientDetails(false);
-    visibleOrderFailed && setVisibleOrderFailed(false);
-  }
-
-
-
-
   // console.log(state);
-   console.log(cart);
+  //console.log(cart);
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.nav_panel}>
         <AppHeader />
       </header>
-      {state.data && state.data.length && (
-        <DndProvider backend={HTML5Backend}>
-          <main className={styles.main}>
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/feed">          
+          <OrdersFeedPage />
+        </Route>
+        <SignRoute path="/login">
+          <LoginPage />
+        </SignRoute>
+        <SignRoute path="/register">
+          <RegisterPage />
+        </SignRoute>
+        <SignRoute path="/forgot-password">
+          <ForgotPasswordPage />
+        </SignRoute>
+        <SignRoute path="/reset-password">
+          <ResetPasswordPage />
+        </SignRoute>
+        <ProtectedRoute path="/profile/orders">
+          <OrdersPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/logout">
+          <ProfilePage />
+        </ProtectedRoute>
 
-            <BurgerIngredients openModal={openModalIngredientDetails} />
-            {cart.data.length && <BurgerConstructor openModal={openModalOrderDetails} />}
-
-          </main>
-        </DndProvider>
-      )
-      }
-      {visibleOrderDetails &&
-        <Modal modalTitle={null} closeModal={closeModal}>
-          <OrderDetails />
-        </Modal>
-      }
-      {visibleOrderFailed &&
-        <Modal modalTitle={null} closeModal={closeModal}>
-          <OrderFailed />
-        </Modal>
-      }
-      {visibleIngredientDetails &&
-        <Modal modalTitle='Детали ингредиента' closeModal={closeModal} >
-          <IngredientDetails  />
-        </Modal>
-      }
+        <ProtectedRoute path="/profile">
+          <ProfilePage />
+        </ProtectedRoute>
+        <Route path="/ingredients/:id">
+          <HomePage />
+        </Route>
+        <Route>
+          <NotFound404Page />
+        </Route>
+      </Switch>
     </div>
   );
 }

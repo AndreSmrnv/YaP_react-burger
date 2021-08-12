@@ -27,12 +27,9 @@ function BurgerConstructor({ openModal }) {
     drop: onDropHandler
   });
 
-  // const coverData = prodData && Array.isArray(prodData)
-  //   &&
-  //   Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty]
-  //   ;
+  
     const coverData = Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty] ;
-  console.log(coverData);
+  
   const middleData = prodData && Array.isArray(prodData)
     && cart.sortedData.fillers
     ;
@@ -57,13 +54,7 @@ function BurgerConstructor({ openModal }) {
     );
   };
   const moveElem = (dragIndex, hoverIndex) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
-  //console.log(totalBurgerPrice);
 
-  //   useCallback((dragIndex, hoverIndex) => {
-  //   console.log(`dragIndex - ${dragIndex} | hoverIndex - ${hoverIndex}`);
-  //   dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } })
-
-  // }, [dispatch]); (item, i) => renderMiddle(item, i)
 
   return (
     <section className={`${styles.container} pt-25`} ref={dropTarget}>
@@ -89,8 +80,6 @@ function BurgerConstructor({ openModal }) {
               )
             }
           </ul>
-
-
         </li>
 
         {coverData && Array.isArray(coverData) && coverData.map(item => (

@@ -23,7 +23,7 @@ export function getIngredients() {
          )        
         .then(          
           result => {
-            console.log(result);
+            //console.log(result);
           
             dispatch({
               type: GET_INGREDIENTS_SUCCESS,

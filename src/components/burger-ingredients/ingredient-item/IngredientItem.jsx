@@ -5,9 +5,7 @@ import {
     CurrencyIcon,
     Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {
-    SET_VIEW_ITEM
-} from '../../../services/constants/actionTypes';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './IngredientItem.module.css';
 const style = {
@@ -15,7 +13,7 @@ const style = {
 };
 const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const [{ isDragging }, dragRef] = useDrag({
         type: 'ingredient',
         item: itemData,
@@ -24,12 +22,8 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
         })
     });
     function handleClick() {
-        dispatch({
-            type: SET_VIEW_ITEM,
-            payload: itemData
-        });
-        onItemClick(itemData);
-        return false;
+        onItemClick();
+        history.replace(`/ingredients/${itemData._id}`, { background: true });
     };
     const opacity = isDragging ? 0.2 : 1;
     //console.log(itemData);

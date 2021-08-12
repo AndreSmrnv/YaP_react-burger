@@ -4,25 +4,25 @@ const dataMenu = {
     {
       "id": "1",
       "name": "Конструктор",
-      "href": "#",
+      "href": "/",
       "icon": "burgerIcon",
-        
+      "exact": true  
     },
     {
       "id": "2",
       "name": "Лента заказов",
-      "href": "#",
+      "href": "/feed",
       "icon": "listIcon",
-        
+      "exact": false   
     },
   ],
   right: [
     {
       "id": "1",
       "name": "Личный кабинет",
-      "href": "#",
+      "href": "/profile",
       "icon": "profileIcon",
-        
+      "exact": true   
     }
   ],
 
