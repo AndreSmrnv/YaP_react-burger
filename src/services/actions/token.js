@@ -6,10 +6,11 @@ import {
 } from '../constants/constValue'
 
 const setToken = ({ accessToken, refreshToken }) => {
-    const expTime = new Date(new Date().getTime() + 20 * 60 * 1000);
+  const expTime = new Date(new Date().getTime() + 20 * 60 * 1000);
+  const bearerToken = accessToken.includes('Bearer') ? accessToken.split(' ')[1] : accessToken;
   Cookies.set(
     ACCESS_TOKEN,
-    accessToken,
+    bearerToken,
    // { expires: expTime }
   );
     localStorage.setItem(REFRESH_TOKEN, refreshToken);

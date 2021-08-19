@@ -1,4 +1,5 @@
-const API_URL = 'https://norma.nomoreparties.space/api';
+import { API_URL } from '../constants/constValue';
+//const API_URL = 'https://norma.nomoreparties.space/api';
 const headers = {
   post: { 'Content-Type': 'application/json' },
   get: {}
@@ -64,7 +65,7 @@ export const patchProfileRequest = async (data, token) => {
   //console.log("fetch patch profileRequest");
   return await fetch(`${API_URL}/auth/user`, {
     method: 'PATCH',
-    headers: { ...headers.post, authorization: token},
+    headers: { ...headers.post, authorization: `Bearer ${token}`},
     body: JSON.stringify({ ...data })
   })    
   ;
@@ -74,7 +75,7 @@ export const getProfileRequest = async (token) => {
   //console.log("fetch get profileRequest");
   return await fetch(`${API_URL}/auth/user`, {
     method: 'GET',
-    headers: { ...headers.get, authorization: token}
+    headers: { ...headers.get, authorization: `Bearer ${token}`}
     
   })    
   ;

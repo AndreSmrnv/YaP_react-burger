@@ -1,3 +1,5 @@
+const API_URL = 'https://norma.nomoreparties.space/api';
+
 const ACCESS_TOKEN = 'accessToken';
 const REFRESH_TOKEN = 'refreshToken';
 const ITEM_DETAILS = {
@@ -7,7 +9,8 @@ const ITEM_DETAILS = {
     carbohydrates: 'Углеводы, г'
 };
   
-export {  
+export {
+    API_URL,
     REFRESH_TOKEN,
     ACCESS_TOKEN,
     ITEM_DETAILS
