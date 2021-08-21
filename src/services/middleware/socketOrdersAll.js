@@ -16,14 +16,14 @@
         const { dispatch } = store;
         const { type, payload } = action;
   
-        if (type === WS_CONNECTION_START) {
-         
+        if (type === WS_CONNECTION_START) {         
           socket = new WebSocket(wsUrl);
         }
   
         if (type === WS_CONNECTION_STOP) {          
           socket.close(1000, "Page closed by user");
         }
+          
         if (socket) {
             
           socket.onopen = (event) => {

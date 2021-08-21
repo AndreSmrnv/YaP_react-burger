@@ -5,6 +5,7 @@ import {
   WS_GET_MESSAGE, 
 } from '../constants/actionTypes';
 
+
 export const wsAllConnectionSuccess = () => {
   return {
     type: WS_CONNECTION_SUCCESS
@@ -29,5 +30,13 @@ export const wsAllGetMessage = data => {
     payload: data
   };
 };
+
+export {
+  wsAllConnectionSuccess,
+  wsAllConnectionError,
+  wsAllConnectionClosed,
+  wsAllGetMessage
+};
+
 
 
