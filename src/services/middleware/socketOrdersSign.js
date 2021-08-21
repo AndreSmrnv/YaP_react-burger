@@ -49,7 +49,10 @@ import {
           };
           
           socket.onmessage = (event) => {
-            const { data } = event;
+              const { data } = event;
+              if(data?.includes('ping')){
+                socket.send('pong');
+              }
               const { success, message, orders, total, totalToday } = JSON.parse(data);
               if (success) {
                   dispatch({
