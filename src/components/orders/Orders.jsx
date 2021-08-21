@@ -5,8 +5,9 @@ import {ProfileNav} from '../../components'
 
 import styles from './Orders.module.css';
 
-import { getLogout }  from '../../services/actions/sign';
-import { getRefreshToken }  from '../../services/actions/token';
+import { wsSignInit, wsSignClose } from '../../services/actions';
+
+
 
 
 function Orders() {
@@ -15,7 +16,12 @@ function Orders() {
   const history = useHistory();
   const location = useLocation();
   const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
- 
+  useEffect(() => {
+    dispatch( wsSignInit() );
+    return () => {
+      dispatch( wsSignClose() );
+    };
+  }, [dispatch]);
 
   // useEffect(() => {
   //   if (location.pathname === '/profile/logout') {

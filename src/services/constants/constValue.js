@@ -1,5 +1,6 @@
 const API_URL = 'https://norma.nomoreparties.space/api';
 const WS_URL = 'wss://norma.nomoreparties.space/orders/all';
+const WS_SIGN_URL = 'wss://norma.nomoreparties.space/orders';
 
 const ACCESS_TOKEN = 'accessToken';
 const REFRESH_TOKEN = 'refreshToken';
@@ -15,5 +16,6 @@ export {
     REFRESH_TOKEN,
     ACCESS_TOKEN,
     ITEM_DETAILS,
-    WS_URL
+    WS_URL,
+    WS_SIGN_URL
 };

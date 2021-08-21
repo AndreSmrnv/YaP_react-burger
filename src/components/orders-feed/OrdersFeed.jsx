@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './OrdersFeed.module.css';
-import {
-  WS_CONNECTION_START,  
-  WS_CONNECTION_STOP  
-} from "../../services/constants/actionTypes";
+import { wsAllInit, wsAllClose } from '../../services/actions';
 
 
 function OrdersFeed() {
@@ -12,9 +9,9 @@ function OrdersFeed() {
   const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
 
   useEffect(() => {
-    dispatch({ type: WS_CONNECTION_START });
+    dispatch( wsAllInit() );
     return () => {
-      dispatch({ type: WS_CONNECTION_STOP });
+      dispatch( wsAllClose() );
     };
   }, [dispatch]);
 

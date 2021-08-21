@@ -2,29 +2,43 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
-  WS_GET_MESSAGE, 
+  WS_GET_MESSAGE,
+  WS_CONNECTION_START,
+  WS_CONNECTION_STOP
 } from '../constants/actionTypes';
 
+const wsAllInit = () => {
+  return {
+    type: WS_CONNECTION_START
+  };
+};
 
-export const wsAllConnectionSuccess = () => {
+const wsAllClose = () => {
+  return {
+    type: WS_CONNECTION_STOP
+  };
+};
+
+const wsAllConnectionSuccess = () => {
   return {
     type: WS_CONNECTION_SUCCESS
   };
 };
 
-export const wsAllConnectionError = () => {
+const wsAllConnectionError = error => {
   return {
-    type: WS_CONNECTION_ERROR
+    type: WS_CONNECTION_ERROR,
+    payload: error
   };
 };
 
-export const wsAllConnectionClosed = () => {
+const wsAllConnectionClosed = () => {
   return {
     type: WS_CONNECTION_CLOSED
   };
 };
 
-export const wsAllGetMessage = data => {
+const wsAllGetMessage = data => {
   return {
     type: WS_GET_MESSAGE,
     payload: data
@@ -35,7 +49,9 @@ export {
   wsAllConnectionSuccess,
   wsAllConnectionError,
   wsAllConnectionClosed,
-  wsAllGetMessage
+  wsAllGetMessage,
+  wsAllInit,
+  wsAllClose
 };
 
 

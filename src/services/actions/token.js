@@ -14,10 +14,10 @@ const setToken = ({ accessToken, refreshToken }) => {
    // { expires: expTime }
   );
     localStorage.setItem(REFRESH_TOKEN, refreshToken);
-  };
+};
+  
 const getToken = () => Cookies.get(ACCESS_TOKEN);
   
-
 const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN);
 
 const clearToken = () => {

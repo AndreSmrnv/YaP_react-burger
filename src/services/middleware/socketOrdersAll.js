@@ -6,7 +6,10 @@
     WS_CONNECTION_STOP,
     WS_GET_MESSAGE,
     WS_SEND_MESSAGE,
-  } from "../constants/actionTypes";
+} from "../constants/actionTypes";
+import {   
+    wsAllConnectionError
+} from '../actions'; 
   
   export const socketOrdersAllMiddleware = (wsUrl) => {
     return (store) => {
@@ -42,15 +45,19 @@
           
           socket.onmessage = (event) => {
             const { data } = event;
-            const { orders, total, totalToday } = JSON.parse(data);
-            dispatch({
-              type: WS_GET_MESSAGE,
-              payload: {
-                orders,
-                total,
-                totalToday
-              },
-            });
+            const { success, message, orders, total, totalToday } = JSON.parse(data);
+            if (success) {
+                dispatch({
+                    type: WS_GET_MESSAGE,
+                    payload: {
+                        orders,
+                        total,
+                        totalToday
+                    },
+                });
+            } else {
+              message && dispatch( wsAllConnectionError(message) )
+            }
           };
           
           socket.onclose = (event) => {
