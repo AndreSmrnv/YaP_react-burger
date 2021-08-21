@@ -5,6 +5,7 @@ import { constructorReducer } from './constructor';
 import { orderReducer } from './order';
 import { viewedItemReducer } from './viewedItem';
 import { signReduser } from './sign';
+import { wsAllReducer } from './wsAll';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     ingredients: ingredientsReducer,  
     order: orderReducer,
     viewedItem: viewedItemReducer,
-    sign: signReduser
+    sign: signReduser,
+    wsAll: wsAllReducer
 });
 
 export default rootReducer;
