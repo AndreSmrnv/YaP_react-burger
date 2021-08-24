@@ -10,11 +10,11 @@ export const getIngredientsRequest = async () => {
     ;
 };
   
-export const checkoutRequest = async (idOrderIngredients) => {
+export const checkoutRequest = async (idOrderIngredients, token) => {
   //console.log("fetch post checkoutRequest");
   return await fetch(`${API_URL}/orders`, {
     method: 'POST',
-    headers: headers.post,
+    headers: { ...headers.post, authorization: `Bearer ${token}`},
     body: JSON.stringify({ ingredients: idOrderIngredients })
   })    
   ;

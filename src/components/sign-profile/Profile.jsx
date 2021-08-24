@@ -61,7 +61,9 @@ function Profile() {
   const onReset = () => {
     setForm(INITIAL_FORM_PROFILE);
   }
-
+  if (!isAuthorized) {
+    return null;
+  }
 
   return (
     <div className={styles.profile}>
