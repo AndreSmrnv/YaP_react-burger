@@ -4,52 +4,52 @@ import { format } from 'date-fns';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrdersCard.module.css';
 import PropTypes from "prop-types";
-import { STATUS_ORDER } from '../../services/constants/constValue';
+import { ORDER_STATUS } from '../../services/constants/constValue';
 import { formatDistanceDayToNow } from '../../services/functions';
 
 
 
 function OrdersCard({ order }) {
 
-  const { wsConnected } = useSelector((store) => store.wsSign);
+  const { wsConnected : cardOfProfile } = useSelector((store) => store.wsSign);
   const { data: ingredients } = useSelector((store) => store.ingredients);
   // console.log(order);
   // console.log(ingredients);  
 
   const orderIngredients = useMemo(() => {
-    const orderIngredientsWDesc = order?.ingredients.map((id) => {
+    const orderIngredientsWDetails = order?.ingredients.map((id) => {
       return ingredients.find(
         (ingredient) => {
           return ingredient._id === id;
         });
     });
 
-    const orderIngredientsWDescGroups = [];
-    orderIngredientsWDesc.forEach(
-      (element) => {
-        const existingGroups = orderIngredientsWDescGroups.find(groupItem => groupItem._id == element._id);
+    const orderIngredientsWDetailsGroups = [];
+    orderIngredientsWDetails.forEach(
+      (elem) => {
+        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id == elem._id);
         if (!existingGroups) {          
-          const count = order?.ingredients.filter(id => id == element._id).length || 0;
-          orderIngredientsWDescGroups.push(
+          const count = order?.ingredients.filter(id => id == elem._id).length || 0;
+          orderIngredientsWDetailsGroups.push(
             {
-              ...element,
+              ...elem,
               count 
             }
           );
         }   
     });
 
-    return orderIngredientsWDescGroups;
+    return orderIngredientsWDetailsGroups;
   }, [order, ingredients]);
 
   const orderTotalPrice = useMemo(() => {
-    return orderIngredients.reduce((acc, item) => {
-      return (acc += item.price);
+    return orderIngredients.reduce((sum, item) => {
+      return (sum += item.price);
     }, 0);
   }, [orderIngredients]);
 
   const openModal = () => {
-    console.log(wsConnected);
+    console.log(cardOfProfile);
   };
 
   const createdAt = new Date(order.createdAt);
@@ -69,9 +69,9 @@ function OrdersCard({ order }) {
         <h2 className="text text_type_main-medium">
           {order.name}
         </h2>
-        {wsConnected && (
+        {cardOfProfile && (
           <p className={`text text_type_main-default ${order.status === "done" ? styles.done : ""}`}>
-            {STATUS_ORDER[order.status]}
+            {ORDER_STATUS[order.status]}
         </p>
         )}
         

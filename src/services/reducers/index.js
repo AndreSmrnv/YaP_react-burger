@@ -6,7 +6,8 @@ import { orderReducer } from './order';
 import { viewedItemReducer } from './viewedItem';
 import { signReduser } from './sign';
 import { wsAllReducer } from './wsAll';
-import { wsSignReducer } from './wsSign'
+import { wsSignReducer } from './wsSign';
+import { viewedOrderReducer } from './viewedOrder'
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     viewedItem: viewedItemReducer,
     sign: signReduser,
     wsAll: wsAllReducer,
-    wsSign: wsSignReducer
+    wsSign: wsSignReducer,
+    viewedOrder: viewedOrderReducer
 });
 
 export default rootReducer;

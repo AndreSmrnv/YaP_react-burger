@@ -7,5 +7,6 @@ export * from './token';
 export * from './viewedItem';
 export * from './wsAll';
 export * from './wsSign';
+export * from './viewedOrder';
 
   

@@ -15,7 +15,7 @@ const PROFILE_NAV_TEXT = {
     orders: 'В этом разделе вы можете просмотреть свою историю заказов'
 };
 
-const STATUS_ORDER = {
+const ORDER_STATUS = {
     done: "Выполнен",
     pending: "Готовиться",
     created: "Создан"
@@ -30,5 +30,5 @@ export {
     WS_URL,
     WS_SIGN_URL,
     PROFILE_NAV_TEXT,
-    STATUS_ORDER
+    ORDER_STATUS
 };

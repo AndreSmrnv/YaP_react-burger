@@ -12,6 +12,9 @@ export const SWAP_CONSTRUCTOR_INGREDIENT = 'SWAP_CONSTRUCTOR_INGREDIENT';
 //viewedItem
 export const SET_VIEW_ITEM = 'SET_VIEW_ITEM';
 export const RESET_VIEW_ITEM = 'RESET_VIEW_ITEM';
+//viewedOrder
+export const SET_VIEW_ORDER = 'SET_VIEW_ORDER';
+export const RESET_VIEW_ORDER = 'RESET_VIEW_ORDER';
 //order
 ///export const GET_ORDER_NUMBER = 'GET_ORDER_NUMBER'; 
 export const GET_ORDER_NUMBER_REQUEST = 'GET_ORDER_NUMBER_REQUEST';
