@@ -8,7 +8,8 @@ import ResetPasswordPage from './reset-password';
 import NotFound404Page from './not-found';
 import IngredientPage from './ingredient';
 import OrdersPage from './orders';
-import OrdersFeedPage from './orders-feed'
+import OrdersFeedPage from './orders-feed';
+import OrdersCardDetailsPage from './orders-card-details'
 
 export {
     HomePage,
@@ -20,5 +21,6 @@ export {
     IngredientPage,
     OrdersPage,
     OrdersFeedPage,
-    NotFound404Page
+    NotFound404Page,
+    OrdersCardDetailsPage
 };

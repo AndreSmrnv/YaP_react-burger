@@ -10,7 +10,7 @@ import { setViewItem } from '../../services/actions/viewedItem'
 
 
 function IngredientDetails() {
-  const { id } = useParams();;
+  const { id } = useParams();
   const dispatch = useDispatch();
   const ingredients = useSelector(state => state.ingredients);
  

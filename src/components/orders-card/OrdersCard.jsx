@@ -1,29 +1,32 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrdersCard.module.css';
 import PropTypes from "prop-types";
 import { ORDER_STATUS } from '../../services/constants/constValue';
 import { formatDistanceDayToNow } from '../../services/functions';
-
+import { setViewOrder } from '../../services/actions';
 
 
 function OrdersCard({ order }) {
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { wsConnected : cardOfProfile } = useSelector((store) => store.wsSign);
   const { data: ingredients } = useSelector((store) => store.ingredients);
   // console.log(order);
-  // console.log(ingredients);  
+  // console.log(ingredients);
+  
+  const orderIngredientsWDetails = useMemo(() => {
+    return order?.ingredients.map((id) =>
+      ingredients.find(
+        ingredient => ingredient._id === id
+      )
+    )
+  }, [order, ingredients]);
 
   const orderIngredients = useMemo(() => {
-    const orderIngredientsWDetails = order?.ingredients.map((id) => {
-      return ingredients.find(
-        (ingredient) => {
-          return ingredient._id === id;
-        });
-    });
-
     const orderIngredientsWDetailsGroups = [];
     orderIngredientsWDetails.forEach(
       (elem) => {
@@ -40,7 +43,7 @@ function OrdersCard({ order }) {
     });
 
     return orderIngredientsWDetailsGroups;
-  }, [order, ingredients]);
+  }, [order, orderIngredientsWDetails]);
 
   const orderTotalPrice = useMemo(() => {
     return orderIngredients.reduce((sum, item) => {
@@ -48,8 +51,19 @@ function OrdersCard({ order }) {
     }, 0);
   }, [orderIngredients]);
 
-  const openModal = () => {
+  const openOrderDetails = () => {
     console.log(cardOfProfile);
+    dispatch(setViewOrder(
+      {
+        ...order,
+        groupedIngredients: orderIngredients,
+        ingredientsWDetails: orderIngredientsWDetails,
+        orderTotalPrice
+      }
+    ));
+    
+    history.replace(`${cardOfProfile ? '/profile/orders' : '/feed'}/${order._id}`, { background: true });
+      
   };
 
   const createdAt = new Date(order.createdAt);
@@ -57,7 +71,7 @@ function OrdersCard({ order }) {
 
   return (
     <>
-      <div className={styles.order_item} onClick={openModal}>
+      <div className={styles.order_item} onClick={openOrderDetails}>
         <div className={styles.order_info}>
           <p className={`text text_type_digits-default ${styles.order_number}`}>
             #{order.number}

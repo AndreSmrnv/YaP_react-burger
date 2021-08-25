@@ -4,8 +4,9 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-  data: {},  
-    lastUpdated: null
+  data: {},
+  isLoaded: false,
+  lastUpdated: null
  };
   
 export const viewedOrderReducer = (state = initialState, action) => {
@@ -14,9 +15,10 @@ export const viewedOrderReducer = (state = initialState, action) => {
       
       case SET_VIEW_ORDER: {
             return {
-                ...state,
-                data: action.payload,
-                lastUpdated: Date.now()
+              ...state,
+              data: action.payload,
+              isLoaded: true,
+              lastUpdated: Date.now()
             };
       }
       case RESET_VIEW_ORDER: {

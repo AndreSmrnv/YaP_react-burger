@@ -18,7 +18,8 @@ import SignRoute from './sign-route';
 import Orders from './orders';
 import ProfileNav from './sign-profile-nav';
 import OrdersFeed from './orders-feed';
-import OrdersCard from './orders-card'
+import OrdersCard from './orders-card';
+import OrdersCardDetails from './orders-card-details'
 
 export {
     App,
@@ -40,5 +41,6 @@ export {
     SignRoute,
     Orders,
     OrdersFeed,
-    OrdersCard
+    OrdersCard,
+    OrdersCardDetails
 };
