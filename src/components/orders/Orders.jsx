@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import {ProfileNav} from '../../components'
-
-import styles from './Orders.module.css';
-
+import { useHistory, useLocation } from 'react-router-dom';
+import { OrdersCard } from '../../components';
 import { wsSignInit, wsSignClose } from '../../services/actions';
-
-
+import styles from './Orders.module.css';
 
 
 function Orders() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
-  const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
+  const location = useLocation(); 
+  const { wsConnected, data } = useSelector((store) => store.wsSign);
+  const { orders } = data;
   useEffect(() => {
     dispatch( wsSignInit() );
     return () => {
@@ -23,34 +20,27 @@ function Orders() {
     };
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (location.pathname === '/profile/logout') {
-  //     const token = getRefreshToken();
-  //     if (token) {
-  //       dispatch(getLogout(token));
-  //       history.push('/login');        
-  //     }
-  //   }
-  // }, [location]);
+  
 
-
-
-
+  if (!wsConnected)
   return (
-    <div className={styles.profile}>
-      <div className={styles.nav_container}>
-      <ProfileNav />
-        <p className={`${styles.nav__text} text text_type_main-default text_color_inactive`}>
-          В этом разделе вы можете
-          посмотреть свою историю заказов
-        </p>
-      </div>
-      <div className={styles.orders_container} >
-        <h4 className='text text_type_main-medium mt-4 mb-8'>
-          История заказов...
-        </h4>
-      </div>
-    </div>
+    <h4 className='text text_type_main-medium mt-4 mb-8'>
+      Соединяемся с сервером, ожидайте...
+    </h4>
+  )
+  if (!orders?.length)
+  return (
+    <h4 className='text text_type_main-medium mt-4 mb-8'>
+      Ваших заказов пока нет...
+    </h4>
+  )
+
+  return (     
+        
+        <div className={styles.order_list}>          
+          {orders?.map((order) => <OrdersCard key={order._id} order={order} />)}
+        </div>
+    
   );
   
 }

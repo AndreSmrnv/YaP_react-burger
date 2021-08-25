@@ -72,12 +72,12 @@ function App() {
         <SignRoute path="/reset-password">
           <ResetPasswordPage />
         </SignRoute>
-        <ProtectedRoute path="/profile/orders">
+        {/* <ProtectedRoute path="/profile/orders">
           <OrdersPage />
         </ProtectedRoute>
         <ProtectedRoute path="/profile/logout">
           <ProfilePage />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
 
         <ProtectedRoute path="/profile">
           <ProfilePage />

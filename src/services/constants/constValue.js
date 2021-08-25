@@ -10,6 +10,17 @@ const ITEM_DETAILS = {
     fat: 'Жиры, г',
     carbohydrates: 'Углеводы, г'
 };
+const PROFILE_NAV_TEXT = {
+    profile: 'В этом разделе вы можете изменить свои персональные данные',    
+    orders: 'В этом разделе вы можете просмотреть свою историю заказов'
+};
+
+const STATUS_ORDER = {
+    done: "Выполнен",
+    pending: "Готовиться",
+    created: "Создан"
+  };
+
   
 export {
     API_URL,
@@ -17,5 +28,7 @@ export {
     ACCESS_TOKEN,
     ITEM_DETAILS,
     WS_URL,
-    WS_SIGN_URL
+    WS_SIGN_URL,
+    PROFILE_NAV_TEXT,
+    STATUS_ORDER
 };

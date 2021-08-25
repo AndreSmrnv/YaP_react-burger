@@ -9,7 +9,7 @@ import styles from './OrdersFeed.module.css';
 
 function OrdersFeedPage() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper}>      
       <OrdersFeed />
     </div>  
   );
