@@ -45,9 +45,9 @@ function OrdersCardDetailsPage() {
     const orderIngredientsWDetailsGroups = [];
     orderIngredientsWDetails?.forEach(
       (elem) => {
-        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id == elem._id);
+        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem?._id.includes(elem?._id));
         if (!existingGroups) {
-          const count = order.ingredients?.filter(item => item == elem._id).length || 0;
+          const count = order.ingredients?.filter(item => item.includes(elem?._id)).length || 0;
           orderIngredientsWDetailsGroups.push(
             {
               ...elem,
