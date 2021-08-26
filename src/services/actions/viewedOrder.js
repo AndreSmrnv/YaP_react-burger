@@ -26,34 +26,38 @@ function resetViewOrder() {
     };
 }
 
-// function getOrderDetails(id) {
-//     return function (dispatch) {
-const getOrderDetails = (id) => (dispatch) => {
-    console.log('getOrderDetails0')
-      dispatch({
-        type: GET_VIEW_ORDER_REQUEST
-      });
-      getOrderDetailsRequest(id)
-        .then(response => (response.ok)
-           ? response.json()
-           : Promise.reject(`api err: ${response.status}`)
-         )        
-        .then(          
-          result => {
-            console.log(result);
-          
-            dispatch({
-              type: GET_VIEW_ORDER_SUCCESS,
-              items: result.data
-            });          
-        })
-        .catch(e => {
-              console.log(e);
-              dispatch({
-                type: GET_VIEW_ORDER_FAILED
-              });
+function getOrderDetails(id) {
+  return function (dispatch) {
+    //const getOrderDetails = (id) => (dispatch) => {
+    //console.log('getOrderDetails0')
+    dispatch({
+      type: GET_VIEW_ORDER_REQUEST
+    });
+    getOrderDetailsRequest(id)
+      .then(response => response.json()
+      )
+      .then(result => {
+        console.log('getOrderDetails result', result);
+        if (!result.success) throw result;
+        dispatch({
+          type: GET_VIEW_ORDER_SUCCESS,
+          payload: result.orders[0]
         });
-    console.log('getOrderDetails2')
+      })
+      .catch(e => {
+        // console.log(e);
+        dispatch({
+          type: GET_VIEW_ORDER_FAILED
+        });
+        dispatch({
+          type: SET_VIEW_ORDER_ERROR ,
+          payload: e.message
+        });
+           
+              
+      });
+    //console.log('getOrderDetails2')
+  }
 };
   
 

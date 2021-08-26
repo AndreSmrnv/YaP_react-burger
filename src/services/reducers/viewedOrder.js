@@ -42,11 +42,12 @@ export const viewedOrderReducer = (state = initialState, action) => {
         };
       }
       case GET_VIEW_ORDER_SUCCESS: {
+            console.log('GET_VIEW_ORDER_SUCCESS',action.payload)
             return {
                 ...state,
                 fetchingFailed: false,
                 data: action.payload,
-                isLoaded: true,
+                isLoaded: false,
                 lastUpdated: Date.now(),
                 isFetching: false
             };

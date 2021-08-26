@@ -21,43 +21,48 @@ function OrdersCardDetailsPage() {
   const { data: ingredients } = useSelector((store) => store.ingredients);
   const {
     isLoaded,
-    // data: order
+    isFetching,
+     data: order
   } = useSelector((store) => store.viewedOrder);
 
-  // useEffect( () => {
-  //     dispatch(
-  //       getOrderDetails(number)
-  //     )
-  //   },
-  //   [dispatch]
-  // );
-  useEffect(() => {
-    dispatch(wsAllInit());
-    return () => {
-      dispatch(wsAllClose());
-    };
-  }, [dispatch]);
+  useEffect( () => {
+      dispatch(
+        getOrderDetails(number)
+      )
+    },
+    [dispatch]
+  );
+
   
 
-  const order = useMemo(() => {
-    return data && data.orders?.find(item => item._id === id)
-  }, [data]);
-  //console.log(id)
-  //console.log(order)
-  //console.log(isLoaded)
+  // useEffect(() => {
+  //   dispatch(wsAllInit());
+  //   return () => {
+  //     dispatch(wsAllClose());
+  //   };
+  // }, [dispatch]);
+
+
+  // const order = useMemo(() => {
+  //   return data && data.orders?.find(item => item._id === id)
+  // }, [data]);
+  console.log('isFetching - ', isFetching)
+  console.log(order)
+  console.log('isLoaded - ',isLoaded)
   // if (history.action === 'POP' ) {   
     
   const orderIngredientsWDetails = useMemo(() => {
-    return order?.ingredients?.map((id) =>
+    return order?.ingredients?.map((idItem) =>
       ingredients.find(
-        ingredient => ingredient._id === id
+        ingredient => ingredient._id === idItem
       )
     )
   }, [order, ingredients]);
-
+  console.log('orderIngredientsWDetails ', orderIngredientsWDetails)
+  
   const orderIngredients = useMemo(() => {
     const orderIngredientsWDetailsGroups = [];
-    orderIngredientsWDetails?.forEach(
+    orderIngredientsWDetails?.length && orderIngredientsWDetails.forEach(
       (elem) => {
         const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id === elem?._id);
         if (!existingGroups) {
@@ -81,7 +86,8 @@ function OrdersCardDetailsPage() {
   }, [orderIngredients]);
 
   
-  if (!isLoaded && order?._id?.includes(id) ) {
+
+  if (!isLoaded && order?._id?.includes(id) && orderTotalPrice ) {
     dispatch(setViewOrder(
       {
         ...order,
@@ -91,22 +97,22 @@ function OrdersCardDetailsPage() {
       }
     ));
   }
-  if (!isLoaded) {
-    if (!wsConnected) {
+  
+    if (isFetching) {
       return (
         <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
           Соединяемся с кухней, ожидайте...
         </h4>
       )
     }
-    if (!order) {
+    if (isLoaded && !order) {
       return (
         <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
           Данных о заказе пока нет. Идет загрузка, ожидайте...
         </h4>
       )
     }
-    if (!order?._id.includes(id)) {
+    if (!order?._id?.includes(id)) {
       return (
         <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
           Ищем заказ, ожидайте...
@@ -114,7 +120,7 @@ function OrdersCardDetailsPage() {
       )
     }
     
-  }
+  
 
   return (
     <div className={styles.wrapper}>

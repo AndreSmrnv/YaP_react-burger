@@ -11,10 +11,10 @@ import { formatDistanceDayToNow } from '../../services/functions';
 function OrdersCardDetails() {
   
   const { data: order } = useSelector((store) => store.viewedOrder);
-  //console.log(order);
+  console.log(order);
   
 
-  const createdAt = new Date(order.createdAt);
+  const createdAt = order.createdAt ? new Date(order.createdAt) : new Date();
   //console.log(  orderIngredients); 
 
   return (
@@ -39,7 +39,7 @@ function OrdersCardDetails() {
           Состав:
         </h2>
           <div className={styles.ingredients_list}>
-            {order.groupedIngredients.map((ingredient, idx) => (
+            {order.groupedIngredients?.map((ingredient, idx) => (
               <div className={styles.ingredient_wrapper} key={idx}>
                 <div
                   className={styles.img_wrapper}
