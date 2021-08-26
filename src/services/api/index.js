@@ -101,6 +101,16 @@ export const postResetPasswordRequest = async (data) => {
   ;
 };
 
+export const getOrderDetailsRequest = async (id) => {
+  console.log("fetch get OrderDetailsRequest");
+  return await fetch(`${API_URL}/orders/${id}`, {
+    method: 'GET',
+    headers: { ...headers.get}
+    
+  })    
+  ;
+};
+
 
 
 

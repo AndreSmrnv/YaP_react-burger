@@ -11,7 +11,7 @@ import { formatDistanceDayToNow } from '../../services/functions';
 function OrdersCardDetails() {
   
   const { data: order } = useSelector((store) => store.viewedOrder);
-  // console.log(order);
+  //console.log(order);
   
 
   const createdAt = new Date(order.createdAt);

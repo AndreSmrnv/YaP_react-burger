@@ -7,34 +7,48 @@ import {
 import {
   wsAllInit,
   wsAllClose,
-  setViewOrder
+  setViewOrder,
+  getOrderDetails
 } from '../../services/actions';
 
 import styles from './OrdersCardDetails.module.css';
 
 function OrdersCardDetailsPage() {
-  const { id } = useParams();
+  const { id, number } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const { wsConnected, data } = useSelector((store) => store.wsAll);
   const { data: ingredients } = useSelector((store) => store.ingredients);
-  const { isLoaded } = useSelector((store) => store.viewedOrder);
+  const {
+    isLoaded,
+    // data: order
+  } = useSelector((store) => store.viewedOrder);
+
+  // useEffect( () => {
+  //     dispatch(
+  //       getOrderDetails(number)
+  //     )
+  //   },
+  //   [dispatch]
+  // );
   useEffect(() => {
     dispatch(wsAllInit());
     return () => {
       dispatch(wsAllClose());
     };
   }, [dispatch]);
-
+  
 
   const order = useMemo(() => {
     return data && data.orders?.find(item => item._id === id)
   }, [data]);
-  //console.log(order)
+  console.log(id)
+  console.log(order)
+  console.log(isLoaded)
   // if (history.action === 'POP' ) {   
     
   const orderIngredientsWDetails = useMemo(() => {
-    return order?.ingredients.map((id) =>
+    return order?.ingredients?.map((id) =>
       ingredients.find(
         ingredient => ingredient._id === id
       )
@@ -67,7 +81,7 @@ function OrdersCardDetailsPage() {
   }, [orderIngredients]);
 
   
-  if (order?._id.includes(id) && !isLoaded) {
+  if (!isLoaded && order?._id?.includes(id) ) {
     dispatch(setViewOrder(
       {
         ...order,
@@ -77,26 +91,29 @@ function OrdersCardDetailsPage() {
       }
     ));
   }
-  if (!order?._id.includes(id)) {
-    return (
-      <h4 className='text text_type_main-medium mt-4 mb-8'>
-        Ищем заказ, ожидайте...
-      </h4>
-    )
-  } 
-  if (!wsConnected) {
-    return (
-      <h4 className='text text_type_main-medium mt-4 mb-8'>
-        Соединяемся с кухней, ожидайте...
-      </h4>
-    )
-  }
   if (!isLoaded) {
-    return (
-      <h4 className='text text_type_main-medium mt-4 mb-8'>
-        Данных о заказе пока нет. Идет загрузка, ожидайте...
-      </h4>
-    )
+    if (!wsConnected) {
+      return (
+        <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
+          Соединяемся с кухней, ожидайте...
+        </h4>
+      )
+    }
+    if (!order) {
+      return (
+        <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
+          Данных о заказе пока нет. Идет загрузка, ожидайте...
+        </h4>
+      )
+    }
+    if (!order?._id.includes(id)) {
+      return (
+        <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
+          Ищем заказ, ожидайте...
+        </h4>
+      )
+    }
+    
   }
 
   return (

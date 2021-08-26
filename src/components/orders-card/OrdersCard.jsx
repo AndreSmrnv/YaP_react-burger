@@ -62,7 +62,7 @@ function OrdersCard({ order }) {
       }
     ));
     
-    history.replace(`${cardOfProfile ? '/profile/orders' : '/feed'}/${order._id}`, { background: true });
+    history.replace(`${cardOfProfile ? '/profile/orders' : '/feed'}/${order._id}/${order.number}`, { background: true });
       
   };
 
