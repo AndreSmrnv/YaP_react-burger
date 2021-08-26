@@ -32,7 +32,7 @@ function OrdersCardDetailsPage() {
   }, [data]);
   //console.log(order)
   // if (history.action === 'POP' ) {   
-
+    
   const orderIngredientsWDetails = useMemo(() => {
     return order?.ingredients.map((id) =>
       ingredients.find(
@@ -45,9 +45,9 @@ function OrdersCardDetailsPage() {
     const orderIngredientsWDetailsGroups = [];
     orderIngredientsWDetails?.forEach(
       (elem) => {
-        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem?._id.includes(elem?._id));
+        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id === elem?._id);
         if (!existingGroups) {
-          const count = order.ingredients?.filter(item => item.includes(elem?._id)).length || 0;
+          const count = order.ingredients?.filter(item => item === elem?._id).length || 0;
           orderIngredientsWDetailsGroups.push(
             {
               ...elem,
@@ -66,6 +66,7 @@ function OrdersCardDetailsPage() {
     }, 0);
   }, [orderIngredients]);
 
+  
   if (order?._id.includes(id) && !isLoaded) {
     dispatch(setViewOrder(
       {
@@ -76,7 +77,13 @@ function OrdersCardDetailsPage() {
       }
     ));
   }
-  
+  if (!order?._id.includes(id)) {
+    return (
+      <h4 className='text text_type_main-medium mt-4 mb-8'>
+        Ищем заказ, ожидайте...
+      </h4>
+    )
+  } 
   if (!wsConnected) {
     return (
       <h4 className='text text_type_main-medium mt-4 mb-8'>
