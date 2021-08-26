@@ -42,9 +42,9 @@ function OrdersCardDetailsPage() {
   const order = useMemo(() => {
     return data && data.orders?.find(item => item._id === id)
   }, [data]);
-  console.log(id)
-  console.log(order)
-  console.log(isLoaded)
+  //console.log(id)
+  //console.log(order)
+  //console.log(isLoaded)
   // if (history.action === 'POP' ) {   
     
   const orderIngredientsWDetails = useMemo(() => {
