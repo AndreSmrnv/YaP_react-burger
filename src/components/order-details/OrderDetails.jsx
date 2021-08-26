@@ -3,7 +3,7 @@ import { useSelector} from 'react-redux';
 // import PropTypes from 'prop-types';
 import spinWhite from '../../images/spin-white.svg';
 import orderDone from '../../images/order-done.svg'
-// import styles from './OrderDetails.module.css';
+import styles from './OrderDetails.module.css';
 
 function leftFillNum(num, targetLength) {
   return num.toString().padStart(targetLength, 0);
@@ -18,7 +18,7 @@ const OrderDetails = () => {
         идентификатор заказа
           </p>
       <img
-        className="mt-15"
+        className={`mt-15 ${styles.icon_done}`}
         src={order.isFetching ? spinWhite : orderDone}
         alt="Заказ готовится"
       />
