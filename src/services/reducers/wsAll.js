@@ -7,7 +7,7 @@ import {
   
   const initialState = {
     wsConnected: false,
-    data: [],
+    data: {},
     error: null,
     wsConnectionFailed: false
   };

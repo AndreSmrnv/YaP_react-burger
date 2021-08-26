@@ -19,7 +19,7 @@ function OrdersCard({ order }) {
   // console.log(ingredients);
   
   const orderIngredientsWDetails = useMemo(() => {
-    return order?.ingredients.map((id) =>
+    return order.ingredients?.map((id) =>
       ingredients.find(
         ingredient => ingredient._id === id
       )

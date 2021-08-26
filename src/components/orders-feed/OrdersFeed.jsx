@@ -48,7 +48,7 @@ function OrdersFeed() {
         <div className={styles.content_wrapper}>
           <div className={styles.order_list}>
             {orders.map((order) => (
-              <OrdersCard key={order._id} order={order}  />
+              order.ingredients?.length && <OrdersCard key={order._id} order={order}  />
             ))}
           </div>
 

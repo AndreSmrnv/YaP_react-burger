@@ -10,39 +10,41 @@ function Orders() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation(); 
+  const location = useLocation();
   const { wsConnected, data } = useSelector((store) => store.wsSign);
   const { orders } = data;
   useEffect(() => {
-    dispatch( wsSignInit() );
+    dispatch(wsSignInit());
     return () => {
-      dispatch( wsSignClose() );
+      dispatch(wsSignClose());
     };
   }, [dispatch]);
 
-  
+
 
   if (!wsConnected)
-  return (
-    <h4 className='text text_type_main-medium mt-4 mb-8'>
-      Соединяемся с сервером, ожидайте...
-    </h4>
-  )
+    return (
+      <h4 className='text text_type_main-medium mt-4 mb-8'>
+        Соединяемся с сервером, ожидайте...
+      </h4>
+    )
   if (!orders?.length)
-  return (
-    <h4 className='text text_type_main-medium mt-4 mb-8'>
-      Ваших заказов пока нет...
-    </h4>
-  )
+    return (
+      <h4 className='text text_type_main-medium mt-4 mb-8'>
+        Ваших заказов пока нет...
+      </h4>
+    )
 
-  return (     
-        
-        <div className={styles.order_list}>          
-          {orders?.map((order) => <OrdersCard key={order._id} order={order} />)}
-        </div>
-    
+  return (
+
+    <div className={styles.order_list}>
+      {orders?.map((order) =>
+        order.ingredients?.length && <OrdersCard key={order._id} order={order} />
+      )}
+    </div>
+
   );
-  
+
 }
 
 export default Orders;
