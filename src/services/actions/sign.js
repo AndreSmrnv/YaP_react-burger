@@ -14,11 +14,11 @@ import {
     SET_PROFILE_CLEAR
 } from '../constants/actionTypes';
 import {
-    setToken,
-    refreshToken,
-    clearToken,
-    getToken
-} from './token'
+  setToken,
+  refreshToken,
+  clearToken,
+  getToken
+} from './token';
   
 import {
     postRegisterRequest,

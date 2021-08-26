@@ -5,9 +5,9 @@ const dataEmpty = [
     "name":"Собери здесь свой бургер",
     "type": "empty",
     "price": 0,
-    "image":"https://code.s3.yandex.net/react/code/meat-02.png",
-    "image_mobile":"https://code.s3.yandex.net/react/code/meat-02-mobile.png",
-    "image_large":"https://code.s3.yandex.net/react/code/meat-02-large.png",
+    "image":"https://raw.githubusercontent.com/AndreSmrnv/YaP_react-burger/sprint-4/step-1/src/images/icon-burger.svg",
+    "image_mobile":"https://raw.githubusercontent.com/AndreSmrnv/YaP_react-burger/sprint-4/step-1/src/images/icon-burger.svg",
+    "image_large":"https://raw.githubusercontent.com/AndreSmrnv/YaP_react-burger/sprint-4/step-1/src/images/icon-burger.svg",
     "__v":0
   }
 ];

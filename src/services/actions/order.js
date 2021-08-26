@@ -5,7 +5,9 @@ import {
     SET_ORDER_ERROR
 } from '../constants/actionTypes';
 import { checkoutRequest } from '../api';
-
+import { 
+  getToken
+} from './token';
 
 
 
@@ -15,8 +17,8 @@ export function getOrderNumber(data) {
       dispatch({
         type: GET_ORDER_REQUEST
       });
-        
-      checkoutRequest(data)
+      const accessToken = getToken();  
+      checkoutRequest(data,accessToken)
         .then(response => (response.ok)
            ? response.json()
            : Promise.reject(`api err: ${response.status}`)
