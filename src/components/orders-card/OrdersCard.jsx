@@ -47,7 +47,7 @@ function OrdersCard({ order }) {
 
   const orderTotalPrice = useMemo(() => {
     return orderIngredients.reduce((sum, item) => {
-      return (sum += item.price);
+      return (sum += item.price*item.count);
     }, 0);
   }, [orderIngredients]);
 
