@@ -31,11 +31,11 @@ export type TIngredient = {
 export type TOrderWS = Omit<TOrder, 'owner' | '__v' | 'price'>;
 
 export type TSignData = {
-    name: string;
-    email: string;
+    name: string ;
+    email: string ;
   };  
 export type TSignDataWPassword = TSignData & {
-    password: string;
+    password?: string ;
 };
 export type TOwner = TSignData & {    
     createdAt: string;

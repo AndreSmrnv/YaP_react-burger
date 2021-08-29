@@ -43,6 +43,11 @@ export interface IGetAuthSuccess {
 export interface IGetAuthFailed {
   readonly type: typeof GET_AUTH_FAILED;
 };
+export interface ISetAuthError {
+  readonly type: typeof SET_AUTH_ERROR;
+  readonly payload: string;
+};
+
 export interface IGetRegisterRequest {
   readonly type: typeof GET_REGISTER_REQUEST;
 };
@@ -53,6 +58,11 @@ export interface IGetRegisterSuccess {
 export interface IGetRegisterFailed {
   readonly type: typeof GET_REGISTER_FAILED;
 };
+export interface ISetRegisterError {
+  readonly type: typeof SET_REGISTER_ERROR;
+  readonly payload: string;
+};
+
 export interface IGetProfileRequest {
   readonly type: typeof GET_PROFILE_REQUEST;
 };
@@ -63,18 +73,25 @@ export interface IGetProfileSuccess {
 export interface IGetProfileFailed {
   readonly type: typeof GET_PROFILE_FAILED;
 };
+export interface ISetProfileError {
+  readonly type: typeof SET_PROFILE_ERROR;
+  readonly payload: string;
+};
 export interface IGetProfileClear {
   readonly type?: typeof SET_PROFILE_CLEAR;
 };
   
 export type TSignActions = 
   | IGetProfileClear
+  | ISetProfileError
   | IGetProfileFailed
   | IGetProfileSuccess
   | IGetProfileRequest
+  | ISetRegisterError
   | IGetRegisterFailed
   | IGetRegisterSuccess
   | IGetRegisterRequest
+  | ISetAuthError
   | IGetAuthFailed
   | IGetAuthSuccess
   | IGetAuthRequest   
@@ -90,6 +107,10 @@ export const getAuthSuccess = (data: TSignData): TSignActions => ({
 export const getAuthFailed = (): TSignActions => ({
   type: GET_AUTH_FAILED
 });
+export const setAuthError = (data: string): TSignActions => ({
+  type: SET_AUTH_ERROR,
+  payload:  data
+}); 
 
 export const getRegisterRequest = (): TSignActions => ({
   type: GET_REGISTER_REQUEST
@@ -101,6 +122,10 @@ export const getRegisterSuccess = (data: TSignDataWPassword): TSignActions => ({
 export const getRegisterFailed = (): TSignActions => ({
   type: GET_REGISTER_FAILED
 });
+export const setRegisterError = (data: string): TSignActions => ({
+  type: SET_REGISTER_ERROR,
+  payload:  data
+});
 
 export const getProfileRequest = (): TSignActions => ({
   type: GET_PROFILE_REQUEST
@@ -111,6 +136,10 @@ export const getProfileSuccess = (data: TSignDataWPassword): TSignActions => ({
 });  
 export const getProfileFailed = (): TSignActions => ({
   type: GET_PROFILE_FAILED
+});
+export const setProfileError = (data: string): TSignActions => ({
+  type: SET_PROFILE_ERROR,
+  payload:  data
 });
 export const getProfileClear = (): TSignActions => ({
   type: SET_PROFILE_CLEAR

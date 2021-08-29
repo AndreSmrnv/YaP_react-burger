@@ -1,4 +1,6 @@
-import {  
+import type { TSignData, TSignDataWPassword } from '../types/data';
+import type { TSignActions } from '../actions';
+import {
   GET_AUTH_REQUEST,
   GET_AUTH_SUCCESS,
   GET_AUTH_FAILED,
@@ -14,12 +16,17 @@ import {
   SET_PROFILE_CLEAR
 } from '../constants/actionTypes';
 
+type TSignState = {
+  user: TSignDataWPassword | null,  
+  isAuthorized: boolean,
+  isFetching: boolean,
+  fetchingFailed: boolean,    
+  lastUpdated: number | null
+  error: string | null
+}
+
 const initialState = {
-  user: {
-    name: null,
-    email: null,
-    password: null
-  },
+  user: null,
   isAuthorized: false,
   isFetching: false,
   fetchingFailed: false,
@@ -27,7 +34,7 @@ const initialState = {
   error: null
 };
 
-export const signReduser = (state = initialState, action) => {
+export const signReduser = (state = initialState, action: TSignActions): TSignState => {
   switch (action.type) {
     case GET_AUTH_REQUEST:
       return {
@@ -116,11 +123,7 @@ export const signReduser = (state = initialState, action) => {
     case SET_PROFILE_CLEAR:
         return {
           ...state, 
-          user: {
-            name: null,
-            email: null,
-            password: null
-          },
+          user: null,
           isAuthorized: false
         };
       
