@@ -26,7 +26,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         return {
           ...state,
           fetchingFailed: false,
-          data: action.items,
+          data: action.payload,
           lastUpdated: Date.now(),
           isFetching: false
         };

@@ -5,7 +5,7 @@ const headers = {
   get: {}
 };
 
-export const getIngredientsRequest = async () => {
+export const apiGetIngredientsRequest = async () => {
     return await fetch(`${API_URL}/ingredients`)    
     ;
 };

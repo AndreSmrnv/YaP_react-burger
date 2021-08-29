@@ -1,11 +1,12 @@
 import type { TIngredient } from '../types/data';
-import {
-  ADD_CONSTRUCTOR_INGREDIENT,
+import {  
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED
 } from '../constants/actionTypes';
-import { getIngredientsRequest } from '../api';
+
+import {addConstructorIngredient, TConstructorActions} from './index'
+import { apiGetIngredientsRequest } from '../api';
 import  dataEmpty from '../../utils/data-mock-empty';
 
 export interface IGetIngredientsRequest {
@@ -25,14 +26,26 @@ export interface IGetIngredientsFailed {
   | IGetIngredientsSuccess
   | IGetIngredientsRequest
   ;
-    
+
+export const getIngredientsRequest = (): IGetIngredientsRequest => ({
+    type: GET_INGREDIENTS_REQUEST
+});
+
+export const getIngredientsSuccess = (data: Array<TIngredient>): IGetIngredientsSuccess => ({
+  type: GET_INGREDIENTS_SUCCESS,
+  payload:  data
+});
+
+export const getIngredientsFailed = (): IGetIngredientsFailed => ({
+  type: GET_INGREDIENTS_FAILED
+});
 
 export function getIngredients() {
-    return function(dispatch: (arg0: { type: "GET_INGREDIENTS_REQUEST" | "GET_INGREDIENTS_SUCCESS" | "GET_INGREDIENTS_FAILED" | "ADD_CONSTRUCTOR_INGREDIENT"; items?: any; payload?: { _id: string; name: string; type: string; price: number; image: string; image_mobile: string; image_large: string; __v: number; } | undefined; }) => void) {
-      dispatch({
-        type: GET_INGREDIENTS_REQUEST
-      });
-      getIngredientsRequest()
+    return function(dispatch: (arg0: TIngredientsActions | TConstructorActions) => void) {
+      dispatch(
+        getIngredientsRequest()
+      );
+      apiGetIngredientsRequest()
         .then(response => (response.ok)
            ? response.json()
            : Promise.reject(`api err: ${response.status}`)
@@ -41,23 +54,23 @@ export function getIngredients() {
           result => {
             //console.log(result);
           
-            dispatch({
-              type: GET_INGREDIENTS_SUCCESS,
-              items: result.data
-            });
+            dispatch(
+              getIngredientsSuccess(result.data)              
+            );
 
-            dispatch({
-              type: ADD_CONSTRUCTOR_INGREDIENT,
-              payload: dataEmpty.find(item=>item.type === 'empty')
-            });
+            dispatch(
+              addConstructorIngredient(
+                dataEmpty.find(item => item.type === 'empty')
+              )
+            );
 
           
         })
         .catch(e => {
               console.log(e);
-              dispatch({
-                type: GET_INGREDIENTS_FAILED
-              });
+          dispatch(
+            getIngredientsFailed()            
+          );
             }) ;
     };
   }
