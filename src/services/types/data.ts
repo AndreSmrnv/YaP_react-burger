@@ -23,11 +23,12 @@ export type TIngredient = {
     name: string;
     createdAt: string;
     updatedAt: string;
-    number: number;
+      number: number;
+    price:  number;
     __v: number;
 };
   
-export type TOrderWS = Omit<TOrder, 'owner' | '__v'>;
+export type TOrderWS = Omit<TOrder, 'owner' | '__v' | 'price'>;
   
   export type TSignData = {
     name: string;

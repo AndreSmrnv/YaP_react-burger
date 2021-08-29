@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import {
   ProtectedRoute,
   SignRoute,
   AppHeader
-} from '../../components';
+} from '..';
 
 import {
   HomePage,
@@ -28,8 +28,8 @@ import styles from './App.module.css';
 
 function App() {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.ingredients);
-  const cart = useSelector(state => state.cart);
+  //const state = useSelector(state => state.ingredients);
+  //const cart = useSelector(state => state.cart);
 
   useEffect(
     () => {
@@ -38,8 +38,7 @@ function App() {
     [dispatch]
   );
   useEffect(
-    () => {
-      //dispatch(getProfile());
+    () => {      
       dispatch(getIngredients());
     },
     [dispatch]

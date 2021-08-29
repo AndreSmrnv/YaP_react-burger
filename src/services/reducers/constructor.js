@@ -55,7 +55,7 @@ const initialState = {
         case SWAP_CONSTRUCTOR_INGREDIENT: {
             const { dragIndex, hoverIndex } = action.payload;
             const sortedData = { ...state.sortedData };
-            console.log(`SWAP - ${dragIndex} - ${hoverIndex}`);            
+            //console.log(`SWAP - ${dragIndex} - ${hoverIndex}`);            
             sortedData.fillers[dragIndex] = sortedData.fillers.splice(hoverIndex, 1, sortedData.fillers[dragIndex])[0];
             return {
                 ...state,

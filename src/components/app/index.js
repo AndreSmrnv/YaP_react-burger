@@ -1,3 +1,3 @@
-import page from './App.jsx';
+import page from './App';
 
 export default page;
