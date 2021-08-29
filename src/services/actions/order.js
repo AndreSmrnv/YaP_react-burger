@@ -7,7 +7,7 @@ import {
 import { checkoutRequest } from '../api';
 import { 
   getToken
-} from './token';
+} from '../token';
 
 
 

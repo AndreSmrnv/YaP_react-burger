@@ -8,7 +8,6 @@ import {
 } from '../constants/actionTypes';
 
 
-
 export interface IAddConstructorIngredient {
     readonly type: typeof ADD_CONSTRUCTOR_INGREDIENT;
     readonly payload: TIngredient;
@@ -29,6 +28,11 @@ export interface IGetConstructorIngredient {
 
 export interface ISwapConstructorIngredient {
     readonly type: typeof SWAP_CONSTRUCTOR_INGREDIENT;
+    readonly payload: {
+        dragIndex: number;
+        hoverIndex: number;
+    }
+   
 };
 
 export type TConstructorActions = 

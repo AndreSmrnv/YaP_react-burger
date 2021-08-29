@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { getLogout, getProfile }  from '../../services/actions/sign';
-import { getRefreshToken }  from '../../services/actions/token';
+import { getRefreshToken }  from '../../services/actions';
 import {
   Profile,
   ProfileNav,

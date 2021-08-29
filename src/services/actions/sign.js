@@ -18,7 +18,7 @@ import {
   refreshToken,
   clearToken,
   getToken
-} from './token';
+} from '../token';
   
 import {
     postRegisterRequest,
