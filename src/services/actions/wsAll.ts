@@ -30,7 +30,7 @@ export interface IWsConnectionStop {
   readonly type: typeof WS_CONNECTION_STOP;
 };
 
-export type TWsAll = 
+export type TWsAllActions = 
   | IWsConnectionSuccess
   | IWsConnectionError
   | IWsConnectionClosed
@@ -39,38 +39,38 @@ export type TWsAll =
   | IWsConnectionStop
 ;
 
-const wsAllInit = (): TWsAll => (
+const wsAllInit = (): TWsAllActions => (
   {
     type: WS_CONNECTION_START
   }
 );
 
-const wsAllClose = (): TWsAll  => (
+const wsAllClose = (): TWsAllActions  => (
   {
     type: WS_CONNECTION_STOP
   }
 );
 
-const wsAllConnectionSuccess = (): TWsAll => (
+const wsAllConnectionSuccess = (): TWsAllActions => (
   {
     type: WS_CONNECTION_SUCCESS
   }
 );
 
-const wsAllConnectionError = (error: string): TWsAll => (
+const wsAllConnectionError = (error: string): TWsAllActions => (
   {
     type: WS_CONNECTION_ERROR,
     payload: error
   }
 );
 
-const wsAllConnectionClosed = (): TWsAll => (
+const wsAllConnectionClosed = (): TWsAllActions => (
   {
     type: WS_CONNECTION_CLOSED
   }
 );
 
-const wsAllGetMessage = (data: ReadonlyArray<TOrder>): TWsAll => (
+const wsAllGetMessage = (data: Array<TOrder>): TWsAllActions => (
   {
     type: WS_GET_MESSAGE,
     payload: data
