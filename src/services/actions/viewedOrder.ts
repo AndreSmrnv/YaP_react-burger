@@ -29,6 +29,10 @@ export interface IGetViewOrderSuccess {
 export interface IGetViewOrderFailed {
   readonly type: typeof GET_VIEW_ORDER_FAILED;
 };
+export interface ISetViewOrderError {
+  readonly type: typeof SET_VIEW_ORDER_ERROR;
+  readonly payload: string;
+};
 
 export type TViewedOrderActions = 
   | IGetViewOrderFailed
@@ -36,6 +40,7 @@ export type TViewedOrderActions =
   | IGetViewOrderRequest
   | IResetViewOrder
   | ISetViewOrder
+  | ISetViewOrderError
 ;
 
 export const setViewOrder = (data: TOrder): TViewedOrderActions => ({
@@ -56,6 +61,10 @@ export const getViewOrderSuccess = (data: TOrder): TViewedOrderActions => ({
 export const getViewOrderFailed = (): TViewedOrderActions => ({
   type: GET_VIEW_ORDER_FAILED
 });
+export const setViewOrderError = (data: string): TViewedOrderActions => ({
+  type: SET_VIEW_ORDER_ERROR,
+  payload:  data
+  });
 
 
 function getOrderDetails(id: string | number) {

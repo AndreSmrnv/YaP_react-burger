@@ -17,7 +17,7 @@ import {
 } from '../constants/actionTypes';
 
 type TSignState = {
-  user: TSignDataWPassword | null,  
+  user: TSignDataWPassword ,  
   isAuthorized: boolean,
   isFetching: boolean,
   fetchingFailed: boolean,    
@@ -26,7 +26,7 @@ type TSignState = {
 }
 
 const initialState = {
-  user: null,
+  user: {} as TSignDataWPassword,
   isAuthorized: false,
   isFetching: false,
   fetchingFailed: false,
@@ -123,7 +123,7 @@ export const signReduser = (state = initialState, action: TSignActions): TSignSt
     case SET_PROFILE_CLEAR:
         return {
           ...state, 
-          user: null,
+          user: initialState.user,
           isAuthorized: false
         };
       

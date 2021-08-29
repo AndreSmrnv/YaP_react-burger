@@ -1,14 +1,22 @@
+import type { TIngredient } from '../types/data';
+import type { TViewedItemActions } from '../actions';
 import {
     SET_VIEW_ITEM,
     RESET_VIEW_ITEM
 } from '../constants/actionTypes';
 
+type TViewedItemState = {
+  data: TIngredient ;     
+  lastUpdated: number | null;
+  
+}
+
 const initialState = {
-    data: {},    
+  data: {} as TIngredient,
     lastUpdated: null
   };
   
-export const viewedItemReducer = (state = initialState, action) => {
+export const viewedItemReducer = (state = initialState, action: TViewedItemActions): TViewedItemState => {
   
     switch (action.type) {
       

@@ -9,7 +9,7 @@ import {
 } from '../constants/actionTypes';
 
 type TOrderState = {
-  data: TOrder | null,  
+  data: TOrder ,  
   numberOrd: number,
   isFetching: boolean,
   fetchingFailed: boolean,    
@@ -18,7 +18,7 @@ type TOrderState = {
 }
 
 const initialState = {
-    data: null,
+  data: {} as TOrder,
     numberOrd: 0, 
     isFetching: false,
     fetchingFailed: false,

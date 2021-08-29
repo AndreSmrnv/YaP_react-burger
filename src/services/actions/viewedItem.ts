@@ -6,7 +6,7 @@ import {
 
 export interface ISetViewItem {
     readonly type: typeof SET_VIEW_ITEM;
-    readonly payload: Array<TIngredient>;
+    readonly payload: TIngredient;
   };
 export interface IResetViewItem {
     readonly type: typeof RESET_VIEW_ITEM;
@@ -17,7 +17,7 @@ export type TViewedItemActions =
     | IResetViewItem
   ;
 
-export const setViewItem = (data: Array<TIngredient>): TViewedItemActions => ({
+export const setViewItem = (data: TIngredient): TViewedItemActions => ({
     type: SET_VIEW_ITEM,
     payload:  data
   });

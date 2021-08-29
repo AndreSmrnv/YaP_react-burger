@@ -1,3 +1,6 @@
+import type { TOrder } from '../types/data';
+import type { TViewedOrderActions } from '../actions';
+
 import {
     SET_VIEW_ORDER,
   RESET_VIEW_ORDER,
@@ -7,8 +10,17 @@ import {
   SET_VIEW_ORDER_ERROR
 } from '../constants/actionTypes';
 
+type TViewedOrderState = {
+  data: TOrder;
+  isLoaded: boolean,
+  lastUpdated: number | null;
+  isFetching: boolean,
+  fetchingFailed: boolean,  
+  error: string | null
+}
+
 const initialState = {
-  data: {},
+  data: {} as TOrder,
   isLoaded: false,
   lastUpdated: null,
   isFetching: false,
@@ -16,7 +28,7 @@ const initialState = {
   error: null
  };
   
-export const viewedOrderReducer = (state = initialState, action) => {
+export const viewedOrderReducer = (state = initialState, action: TViewedOrderActions): TViewedOrderState => {
   
     switch (action.type) {
       

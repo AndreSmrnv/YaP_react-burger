@@ -11,9 +11,9 @@ import {
 type TConstructorState = {
     data: ReadonlyArray<TIngredient>;
     sortedData: {
-        bun: Readonly<TIngredient> | null,
+        bun: Readonly<TIngredient> ,
         fillers: Array<TIngredient>,
-        empty: Readonly<TIngredient> | null
+        empty: Readonly<TIngredient> 
     },
     total: number,
     lastUpdated: number | null
@@ -22,9 +22,9 @@ type TConstructorState = {
 const initialState: TConstructorState= {
     data: [],
     sortedData: {
-        bun:  null,
+        bun: {} as TIngredient,
         fillers: [],
-        empty: null 
+        empty: {} as TIngredient 
     },
 
     total: 0,
