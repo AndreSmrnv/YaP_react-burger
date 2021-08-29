@@ -16,7 +16,7 @@ export interface IGetOrderRequest {
 };
 export interface IGetOrderSuccess {
   readonly type: typeof GET_ORDER_SUCCESS;
-  readonly payload: Array<TOrder>;
+  readonly payload: TOrder;
 };
 export interface IGetOrderFailed {
   readonly type: typeof GET_ORDER_FAILED;
@@ -36,7 +36,7 @@ export type TOrderActions =
   export const getOrderRequest = (): TOrderActions => ({
     type: GET_ORDER_REQUEST
 });
-export const getOrderSuccess = (data: Array<TOrder>): TOrderActions => ({
+export const getOrderSuccess = (data: TOrder): TOrderActions => ({
   type: GET_ORDER_SUCCESS,
   payload:  data
 });
@@ -65,7 +65,7 @@ export function getOrderNumber(data : Array<string>) {
             //console.log(result);
           
             dispatch(
-              getOrderSuccess(result)             
+              getOrderSuccess(result.order)             
             );
         })
         .catch(e => {

@@ -16,8 +16,9 @@ type TConstructorState = {
         empty: Readonly<TIngredient> | null
     },
     total: number,
-    lastUpdated: number | null  
-  }
+    lastUpdated: number | null
+};
+
 const initialState: TConstructorState= {
     data: [],
     sortedData: {

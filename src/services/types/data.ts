@@ -17,8 +17,8 @@ export type TIngredient = {
   
   export type TOrder = {
     _id: string;
-    ingredients: ReadonlyArray<string>;
-    owner: string;
+    ingredients: ReadonlyArray<TIngredient>;
+    owner: TOwner;
     status: string;
     name: string;
     createdAt: string;
@@ -29,13 +29,16 @@ export type TIngredient = {
 };
   
 export type TOrderWS = Omit<TOrder, 'owner' | '__v' | 'price'>;
-  
-  export type TSignData = {
+
+export type TSignData = {
     name: string;
     email: string;
-  };
-  
-  export type TSignDataWPassword = TSignData & {
+  };  
+export type TSignDataWPassword = TSignData & {
     password: string;
-  };
+};
+export type TOwner = TSignData & {    
+    createdAt: string;
+    updatedAt: string;
+};
   

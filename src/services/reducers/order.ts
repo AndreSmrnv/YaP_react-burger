@@ -1,3 +1,6 @@
+import type { TOrder } from '../types/data';
+import type { TOrderActions } from '../actions';
+
 import {
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
@@ -5,8 +8,17 @@ import {
     SET_ORDER_ERROR
 } from '../constants/actionTypes';
 
+type TOrderState = {
+  data: TOrder | null,  
+  numberOrd: number,
+  isFetching: boolean,
+  fetchingFailed: boolean,    
+  lastUpdated: number | null
+  error: string | null
+}
+
 const initialState = {
-    data: [],
+    data: null,
     numberOrd: 0, 
     isFetching: false,
     fetchingFailed: false,
@@ -14,7 +26,7 @@ const initialState = {
     error: null
   };
   
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TOrderActions): TOrderState => {
  
     switch (action.type) {
       case GET_ORDER_REQUEST: {
@@ -29,7 +41,7 @@ export const orderReducer = (state = initialState, action) => {
                 ...state,
                 fetchingFailed: false,
                 data: action.payload,
-                numberOrd: action.payload.order.number,
+                numberOrd: action.payload.number,
                 lastUpdated: Date.now(),
                 isFetching: false
             };

@@ -1,11 +1,21 @@
-import { 
+import type { TIngredient } from '../types/data';
+import type { TIngredientsActions } from '../actions';
+import {
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS,
     
   } from '../constants/actionTypes';
-  
-  const initialState = {
+
+  type TIngredientsState = {
+    data: ReadonlyArray<TIngredient>;
+    isFetching: boolean,
+    fetchingFailed: boolean,    
+    lastUpdated: number | null
+    error: string | null
+  }
+    
+  const initialState: TIngredientsState = {
     data: [],
     isFetching: false,
     fetchingFailed: false,
@@ -13,7 +23,7 @@ import {
     error: null
   };
   
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action: TIngredientsActions): TIngredientsState => {
  
     switch (action.type) {
       case GET_INGREDIENTS_REQUEST: {
