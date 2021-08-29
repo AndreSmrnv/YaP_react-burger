@@ -1,29 +1,39 @@
+import type { TOrder, TOrderWSAll } from '../types/data';
+import type { TWsAllActions } from '../actions';
+
 import {
-    WS_SIGN_CONNECTION_SUCCESS,
-    WS_SIGN_CONNECTION_ERROR,
-    WS_SIGN_CONNECTION_CLOSED,
-    WS_SIGN_GET_MESSAGE,
+    WS_CONNECTION_SUCCESS,
+    WS_CONNECTION_ERROR,
+    WS_CONNECTION_CLOSED,
+    WS_GET_MESSAGE,
   } from "../constants/actionTypes";
   
-  const initialState = {
+type TWsAllState = {
+    wsConnected: boolean;
+    data: TOrderWSAll;    
+    wsConnectionFailed: boolean;
+    error: string | null;
+  }
+
+  const initialState: TWsAllState = {
     wsConnected: false,
-    data: {},
+    data: {} as TOrderWSAll,
     error: null,
     wsConnectionFailed: false
   };
   
   
-  export const wsSignReducer = (state = initialState, action) => {
+  export const wsAllReducer = (state = initialState, action: TWsAllActions): TWsAllState => {
     switch (action.type) {
      
-        case WS_SIGN_CONNECTION_SUCCESS:
+        case WS_CONNECTION_SUCCESS:
             return {
                 ...state,          
                 wsConnected: true,
                 wsConnectionFailed: false
             };  
       
-        case WS_SIGN_CONNECTION_ERROR:
+        case WS_CONNECTION_ERROR:
             return {
                 ...state,
                 error: action.payload,
@@ -31,7 +41,7 @@ import {
                 wsConnectionFailed: true
             };
   
-        case WS_SIGN_CONNECTION_CLOSED:
+        case WS_CONNECTION_CLOSED:
             return {
                 ...state,
                 error: null,
@@ -39,7 +49,7 @@ import {
                 wsConnectionFailed: false
             };  
       
-        case WS_SIGN_GET_MESSAGE:            
+        case WS_GET_MESSAGE:            
             return {
                 ...state,
                 data: action.payload

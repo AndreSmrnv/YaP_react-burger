@@ -25,7 +25,7 @@ type TSignState = {
   error: string | null
 }
 
-const initialState = {
+const initialState: TSignState = {
   user: {} as TSignDataWPassword,
   isAuthorized: false,
   isFetching: false,

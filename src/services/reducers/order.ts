@@ -17,7 +17,7 @@ type TOrderState = {
   error: string | null
 }
 
-const initialState = {
+const initialState: TOrderState = {
   data: {} as TOrder,
     numberOrd: 0, 
     isFetching: false,

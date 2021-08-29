@@ -1,4 +1,4 @@
-import type { TOrder } from '../types/data';
+import type { TOrder, TOrderWSAll } from '../types/data';
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
@@ -21,7 +21,7 @@ export interface IWsConnectionClosed {
 };
 export interface IWsGetMessage {
   readonly type: typeof WS_GET_MESSAGE;
-  readonly payload: ReadonlyArray<TOrder>;
+  readonly payload: TOrderWSAll;
 };
 export interface IWsConnectionStart {
   readonly type: typeof WS_CONNECTION_START;
@@ -70,7 +70,7 @@ const wsAllConnectionClosed = (): TWsAllActions => (
   }
 );
 
-const wsAllGetMessage = (data: Array<TOrder>): TWsAllActions => (
+const wsAllGetMessage = (data: TOrderWSAll): TWsAllActions => (
   {
     type: WS_GET_MESSAGE,
     payload: data

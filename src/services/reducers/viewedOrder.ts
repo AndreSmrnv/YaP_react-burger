@@ -19,7 +19,7 @@ type TViewedOrderState = {
   error: string | null
 }
 
-const initialState = {
+const initialState: TViewedOrderState = {
   data: {} as TOrder,
   isLoaded: false,
   lastUpdated: null,

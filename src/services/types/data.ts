@@ -30,6 +30,12 @@ export type TIngredient = {
   
 export type TOrderWS = Omit<TOrder, 'owner' | '__v' | 'price'>;
 
+export type TOrderWSAll = {
+    orders: ReadonlyArray<TOrderWS>;
+    total: number;
+    totalToday: number;
+}
+
 export type TSignData = {
     name: string ;
     email: string ;

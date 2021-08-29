@@ -11,7 +11,7 @@ type TViewedItemState = {
   
 }
 
-const initialState = {
+const initialState: TViewedItemState = {
   data: {} as TIngredient,
     lastUpdated: null
   };
