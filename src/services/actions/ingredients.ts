@@ -57,10 +57,10 @@ export function getIngredients() {
             dispatch(
               getIngredientsSuccess(result.data)              
             );
-
+            
             dispatch(
               addConstructorIngredient(
-                dataEmpty.find(item => item.type === 'empty')
+                dataEmpty.find(item => item.type === 'empty') as TIngredient
               )
             );
 

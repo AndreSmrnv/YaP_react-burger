@@ -1,3 +1,5 @@
+import type { TIngredient } from '../types/data';
+import type { TConstructorActions } from '../actions';
 import {
     GET_CONSTRUCTOR_INGREDIENT,
     ADD_CONSTRUCTOR_INGREDIENT,
@@ -6,19 +8,29 @@ import {
     SWAP_CONSTRUCTOR_INGREDIENT
 } from '../constants/actionTypes';
 
-const initialState = {
+type TConstructorState = {
+    data: ReadonlyArray<TIngredient>;
+    sortedData: {
+        bun: Readonly<TIngredient> | null,
+        fillers: Array<TIngredient>,
+        empty: Readonly<TIngredient> | null
+    },
+    total: number,
+    lastUpdated: number | null  
+  }
+const initialState: TConstructorState= {
     data: [],
     sortedData: {
-        bun: {},
+        bun:  null,
         fillers: [],
-        empty: {} 
+        empty: null 
     },
 
     total: 0,
     lastUpdated: null
   };
   
-  export const constructorReducer = (state = initialState, action) => {
+  export const constructorReducer = (state = initialState, action: TConstructorActions): TConstructorState  => {
     
      
     switch (action.type) {
@@ -72,7 +84,7 @@ const initialState = {
             };
         }    
         case RESET_CONSTRUCTOR: {
-            return { ...state, initialState };
+            return initialState ;
         }
 
         default: {

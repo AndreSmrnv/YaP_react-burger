@@ -63,8 +63,8 @@ function BurgerIngredients({ openModal }) {
       item => item.type === 'main'
     )
     ;
-  const countItem = (itemId) => cart.sortedData && cart.sortedData.fillers.filter(item => item._id === itemId).length;
-  const countItemBun = (itemId) => cart.sortedData && cart.sortedData.bun._id === itemId;
+  const countItem = (itemId) => cart.sortedData && cart.sortedData.fillers?.filter(item => item._id === itemId).length;
+  const countItemBun = (itemId) => cart.sortedData && cart.sortedData.bun?._id === itemId;
 
   return (
     <section className={`${styles.container}`}>

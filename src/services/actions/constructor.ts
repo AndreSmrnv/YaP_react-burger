@@ -10,7 +10,7 @@ import {
 
 export interface IAddConstructorIngredient {
     readonly type: typeof ADD_CONSTRUCTOR_INGREDIENT;
-    readonly payload?: TIngredient;
+    readonly payload: TIngredient;
 };
 
 export interface IDeleteConstructorIngredient {
@@ -24,6 +24,7 @@ export interface IResetConstructor {
 
 export interface IGetConstructorIngredient {
     readonly type: typeof GET_CONSTRUCTOR_INGREDIENT;
+    readonly payload: Array<TIngredient>;
 };
 
 export interface ISwapConstructorIngredient {
@@ -52,7 +53,7 @@ export const resetConstructor = (): IResetConstructor => ({
     type: RESET_CONSTRUCTOR
 });
   
-export const addConstructorIngredient = (payload?: TIngredient): IAddConstructorIngredient => ({
+export const addConstructorIngredient = (payload: TIngredient): IAddConstructorIngredient => ({
     type: ADD_CONSTRUCTOR_INGREDIENT,
     payload    
 });

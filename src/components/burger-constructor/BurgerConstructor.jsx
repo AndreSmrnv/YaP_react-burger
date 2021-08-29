@@ -28,7 +28,7 @@ function BurgerConstructor({ openModal }) {
   });
 
   
-    const coverData = Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty] ;
+    const coverData = cart.sortedData.bun && Object.keys(cart.sortedData.bun).length ? [cart.sortedData.bun] : [cart.sortedData.empty] ;
   
   const middleData = prodData && Array.isArray(prodData)
     && cart.sortedData.fillers
