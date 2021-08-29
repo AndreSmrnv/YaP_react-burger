@@ -4,7 +4,7 @@ import {
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED
 } from '../constants/actionTypes';
-
+import { AppDispatch, AppThunk } from "../types";
 import {addConstructorIngredient, TConstructorActions} from './index'
 import { apiGetIngredientsRequest } from '../api';
 import  dataEmpty from '../../utils/data-mock-empty';
@@ -41,7 +41,7 @@ export const getIngredientsFailed = (): IGetIngredientsFailed => ({
 });
 
 export function getIngredients() {
-    return function(dispatch: (arg0: TIngredientsActions | TConstructorActions) => void) {
+    return function(dispatch: AppDispatch) {
       dispatch(
         getIngredientsRequest()
       );

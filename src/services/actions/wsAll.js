@@ -7,11 +7,18 @@ import {
   WS_CONNECTION_STOP
 } from '../constants/actionTypes';
 
-const wsAllInit = () => {
-  return {
+// WS_CONNECTION_SUCCESS,
+//   WS_CONNECTION_ERROR,
+//   WS_CONNECTION_CLOSED,
+//   WS_GET_MESSAGE,
+//   WS_CONNECTION_START,
+//   WS_CONNECTION_STOP
+
+const wsAllInit = () => (
+  {
     type: WS_CONNECTION_START
-  };
-};
+  }
+);
 
 const wsAllClose = () => {
   return {

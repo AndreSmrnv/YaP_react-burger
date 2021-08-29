@@ -31,7 +31,7 @@ import {
     postResetPasswordRequest
 } from '../api';
 import { History } from 'history';
-
+import { AppDispatch, AppThunk } from "../types";
 
 export interface IGetAuthRequest {
   readonly type: typeof GET_AUTH_REQUEST;
@@ -118,13 +118,11 @@ export const getProfileClear = (): TSignActions => ({
 
 function getRegister(data: TSignDataWPassword) {
     //console.log('getRegister', data);
-    return function(dispatch: (arg0: TSignActions) => void) {
+    return function(dispatch: AppDispatch) {
    
       dispatch(
         getRegisterRequest()
-        // {
-        // type: GET_REGISTER_REQUEST
-        // }
+        
       );
         
       postRegisterRequest(data)
@@ -138,10 +136,7 @@ function getRegister(data: TSignDataWPassword) {
                 setToken({ accessToken: result.accessToken, refreshToken: result.refreshToken });    
             dispatch(
               getRegisterSuccess( result.user )
-              // {
-              // type: GET_REGISTER_SUCCESS,
-              // payload: result.user
-              // }
+             
             );
                 
         })
@@ -149,9 +144,7 @@ function getRegister(data: TSignDataWPassword) {
               console.log(e);
           dispatch(
             getRegisterFailed()
-            // {
-            //     type: GET_REGISTER_FAILED
-            // }
+            
           );
             }) ;
     };
@@ -159,13 +152,11 @@ function getRegister(data: TSignDataWPassword) {
 
 function getLogin(data: TSignData) {
     //console.log('getLogin', data);
-    return function(dispatch: (arg0: TSignActions) => void) {
+    return function(dispatch: AppDispatch) {
    
       dispatch(
         getAuthRequest()
-        // {
-        // type: GET_AUTH_REQUEST
-        // }
+        
       );
         
       postLoginRequest(data)
@@ -179,10 +170,7 @@ function getLogin(data: TSignData) {
                 setToken({ accessToken: result.accessToken, refreshToken: result.refreshToken });    
             dispatch(
               getAuthSuccess(result.user)
-              // {
-              // type: GET_AUTH_SUCCESS,
-              // payload: result.user
-              // }
+              
             );
                 
         })
@@ -190,9 +178,7 @@ function getLogin(data: TSignData) {
               console.log(e);
           dispatch(
             getAuthFailed()
-            // {
-            //     type: GET_AUTH_FAILED
-            // }
+            
           );
             }) ;
     };
@@ -200,13 +186,11 @@ function getLogin(data: TSignData) {
 
 function getLogout(token: string) {
     //console.log('getLogout', token);
-    return function(dispatch: (arg0: TSignActions) => void) {
+    return function(dispatch: AppDispatch) {
    
       dispatch(
         getAuthRequest()
-        // {
-        // type: GET_AUTH_REQUEST
-        // }
+        
       );
         
       postLogoutRequest(token)
@@ -220,9 +204,7 @@ function getLogout(token: string) {
                 clearToken();    
             dispatch(
               getProfileClear()
-              // {
-              // type: SET_PROFILE_CLEAR
-              // }
+              
             );
                 
         })
@@ -230,9 +212,7 @@ function getLogout(token: string) {
               console.log(e);
           dispatch(
             getAuthFailed()
-            // {
-            //     type: GET_AUTH_FAILED
-            // }
+           
           );
             }) ;
     };
@@ -240,13 +220,11 @@ function getLogout(token: string) {
 
 function updateProfile(data: TSignDataWPassword) {
     //console.log('updateProfile', data);
-    return function(dispatch: (arg0: TSignActions | any) => void) {
+    return function(dispatch: AppDispatch) {
    
       dispatch(
         getProfileRequest()
-        // {
-        // type: GET_PROFILE_REQUEST
-        // }
+        
       );
         
       const accessToken = getToken();  
@@ -261,10 +239,7 @@ function updateProfile(data: TSignDataWPassword) {
                 if (!result.success) throw result;   
             dispatch(
               getProfileSuccess(result.user)
-              // {
-              //       type: GET_PROFILE_SUCCESS,
-              //       payload: result.user
-              // }
+              
             );
                 
         })
@@ -277,9 +252,7 @@ function updateProfile(data: TSignDataWPassword) {
           }
           dispatch(
             getProfileFailed()
-            // {
-            //     type: GET_PROFILE_FAILED
-            // }
+            
           );
             }) ;
     };
@@ -287,13 +260,11 @@ function updateProfile(data: TSignDataWPassword) {
 
 function getProfile() {
     //console.log('getProfile');
-    return function(dispatch: (arg0: TSignActions | any) => void) {
+    return function(dispatch: AppDispatch) {
    
       dispatch(
         getProfileRequest()
-        // {
-        // type: GET_PROFILE_REQUEST
-        // }
+        
       );
         
       const accessToken = getToken();  
@@ -306,10 +277,7 @@ function getProfile() {
             if (!result.success) throw result;
             dispatch(
               getProfileSuccess(result.user)
-              // {
-              //       type: GET_PROFILE_SUCCESS,
-              //       payload: result.user
-              // }
+              
             );
                 
         })
@@ -323,9 +291,7 @@ function getProfile() {
           }
           dispatch(
             getProfileFailed()
-            // {
-            //     type: GET_PROFILE_FAILED
-            // }
+           
           );
             }) ;
     };

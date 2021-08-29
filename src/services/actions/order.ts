@@ -9,6 +9,7 @@ import { checkoutRequest } from '../api';
 import { 
   getToken
 } from '../token';
+import { AppDispatch, AppThunk } from "../types";
 
 export interface IGetOrderRequest {
   readonly type: typeof GET_ORDER_REQUEST;
@@ -48,12 +49,10 @@ export const setOrderError = (data: string): TOrderActions => ({
 });  
 
 export function getOrderNumber(data : Array<string>) {
-    return function(dispatch: (arg0: TOrderActions) => void ) {
+    return function(dispatch: AppDispatch ) {
    
-      dispatch( getOrderRequest()
-        // {
-        // type: GET_ORDER_REQUEST
-        // }
+      dispatch(
+        getOrderRequest()        
       );
       const accessToken = getToken();  
       checkoutRequest(data,accessToken)
@@ -65,29 +64,16 @@ export function getOrderNumber(data : Array<string>) {
           result => {
             //console.log(result);
           
-            dispatch( getOrderSuccess(result)
-              // {
-              // type: GET_ORDER_SUCCESS,
-              // payload: result
-              // }
+            dispatch(
+              getOrderSuccess(result)             
             );
         })
         .catch(e => {
               //console.log(e);
-              dispatch( getOrderFailed()
-                // {
-                //     type: GET_ORDER_FAILED
-                // }
+              dispatch(
+                getOrderFailed()                
               );
             }) ;
     };
 }
   
-// export function setOrderError(data) {
-//     return function(dispatch) {   
-//         dispatch({
-//             type: SET_ORDER_ERROR,
-//             payload: data
-//           }); 
-//     };
-//   }
