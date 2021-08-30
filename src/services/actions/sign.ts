@@ -1,3 +1,4 @@
+
 import type { TSignData, TSignDataWPassword } from '../types/data';
 import {
     GET_AUTH_REQUEST,
@@ -78,7 +79,7 @@ export interface ISetProfileError {
   readonly payload: string;
 };
 export interface IGetProfileClear {
-  readonly type?: typeof SET_PROFILE_CLEAR;
+  readonly type: typeof SET_PROFILE_CLEAR;
 };
   
 export type TSignActions = 
@@ -247,7 +248,7 @@ function getLogout(token: string) {
     };
 }
 
-function updateProfile(data: TSignDataWPassword) {
+function updateProfile(data: TSignDataWPassword){
     //console.log('updateProfile', data);
     return function(dispatch: AppDispatch) {
    
@@ -273,11 +274,11 @@ function updateProfile(data: TSignDataWPassword) {
                 
         })
         .catch(e => {
-          console.log(e);
+          console.log(e);//
           if (e.message === 'jwt expired') {
-            dispatch(
-              refreshToken( getProfile() )
-              )
+            // dispatch(
+            //   refreshToken( getProfile() )
+            //   )
           }
           dispatch(
             getProfileFailed()
@@ -287,7 +288,7 @@ function updateProfile(data: TSignDataWPassword) {
     };
 }
 
-function getProfile() {
+function getProfile()  {
     //console.log('getProfile');
     return function(dispatch: AppDispatch) {
    
@@ -314,9 +315,9 @@ function getProfile() {
           //console.log(res);
           
           if (res.message === 'jwt expired') {
-            dispatch(
-              refreshToken( getProfile() )
-              )
+            // dispatch(
+            //   refreshToken( getProfile( ) )
+            //   )
           }
           dispatch(
             getProfileFailed()

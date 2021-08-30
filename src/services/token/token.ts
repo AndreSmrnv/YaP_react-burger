@@ -1,11 +1,16 @@
 import Cookies from "js-cookie";
+import { TSignActions } from "../actions";
 import { postRefreshTokenRequest } from '../api';
 import {
-    REFRESH_TOKEN,
-    ACCESS_TOKEN
-} from '../constants/constValue'
-
-const setToken = ({ accessToken, refreshToken }) => {
+  REFRESH_TOKEN,
+  ACCESS_TOKEN
+} from '../constants/constValue';
+import { AppDispatch, AppThunk } from "../types";
+interface IToken {
+  accessToken: string,
+  refreshToken: string
+};
+const setToken = ({ accessToken, refreshToken }:IToken) => {
   const expTime = new Date(new Date().getTime() + 20 * 60 * 1000);
   const bearerToken = accessToken.includes('Bearer') ? accessToken.split(' ')[1] : accessToken;
   Cookies.set(
@@ -25,7 +30,7 @@ const clearToken = () => {
     localStorage.removeItem(REFRESH_TOKEN);
   };
   
-const refreshToken = (afterRefresh) => (dispatch) => {
+const refreshToken = (afterRefresh: TSignActions) => (dispatch: AppDispatch) => {
       postRefreshTokenRequest(localStorage.getItem(REFRESH_TOKEN))
       .then(response => (response.ok)
            ? response.json()

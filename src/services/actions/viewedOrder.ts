@@ -73,9 +73,7 @@ function getOrderDetails(id: string | number) {
     //console.log('getOrderDetails0')
     dispatch(
       getViewOrderRequest()
-      // {
-      // type: GET_VIEW_ORDER_REQUEST
-      // }
+      
     );
     getOrderDetailsRequest(id)
       .then(response => response.json()
@@ -85,19 +83,14 @@ function getOrderDetails(id: string | number) {
         if (!result.success) throw result;
         dispatch(
           getViewOrderSuccess (result.orders[0])
-          // {
-          // type: GET_VIEW_ORDER_SUCCESS,
-          // payload: result.orders[0]
-          // }
+         
         );
       })
       .catch(e => {
         // console.log(e);
         dispatch(
           getViewOrderFailed()
-          // {
-          // type: GET_VIEW_ORDER_FAILED
-          // }
+          
         );
         // dispatch({
         //   type: SET_VIEW_ORDER_ERROR ,
