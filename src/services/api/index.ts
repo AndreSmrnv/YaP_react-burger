@@ -1,3 +1,8 @@
+import type {
+  TSignData,
+  TSignDataWPassword
+} from '../types/data';
+
 import { API_URL } from '../constants/constValue';
 //const API_URL = 'https://norma.nomoreparties.space/api';
 const headers = {
@@ -10,7 +15,7 @@ export const apiGetIngredientsRequest = async () => {
     ;
 };
   
-export const checkoutRequest = async (idOrderIngredients, token) => {
+export const checkoutRequest = async (idOrderIngredients: Array<string>, token: string) => {
   //console.log("fetch post checkoutRequest");
   return await fetch(`${API_URL}/orders`, {
     method: 'POST',
@@ -20,7 +25,7 @@ export const checkoutRequest = async (idOrderIngredients, token) => {
   ;
 };
 
-export const postRegisterRequest = async (data) => {
+export const postRegisterRequest = async (data: TSignDataWPassword) => {
   //console.log("fetch post registerRequest");
   return await fetch(`${API_URL}/auth/register`, {
     method: 'POST',
@@ -30,7 +35,7 @@ export const postRegisterRequest = async (data) => {
   ;
 };
 
-export const postLoginRequest = async (data) => {
+export const postLoginRequest = async (data: TSignData) => {
   //console.log("fetch post loginRequest");
   return await fetch(`${API_URL}/auth/login`, {
     method: 'POST',
@@ -40,7 +45,7 @@ export const postLoginRequest = async (data) => {
   ;
 };
 
-export const postRefreshTokenRequest = async (token) => {
+export const postRefreshTokenRequest = async (token: string) => {
   //console.log("fetch post registerRequest");
   return await fetch(`${API_URL}/auth/token`, {
     method: 'POST',
@@ -51,7 +56,7 @@ export const postRefreshTokenRequest = async (token) => {
 };
 
 
-export const postLogoutRequest = async (token) => {
+export const postLogoutRequest = async (token: string) => {
   //console.log("fetch post registerRequest");
   return await fetch(`${API_URL}/auth/logout`, {
     method: 'POST',
@@ -61,7 +66,7 @@ export const postLogoutRequest = async (token) => {
   ;
 };
 
-export const patchProfileRequest = async (data, token) => {
+export const patchProfileRequest = async (data: TSignDataWPassword, token: string) => {
   //console.log("fetch patch profileRequest");
   return await fetch(`${API_URL}/auth/user`, {
     method: 'PATCH',
@@ -71,7 +76,7 @@ export const patchProfileRequest = async (data, token) => {
   ;
 };
 
-export const apiGetProfileRequest = async (token) => {
+export const apiGetProfileRequest = async (token: string) => {
   //console.log("fetch get profileRequest");
   return await fetch(`${API_URL}/auth/user`, {
     method: 'GET',
@@ -81,7 +86,7 @@ export const apiGetProfileRequest = async (token) => {
   ;
 };
 
-export const postForgotPasswordRequest = async (data) => {
+export const postForgotPasswordRequest = async (data: TSignData) => {
   //console.log("fetch post forgotPasswordRequest");
   return await fetch(`${API_URL}/password-reset`, {
     method: 'POST',
@@ -91,7 +96,7 @@ export const postForgotPasswordRequest = async (data) => {
   ;
 };
 
-export const postResetPasswordRequest = async (data) => {
+export const postResetPasswordRequest = async (data: TSignData) => {
   //console.log("fetch post resetPasswordRequest");
   return await fetch(`${API_URL}/password-reset/reset`, {
     method: 'POST',
@@ -101,7 +106,7 @@ export const postResetPasswordRequest = async (data) => {
   ;
 };
 
-export const getOrderDetailsRequest = async (id) => {
+export const getOrderDetailsRequest = async (id: string | number) => {
   console.log("fetch get OrderDetailsRequest");
   return await fetch(`${API_URL}/orders/${id}`, {
     method: 'GET',

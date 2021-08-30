@@ -54,7 +54,7 @@ export function getOrderNumber(data : Array<string>) {
       dispatch(
         getOrderRequest()        
       );
-      const accessToken = getToken();  
+      const accessToken = getToken() as string;  
       checkoutRequest(data,accessToken)
         .then(response => (response.ok)
            ? response.json()

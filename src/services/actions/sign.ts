@@ -81,7 +81,8 @@ export interface ISetProfileError {
 export interface IGetProfileClear {
   readonly type: typeof SET_PROFILE_CLEAR;
 };
-  
+
+
 export type TSignActions = 
   | IGetProfileClear
   | ISetProfileError
@@ -257,7 +258,7 @@ function updateProfile(data: TSignDataWPassword){
         
       );
         
-      const accessToken = getToken();  
+      const accessToken = getToken() as string;  
       patchProfileRequest(data, accessToken)
         .then(response => (response.ok)
            ? response.json()
@@ -297,7 +298,7 @@ function getProfile()  {
         
       );
         
-      const accessToken = getToken();  
+      const accessToken = getToken() as string;  
       apiGetProfileRequest(accessToken)
         .then(response => response.json()          
          )        

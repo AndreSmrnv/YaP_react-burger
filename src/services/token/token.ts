@@ -31,7 +31,7 @@ const clearToken = () => {
   };
   
 const refreshToken = (afterRefresh: TSignActions) => (dispatch: AppDispatch) => {
-      postRefreshTokenRequest(localStorage.getItem(REFRESH_TOKEN))
+      postRefreshTokenRequest(localStorage.getItem(REFRESH_TOKEN) as string)
       .then(response => (response.ok)
            ? response.json()
            : Promise.reject(`api err: ${response.status}`)
