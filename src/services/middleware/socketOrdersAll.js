@@ -10,7 +10,9 @@
 import {   
     wsAllConnectionError
 } from '../actions'; 
-  
+import { AnyAction, MiddlewareAPI, Middleware } from "redux";
+
+
   export const socketOrdersAllMiddleware = (wsUrl) => {
     return (store) => {
       let socket = null;

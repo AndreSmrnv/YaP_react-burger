@@ -1,14 +1,9 @@
-import React from "react";
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import React, { FC} from "react";
+import { NavLink} from 'react-router-dom';
 import styles from './AppHeader.module.css';
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 import dataMenu from "../../utils/data-menu";
 import MenuItem from "./menu-item";
-
-
-
-
-
 
 function AppHeader() {
 

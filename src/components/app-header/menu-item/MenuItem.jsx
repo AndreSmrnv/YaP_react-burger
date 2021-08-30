@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import styles from './MenuItem.module.css';
 import { BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from "prop-types";
+import {  TIconProps} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/utils";
 
 
 const componentsIcon = {
@@ -12,7 +13,8 @@ const componentsIcon = {
     profileIcon: ProfileIcon
 };
 
-const MenuItem = ({ item }) => {
+
+const MenuItem= ({ item }) => {
     const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
     const MenuIcon = componentsIcon[item.icon];
     return (
