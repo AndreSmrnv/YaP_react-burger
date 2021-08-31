@@ -4,7 +4,7 @@ import {
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED
 } from '../constants/actionTypes';
-import { AppDispatch, AppThunk } from "../types";
+import { AppDispatch, AppThunk } from "../types/redux";
 import {addConstructorIngredient, TConstructorActions} from './index'
 import { apiGetIngredientsRequest } from '../api';
 import  dataEmpty from '../../utils/data-mock-empty';

@@ -5,7 +5,7 @@ import {
   REFRESH_TOKEN,
   ACCESS_TOKEN
 } from '../constants/constValue';
-import { AppDispatch, AppThunk } from "../types";
+import { AppDispatch, AppThunk } from "../types/redux";
 interface IToken {
   accessToken: string,
   refreshToken: string

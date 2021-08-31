@@ -7,7 +7,7 @@ import {
     GET_VIEW_ORDER_FAILED,
     SET_VIEW_ORDER_ERROR
 } from '../constants/actionTypes';
-import { AppDispatch, AppThunk } from "../types";
+import { AppDispatch, AppThunk } from "../types/redux";
 
 import { getOrderDetailsRequest } from '../api';
 

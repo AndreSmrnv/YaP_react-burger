@@ -32,7 +32,7 @@ import {
     postResetPasswordRequest
 } from '../api';
 import { History } from 'history';
-import { AppDispatch, AppThunk } from "../types";
+import { AppDispatch, AppThunk } from "../types/redux";
 
 export interface IGetAuthRequest {
   readonly type: typeof GET_AUTH_REQUEST;

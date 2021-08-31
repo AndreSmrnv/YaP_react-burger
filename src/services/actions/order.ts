@@ -9,7 +9,7 @@ import { checkoutRequest } from '../api';
 import { 
   getToken
 } from '../token';
-import { AppDispatch, AppThunk } from "../types";
+import { AppDispatch, AppThunk } from "../types/redux";
 
 export interface IGetOrderRequest {
   readonly type: typeof GET_ORDER_REQUEST;

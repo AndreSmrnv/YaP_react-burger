@@ -4,6 +4,7 @@ import styles from './AppHeader.module.css';
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 import dataMenu from "../../utils/data-menu";
 import MenuItem from "./menu-item";
+import { IItem } from '../../services/types/menu';
 
 function AppHeader() {
 
