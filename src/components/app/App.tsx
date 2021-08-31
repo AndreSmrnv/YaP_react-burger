@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { Route, Switch } from 'react-router-dom';
 import {
@@ -26,7 +26,7 @@ import { getProfile } from '../../services/actions/sign';
 import styles from './App.module.css';
 
 
-function App() {
+const  App: FC = () => {
   const dispatch = useDispatch();
   //const state = useSelector(state => state.ingredients);
   //const cart = useSelector(state => state.cart);
