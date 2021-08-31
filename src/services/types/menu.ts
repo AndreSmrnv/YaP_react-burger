@@ -1,7 +1,7 @@
 export enum EItemIcon  {
     burgerIcon= "burgerIcon",
-    listIcon= "burgerIcon",
-    profileIcon= "burgerIcon"
+    listIcon= "listIcon",
+    profileIcon= "profileIcon"
 }
 
 export type IItem = {

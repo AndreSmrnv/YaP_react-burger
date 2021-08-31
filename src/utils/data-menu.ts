@@ -28,7 +28,7 @@ const dataMenu: IDataMenu = {
       "name": "Личный кабинет",
       "href": "/profile",
       "icon": EItemIcon.profileIcon,
-      "exact": true   
+      "exact": false   
     }
   ],
 
