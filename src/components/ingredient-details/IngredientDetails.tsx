@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from '../../services/hooks';
 import { useParams } from "react-router-dom";
 import IngredientDetailsItem from "./ingredient-details-item";
-import PropTypes from 'prop-types';
+
 import styles from './IngredientDetails.module.css';
 import { ITEM_DETAILS } from '../../services/constants/constValue'
 import { setViewItem } from '../../services/actions/viewedItem'
 
+type TParamTypes = {
+  id: string;
+}
 
-
-function IngredientDetails() {
-  const { id } = useParams();
+const IngredientDetails: FC = () => {
+  const { id } = useParams<TParamTypes>();
   const dispatch = useDispatch();
   const ingredients = useSelector(state => state.ingredients);
  

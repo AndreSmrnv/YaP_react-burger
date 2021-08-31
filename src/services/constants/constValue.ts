@@ -2,6 +2,10 @@ const API_URL = 'https://norma.nomoreparties.space/api';
 const WS_URL = 'wss://norma.nomoreparties.space/orders/all';
 const WS_SIGN_URL = 'wss://norma.nomoreparties.space/orders';
 
+export enum EToken {
+    ACCESS_TOKEN = 'accessToken',
+    REFRESH_TOKEN = 'refreshToken' 
+};
 const ACCESS_TOKEN = 'accessToken';
 const REFRESH_TOKEN = 'refreshToken';
 const ITEM_DETAILS = {
