@@ -1,32 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import React, { FC, useState } from 'react';
+import { useDispatch } from '../../services/hooks';
+import { Link } from 'react-router-dom';
 import {
   Button,
-  EmailInput,
   Input,
   PasswordInput
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Register.module.css';
 import { INITIAL_FORM_REGISTER } from '../../services/constants/initialValue';
 import { getRegister }  from '../../services/actions/sign';
+import { TSignDataWPassword } from '../../services/types';
 
 
 
-function Register() {
+const Register: FC = () => {
 
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-  const [form, setForm] = useState(INITIAL_FORM_REGISTER);
+  const dispatch = useDispatch();  
+  const [form, setForm] = useState<TSignDataWPassword>(INITIAL_FORM_REGISTER);
 
-  const onFieldChange = (e) => {
+  const onFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name: fieldName, type } = e.target;
     const value = type === 'checkbox' ? e.target.checked : e.target.value;
     setForm(prev => ({ ...prev, [fieldName]: value }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log('onSubmit Register');
     dispatch(getRegister(form));
     console.log(form);
