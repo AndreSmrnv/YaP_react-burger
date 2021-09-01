@@ -1,15 +1,10 @@
-import React from 'react';
-
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
-
+import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './ProfileNav.module.css';
 
 
 
-function ProfileNav() {
-
-  
-
+const ProfileNav: FC = () => {
   return (    
         <nav className={styles.nav__list}>
          
