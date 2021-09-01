@@ -35,8 +35,6 @@
   margin-bottom: 40px;
 }
 
-.sec_title {}
-
 .items_list {
   display: grid;
   grid-template-columns: 1fr 1fr;

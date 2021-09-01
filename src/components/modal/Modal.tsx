@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from "react";
+﻿import React, { FC, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
@@ -7,9 +7,15 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from "../modal-overlay/ModalOverlay";
 
-function Modal({ children, closeModal, modalTitle }) {
+interface IModal {
+  modalTitle: string,
+  closeModal: () => void,
+  
+};
 
-  const closeModalByEscKey = (e) => {
+const Modal: FC<IModal> = ({ children, closeModal, modalTitle }) => {
+
+  const closeModalByEscKey = (e: KeyboardEvent ) => {
     if (e.key === 'Escape')
       closeModal();
     e.stopImmediatePropagation();
@@ -40,11 +46,7 @@ function Modal({ children, closeModal, modalTitle }) {
   )
 }
 
-Modal.propTypes = {
-  modalTitle: PropTypes.string,
-  closeModal: PropTypes.func.isRequired,
-  children: PropTypes.element,
-};
+
 
 
 export default Modal;
