@@ -74,6 +74,10 @@ export type TSignDataLogin = {
   email: string;
   password: string ;
 };  
+export type TSignDataLogResetPassword = {
+  token: string;
+  password: string ;
+};  
 export type TOwner = TSignData & {    
     createdAt: string;
     updatedAt: string;

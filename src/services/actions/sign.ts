@@ -1,5 +1,5 @@
 
-import type { TSignData, TSignDataWPassword, TSignDataForgoutPassword, TSignDataLogin } from '../types/data';
+import type { TSignData, TSignDataWPassword, TSignDataForgoutPassword, TSignDataLogin, TSignDataLogResetPassword } from '../types/data';
 import {
     GET_AUTH_REQUEST,
     GET_AUTH_SUCCESS,
@@ -358,7 +358,7 @@ function getForgotPassword(data: TSignDataForgoutPassword, history : History) {
     };
 }
 
-function getResetPassword(data: TSignData, history : History) {
+function getResetPassword(data: TSignDataLogResetPassword, history : History) {
     //console.log('getResetPassword');
     return function() {
    

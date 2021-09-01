@@ -2,7 +2,8 @@ import type {
   TSignData,
   TSignDataWPassword,
   TSignDataForgoutPassword,
-  TSignDataLogin
+  TSignDataLogin,
+  TSignDataLogResetPassword
 } from '../types/data';
 
 import { API_URL } from '../constants/constValue';
@@ -98,7 +99,7 @@ export const postForgotPasswordRequest = async (data: TSignDataForgoutPassword) 
   ;
 };
 
-export const postResetPasswordRequest = async (data: TSignData) => {
+export const postResetPasswordRequest = async (data: TSignDataLogResetPassword) => {
   //console.log("fetch post resetPasswordRequest");
   return await fetch(`${API_URL}/password-reset/reset`, {
     method: 'POST',
