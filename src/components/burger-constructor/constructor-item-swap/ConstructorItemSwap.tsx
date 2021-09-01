@@ -20,8 +20,8 @@ interface IConstructorItemSwap {
     type?: "top" | "bottom",
     isLocked?: boolean,
     handlerId: TId,
-    index:  TId,
-    moveElem: (dragIndex: TId, hoverIndex: TId) => void,
+    index:  number,
+    moveElem: (dragIndex: number, hoverIndex: number) => void,
     id: TId
 };
 
@@ -39,12 +39,12 @@ const ConstructorItemSwap: FC<IConstructorItemSwap> = ({ itemData, index, isLock
                 handlerId: monitor.getHandlerId(),
             };
         },
-        hover(item: {id: string, index: TId}, monitor) {
+        hover(item: {id: string, index: number}, monitor) {
             if (!ref.current) {
                 return;
             }
-            const dragIndex: TId = item.index;
-            const hoverIndex: TId = index;
+            const dragIndex: number = item.index;
+            const hoverIndex: number = index;
 
             if (dragIndex === hoverIndex) {
                 return;

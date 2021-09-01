@@ -1,9 +1,14 @@
 export type TId = string | number;
-  
+export enum EItemType {
+  'typeBun' = 'bun',
+  'typeSauce' = 'sauce',
+  'typeMain' = 'main',
+  'typeEmpty' = 'empty'
+} 
 export type TIngredient = {
     _id: TId;
     name: string;
-    type: string;
+    type: EItemType;
     proteins: number;
     fat: number;
     carbohydrates: number;
@@ -16,8 +21,9 @@ export type TIngredient = {
   };
   
 
+
   
-  export type TSortedIngredient = TIngredient & { index: TId };
+  export type TSortedIngredient = TIngredient & { index: number };
   export type TGroupedIngredient = TIngredient & { count: number };
   
   export type TOrder = {

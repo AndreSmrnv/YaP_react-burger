@@ -13,6 +13,7 @@ import ConstructorItem from "./constructor-item";
 import ConstructorItemSwap from "./constructor-item-swap";
 import { TIngredient, TId } from "../../services/types";
 import styles from './BurgerConstructor.module.css';
+import { addConstructorIngredient, swapConstructorIngredient } from "../../services/actions";
 
 interface IBurgerConstructor {
   openModal: () => void,
@@ -23,7 +24,10 @@ const BurgerConstructor: FC<IBurgerConstructor> = ({ openModal }) => {
   const cart = useSelector(state => state.cart);
   const prodData = [...cart.data];
 
-  const onDropHandler = (data: TIngredient ) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data });
+  const onDropHandler = (data: TIngredient) => dispatch(
+    addConstructorIngredient(data)
+    //{ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data }
+  );
   const [, dropTarget] = useDrop({
     accept: 'ingredient',
     drop: onDropHandler
@@ -50,7 +54,7 @@ const BurgerConstructor: FC<IBurgerConstructor> = ({ openModal }) => {
     indx: string;
     
   }
-  const renderMiddle = (item: TIngredient, indx: TId) => {
+  const renderMiddle = (item: TIngredient, indx: number) => {
     return (
       <ConstructorItemSwap
         key={indx}
@@ -62,7 +66,10 @@ const BurgerConstructor: FC<IBurgerConstructor> = ({ openModal }) => {
       />
     );
   };
-  const moveElem = (dragIndex: TId, hoverIndex: TId) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
+  const moveElem = (dragIndex: number, hoverIndex: number) => dispatch(
+    swapConstructorIngredient(dragIndex, hoverIndex)
+    //{ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } }
+  );
 
 
   return (

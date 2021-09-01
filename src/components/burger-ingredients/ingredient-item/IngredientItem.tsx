@@ -1,17 +1,24 @@
-import React from "react";
-import { useDispatch } from 'react-redux';
+import React, { FC } from "react";
+import { useDispatch } from '../../../services/hooks';
 import { useDrag } from 'react-dnd';
 import {
     CurrencyIcon,
     Counter
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { TIngredient, TId } from "../../../services/types";
 import styles from './IngredientItem.module.css';
 const style = {
     cursor: 'move',
 };
-const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
+
+interface IIngredientItem {
+    itemData: TIngredient,
+    itemCounter?: number,    
+    onItemClick: () => void
+};
+
+const IngredientItem: FC<IIngredientItem> = ({ itemData, itemCounter, onItemClick }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [{ isDragging }, dragRef] = useDrag({
@@ -43,25 +50,25 @@ const IngredientItem = ({ itemData, itemCounter, onItemClick }) => {
     )
 }
 
-IngredientItem.propTypes = {
-    itemData: PropTypes.shape(
-        {
-            _id: PropTypes.string,
-            name: PropTypes.string,
-            type: PropTypes.string,
-            proteins: PropTypes.number,
-            fat: PropTypes.number,
-            carbohydrates: PropTypes.number,
-            calories: PropTypes.number,
-            price: PropTypes.number,
-            image: PropTypes.string,
-            image_mobile: PropTypes.string,
-            image_large: PropTypes.string,
-            __v: PropTypes.number,
-        }
-    ).isRequired,
-    onItemClick: PropTypes.func.isRequired,
-};
+// IngredientItem.propTypes = {
+//     itemData: PropTypes.shape(
+//         {
+//             _id: PropTypes.string,
+//             name: PropTypes.string,
+//             type: PropTypes.string,
+//             proteins: PropTypes.number,
+//             fat: PropTypes.number,
+//             carbohydrates: PropTypes.number,
+//             calories: PropTypes.number,
+//             price: PropTypes.number,
+//             image: PropTypes.string,
+//             image_mobile: PropTypes.string,
+//             image_large: PropTypes.string,
+//             __v: PropTypes.number,
+//         }
+//     ).isRequired,
+//     onItemClick: PropTypes.func.isRequired,
+// };
 
 
 export default IngredientItem;

@@ -1,4 +1,4 @@
-import type { TIngredient } from '../types/data';
+import type { TIngredient, TId } from '../types/data';
 import {    
     ADD_CONSTRUCTOR_INGREDIENT,
     DELETE_CONSTRUCTOR_INGREDIENT,
@@ -58,7 +58,7 @@ export const addConstructorIngredient = (payload: TIngredient): IAddConstructorI
     payload    
 });
 
-export const swapConstructorIngredient = (payload: { dragIndex: number; hoverIndex: number;}): ISwapConstructorIngredient => ({
+export const swapConstructorIngredient = (dragIndex: number, hoverIndex: number): ISwapConstructorIngredient => ({
     type: SWAP_CONSTRUCTOR_INGREDIENT,
-    payload    
+    payload : { dragIndex, hoverIndex }   
 });

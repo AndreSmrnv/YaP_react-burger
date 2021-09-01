@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
-import { useSelector } from 'react-redux';
+import React, { FC, useEffect } from "react";
+import { useSelector } from '../../services/hooks';
 import { useInView } from 'react-intersection-observer';
 import {
   Tab
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import { TIngredient, TId, EItemType } from "../../services/types";
 import IngredientItem from "./ingredient-item";
 
 import styles from './BurgerIngredients.module.css';
 
 
 
-function BurgerIngredients({ openModal }) {
+interface IBurgerIngredients {
+  openModal: () => void;
+}
+
+const BurgerIngredients: FC<IBurgerIngredients> = ({ openModal }) => {
   const [currentTab, setCurrentTab] = React.useState('buns');
   const { cart, ingredients } = useSelector(state => ({ cart: state.cart, ingredients: state.ingredients }));
   // const ingredients = useSelector(state => state.ingredients);
@@ -43,28 +47,28 @@ function BurgerIngredients({ openModal }) {
     }
   }, [inViewBuns, inViewFilling, inViewSauces]);
 
-  const setTab = (tab) => {
+  const setTab = (tab: string) => {
     setCurrentTab(tab);
     const element = document.getElementById(tab);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
   const buhData = prodData && Array.isArray(prodData)
     && prodData.filter(
-      item => item.type === 'bun'
+      item => item.type === EItemType.typeBun
     )
     ;
   const sauceData = prodData && Array.isArray(prodData)
     && prodData.filter(
-      item => item.type === 'sauce'
+      item => item.type === EItemType.typeSauce
     )
     ;
   const mainData = prodData && Array.isArray(prodData)
     && prodData.filter(
-      item => item.type === 'main'
+      item => item.type === EItemType.typeMain
     )
     ;
-  const countItem = (itemId) => cart.sortedData && cart.sortedData.fillers?.filter(item => item._id === itemId).length;
-  const countItemBun = (itemId) => cart.sortedData && cart.sortedData.bun?._id === itemId;
+  const countItem = (itemId: TId) => cart.sortedData && cart.sortedData.fillers?.filter(item => item._id === itemId).length;
+  const countItemBun = (itemId: TId) => cart.sortedData && cart.sortedData.bun?._id === itemId;
 
   return (
     <section className={`${styles.container}`}>
@@ -130,13 +134,5 @@ function BurgerIngredients({ openModal }) {
   )
 
 }
-
-
-
-BurgerIngredients.propTypes = {
-
-  openModal: PropTypes.func.isRequired,
-};
-
 
 export default BurgerIngredients;
