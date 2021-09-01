@@ -13,11 +13,11 @@ import {
     wsSignConnectionError,
     wsSignInit
 } from '../actions';
+import { AnyAction, MiddlewareAPI, Middleware } from "redux";  
   
-  
-  export const socketOrdersSignMiddleware = (wsUrl) => {
-    return (store) => {
-      let socket = null;
+  export const socketOrdersSignMiddleware = (wsUrl: string): Middleware => {
+    return (store: MiddlewareAPI) => {
+      let socket: WebSocket | null = null;
   
       return (next) => (action) => {
         const { dispatch } = store;
@@ -63,8 +63,8 @@ import {
                           totalToday
                       },
                   });
-              } else if (message?.includes("Invalid or missing token")) {
-                  refreshToken(wsSignInit())
+              // } else if (message?.includes("Invalid or missing token")) {
+              //     refreshToken(wsSignInit())
                   
               } else {
                 message && dispatch( wsSignConnectionError(message) )

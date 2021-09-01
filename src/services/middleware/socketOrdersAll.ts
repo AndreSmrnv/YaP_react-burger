@@ -13,9 +13,9 @@ import {
 import { AnyAction, MiddlewareAPI, Middleware } from "redux";
 
 
-  export const socketOrdersAllMiddleware = (wsUrl) => {
-    return (store) => {
-      let socket = null;
+  export const socketOrdersAllMiddleware = (wsUrl: string): Middleware => {
+    return (store: MiddlewareAPI) => {
+      let socket: WebSocket | null = null;
   
       return (next) => (action) => {
         const { dispatch } = store;
