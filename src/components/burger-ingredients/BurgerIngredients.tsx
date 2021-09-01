@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useSelector } from '../../services/hooks';
 import { useInView } from 'react-intersection-observer';
 import {
@@ -16,7 +16,7 @@ interface IBurgerIngredients {
 }
 
 const BurgerIngredients: FC<IBurgerIngredients> = ({ openModal }) => {
-  const [currentTab, setCurrentTab] = React.useState('buns');
+  const [currentTab, setCurrentTab] = useState('buns');
   const { cart, ingredients } = useSelector(state => ({ cart: state.cart, ingredients: state.ingredients }));
   // const ingredients = useSelector(state => state.ingredients);
   const prodData = [...ingredients.data];

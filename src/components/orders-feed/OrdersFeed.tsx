@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { FC, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "../../services/hooks";
 import styles from './OrdersFeed.module.css';
 import { wsAllInit, wsAllClose } from '../../services/actions';
-import { OrdersCard } from '../../components';
+import { OrdersCard } from '..';
 
-function OrdersFeed() {
+const OrdersFeed: FC = () => {
   const dispatch = useDispatch();
   
   const { wsConnected, data } = useSelector((store) => store.wsAll);
@@ -16,7 +16,7 @@ function OrdersFeed() {
     };
   }, [dispatch]);
 
-  const { orders, error, total, totalToday } = data;
+  const { orders, total, totalToday } = data;
 
   const doneOrders = useMemo(() => {
     return orders?.filter((order) => {

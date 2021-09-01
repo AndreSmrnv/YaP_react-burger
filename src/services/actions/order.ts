@@ -1,15 +1,17 @@
-import type { TOrder } from '../types/data';
+import type { TOrder, TIngredient } from '../types/data';
 import {
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
     GET_ORDER_FAILED,
     SET_ORDER_ERROR
 } from '../constants/actionTypes';
+import { addConstructorIngredient, resetConstructor, TConstructorActions } from './index';
 import { checkoutRequest } from '../api';
 import { 
   getToken
 } from '../token';
 import { AppDispatch, AppThunk } from "../types/redux";
+import  dataEmpty from '../../utils/data-mock-empty';
 
 export interface IGetOrderRequest {
   readonly type: typeof GET_ORDER_REQUEST;
@@ -66,6 +68,15 @@ export function getOrderNumber(data : Array<string>) {
           
             dispatch(
               getOrderSuccess(result.order)             
+            );
+
+            dispatch(
+              resetConstructor()             
+            );
+            dispatch(
+              addConstructorIngredient(
+                dataEmpty.find(item => item.type === 'empty') as TIngredient
+              )
             );
         })
         .catch(e => {

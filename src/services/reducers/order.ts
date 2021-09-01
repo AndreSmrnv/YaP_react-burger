@@ -31,7 +31,8 @@ export const orderReducer = (state = initialState, action: TOrderActions): TOrde
     switch (action.type) {
       case GET_ORDER_REQUEST: {
         return {
-            ...state,
+          ...state,
+            numberOrd: 0,
             fetchingFailed: false,  
             isFetching: true
         };
