@@ -1,13 +1,10 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import {
   IngredientDetails
 } from '../../components';
 import styles from './Ingredient.module.css';
 
-
-
-function IngredientPage() {
+const IngredientPage: FC = () => {
   return (
     <div className={ styles.wrapper }>
       <h1 className={ styles.title }>Детали ингредиента</h1>
@@ -15,6 +12,5 @@ function IngredientPage() {
     </div>
   );
 }
-
 
 export default IngredientPage;
