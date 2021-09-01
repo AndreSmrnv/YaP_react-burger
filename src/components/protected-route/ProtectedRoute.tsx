@@ -1,8 +1,9 @@
+import { FC } from "react";
 import { Redirect, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/hooks";
 
 
-const ProtectedRoute = ({ children, ...rest }) => {
+const ProtectedRoute: FC = ({ children, ...rest }) => {
   const { isAuthorized } = useSelector((store) => store.sign);
 
   return (
