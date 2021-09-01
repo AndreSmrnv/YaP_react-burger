@@ -1,14 +1,14 @@
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { FC } from "react";
+import { useSelector } from "../../services/hooks";
 import { format } from 'date-fns';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrdersCardDetails.module.css';
-import { ORDER_STATUS } from '../../services/constants/constValue';
+//import { ORDER_STATUS } from '../../services/constants/constValue';
 import { formatDistanceDayToNow } from '../../services/functions';
+import { EOrderStatus } from "../../services/types";
 
 
-
-function OrdersCardDetails() {
+const OrdersCardDetails: FC = () => {
   
   const { data: order } = useSelector((store) => store.viewedOrder);
   //console.log(order);
@@ -33,7 +33,8 @@ function OrdersCardDetails() {
               order.status === "done" ? styles.done : ""
             }`}
           >
-            {ORDER_STATUS[order.status]}
+            {EOrderStatus[order.status]}
+            {/* {ORDER_STATUS[order.status]} */}
           </p>
         <h2 className="text text_type_main-medium">
           Состав:
@@ -43,7 +44,7 @@ function OrdersCardDetails() {
               <div className={styles.ingredient_wrapper} key={idx}>
                 <div
                   className={styles.img_wrapper}
-                  style={{ zIndex: `${order.groupedIngredients.length - idx}` }}
+                  style={{ zIndex: order.groupedIngredients.length - idx }}
                 >
                   <div className={styles.img}>
                     <img src={ingredient.image_mobile} width="64" />
@@ -75,8 +76,5 @@ function OrdersCardDetails() {
   )
 
 }
-
-
-
 
 export default OrdersCardDetails;

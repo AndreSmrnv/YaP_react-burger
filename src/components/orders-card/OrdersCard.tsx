@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrdersCard.module.css';
-import { TOrder, EOrderStatus, TGroupedIngredient, TIngredient, TId, TOrderWSAll, TOrderWS } from "../../services/types";
-import { ORDER_STATUS } from '../../services/constants/constValue';
+import { TOrder, EOrderStatus, TGroupedIngredient, TId } from "../../services/types";
+//import { ORDER_STATUS } from '../../services/constants/constValue';
 import { formatDistanceDayToNow } from '../../services/functions';
 import { setViewOrder } from '../../services/actions';
 
