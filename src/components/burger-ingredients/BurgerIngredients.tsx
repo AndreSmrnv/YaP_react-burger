@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import {
   Tab
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TIngredient, TId, EItemType } from "../../services/types";
+import { TId, EItemType } from "../../services/types";
 import IngredientItem from "./ingredient-item";
 
 import styles from './BurgerIngredients.module.css';

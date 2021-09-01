@@ -1,34 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import React, { FC, useState } from 'react';
+import { useDispatch } from '../../services/hooks';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Button,
-  EmailInput,
-  Input,
-  PasswordInput
+  Input
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ForgotPassword.module.css';
 import { INITIAL_FORM_FORGOT_PASSWD } from '../../services/constants/initialValue';
+import { TSignDataForgoutPassword } from "../../services/types";
 import { getForgotPassword }  from '../../services/actions/sign';
 
 
 
-function ForgotPassword() {
+const ForgotPassword: FC = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
-  const [form, setForm] = useState(INITIAL_FORM_FORGOT_PASSWD);
+  
+  const [form, setForm] = useState<TSignDataForgoutPassword>(INITIAL_FORM_FORGOT_PASSWD);
 
-  const onFieldChange = (e) => {
+  const onFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name: fieldName, type } = e.target;
     const value = type === 'checkbox' ? e.target.checked : e.target.value;
     setForm(prev => ({ ...prev, [fieldName]: value }));
   };
 
-  const onSubmit = (e) => {
-    console.log('onSubmit ForgotPassword');
-    console.log(form);
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    //console.log('onSubmit ForgotPassword');
+    //console.log(form);
     dispatch(getForgotPassword(form, history));
     e.preventDefault();
     onReset();

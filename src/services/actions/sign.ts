@@ -1,5 +1,5 @@
 
-import type { TSignData, TSignDataWPassword } from '../types/data';
+import type { TSignData, TSignDataWPassword, TSignDataForgoutPassword } from '../types/data';
 import {
     GET_AUTH_REQUEST,
     GET_AUTH_SUCCESS,
@@ -330,7 +330,7 @@ function getProfile()  {
 
 
 
-function getForgotPassword(data: TSignData, history : History) {
+function getForgotPassword(data: TSignDataForgoutPassword, history : History) {
     //console.log('getForgotPassword');
     return function() {
    

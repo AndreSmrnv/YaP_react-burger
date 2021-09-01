@@ -69,6 +69,8 @@ export type TSignData = {
 export type TSignDataWPassword = TSignData & {
     password?: string ;
 };
+export type TSignDataForgoutPassword = Omit<TSignData, 'name'>;
+
 export type TOwner = TSignData & {    
     createdAt: string;
     updatedAt: string;
