@@ -1,4 +1,4 @@
-import type { TOrder, TIngredient } from '../types/data';
+import type { TOrder, TIngredient, TId } from '../types/data';
 import {
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
@@ -50,7 +50,7 @@ export const setOrderError = (data: string): TOrderActions => ({
   payload:  data
 });  
 
-export function getOrderNumber(data : Array<string>) {
+export function getOrderNumber(data : Array<TId>) {
     return function(dispatch: AppDispatch ) {
    
       dispatch(

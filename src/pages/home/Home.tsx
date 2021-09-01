@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, FC } from 'react';
 import { Route, Switch, useLocation, useRouteMatch, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../services/hooks';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
@@ -12,17 +12,16 @@ import {
   OrderFailed
 } from '../../components';
 import {
-
   IngredientPage
 } from '../../pages'
-import { getIngredients } from '../../services/actions/ingredients';
+//import { getIngredients } from '../../services/actions/ingredients';
 import { getOrderNumber, setOrderError } from '../../services/actions/order';
 import { resetViewItem } from '../../services/actions/viewedItem'
 import styles from './Home.module.css';
 
 
 
-function HomePage() {
+const HomePage: FC = () => {
   const dispatch = useDispatch();
   //const [state, setState] = useState(INIT_APP);
   const state = useSelector(state => state.ingredients);

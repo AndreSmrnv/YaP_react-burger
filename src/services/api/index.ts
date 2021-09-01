@@ -3,7 +3,8 @@ import type {
   TSignDataWPassword,
   TSignDataForgoutPassword,
   TSignDataLogin,
-  TSignDataLogResetPassword
+  TSignDataLogResetPassword,
+  TId
 } from '../types/data';
 
 import { API_URL } from '../constants/constValue';
@@ -18,7 +19,7 @@ export const apiGetIngredientsRequest = async () => {
     ;
 };
   
-export const checkoutRequest = async (idOrderIngredients: Array<string>, token: string) => {
+export const checkoutRequest = async (idOrderIngredients: Array<TId>, token: string) => {
   //console.log("fetch post checkoutRequest");
   return await fetch(`${API_URL}/orders`, {
     method: 'POST',
