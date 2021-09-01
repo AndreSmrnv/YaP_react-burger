@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { FC, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "../../services/hooks";
 import { useParams, useHistory } from "react-router-dom";
 import {
   OrdersCardDetails
@@ -12,12 +12,17 @@ import {
 } from '../../services/actions';
 
 import styles from './OrdersCardDetails.module.css';
+import { TGroupedIngredient, TId } from "../../services/types";
 
-function OrdersCardDetailsPage() {
-  const { id, number } = useParams();
+interface IParams {
+  id: string,
+  number: string
+}
+const OrdersCardDetailsPage: FC = () => {
+  const { id, number } = useParams<IParams>();
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { wsConnected, data } = useSelector((store) => store.wsAll);
+  //const history = useHistory();
+  //const { wsConnected, data } = useSelector((store) => store.wsAll);
   const { data: ingredients } = useSelector((store) => store.ingredients);
   const {
     isLoaded,
@@ -61,7 +66,7 @@ function OrdersCardDetailsPage() {
   console.log('orderIngredientsWDetails ', orderIngredientsWDetails)
   
   const orderIngredients = useMemo(() => {
-    const orderIngredientsWDetailsGroups = [];
+    const orderIngredientsWDetailsGroups: Array<TGroupedIngredient> = [];
     orderIngredientsWDetails?.length && orderIngredientsWDetails.forEach(
       (elem) => {
         const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id === elem?._id);
@@ -87,7 +92,7 @@ function OrdersCardDetailsPage() {
 
   
 
-  if (!isLoaded && order?._id?.includes(id) && orderTotalPrice ) {
+  if (!isLoaded && (order?._id === id) && orderTotalPrice ) {
     dispatch(setViewOrder(
       {
         ...order,
@@ -112,7 +117,7 @@ function OrdersCardDetailsPage() {
         </h4>
       )
     }
-    if (!order?._id?.includes(id)) {
+    if (order?._id !== id) {
       return (
         <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
           Ищем заказ, ожидайте...
