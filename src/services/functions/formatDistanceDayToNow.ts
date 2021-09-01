@@ -1,7 +1,7 @@
 import { formatDistanceToNow } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
-function formatDistanceDayToNow(date) {
+function formatDistanceDayToNow(date: Date) {
     const oneDay = 1000 * 3600 * 24;
     const distance = Date.now() - date.getTime();
     if (distance < oneDay && distance > 0) {
