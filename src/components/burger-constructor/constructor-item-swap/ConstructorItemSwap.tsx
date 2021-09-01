@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { FC, useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../../services/hooks';
 import {
     DELETE_CONSTRUCTOR_INGREDIENT
 } from '../../../services/constants/actionTypes';
@@ -9,12 +9,23 @@ import {
     ConstructorElement,
     DragIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
+import { TIngredient, TId } from "../../../services/types";
 import styles from './ConstructorItemSwap.module.css';
 const style = {
     cursor: 'move',
 };
-const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) => {
+
+interface IConstructorItemSwap {
+    itemData: TIngredient,
+    type?: "top" | "bottom",
+    isLocked?: boolean,
+    handlerId: TId,
+    index:  TId,
+    moveElem: (dragIndex: TId, hoverIndex: TId) => void,
+    id: TId
+};
+
+const ConstructorItemSwap: FC<IConstructorItemSwap> = ({ itemData, index, isLocked, type, moveElem, id }) => {
     const dispatch = useDispatch();
 
     const handleClose = () => dispatch({ type: DELETE_CONSTRUCTOR_INGREDIENT, payload: index });
@@ -28,12 +39,12 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
                 handlerId: monitor.getHandlerId(),
             };
         },
-        hover(item, monitor) {
+        hover(item: {id: string, index: TId}, monitor) {
             if (!ref.current) {
                 return;
             }
-            const dragIndex = item.index;
-            const hoverIndex = index;
+            const dragIndex: TId = item.index;
+            const hoverIndex: TId = index;
 
             if (dragIndex === hoverIndex) {
                 return;
@@ -91,25 +102,25 @@ const ConstructorItemSwap = ({ itemData, index, isLocked, type, moveElem, id }) 
     )
 }
 
-ConstructorItemSwap.propTypes = {
-    itemData: PropTypes.shape(
-        {
-            _id: PropTypes.string,
-            name: PropTypes.string,
-            type: PropTypes.string,
-            proteins: PropTypes.number,
-            fat: PropTypes.number,
-            carbohydrates: PropTypes.number,
-            calories: PropTypes.number,
-            price: PropTypes.number,
-            image: PropTypes.string,
-            image_mobile: PropTypes.string,
-            image_large: PropTypes.string,
-            __v: PropTypes.number,
-        }
-    ).isRequired,
-    type: PropTypes.string,
-    isLocked: PropTypes.bool
-};
+// ConstructorItemSwap.propTypes = {
+//     itemData: PropTypes.shape(
+//         {
+//             _id: PropTypes.string,
+//             name: PropTypes.string,
+//             type: PropTypes.string,
+//             proteins: PropTypes.number,
+//             fat: PropTypes.number,
+//             carbohydrates: PropTypes.number,
+//             calories: PropTypes.number,
+//             price: PropTypes.number,
+//             image: PropTypes.string,
+//             image_mobile: PropTypes.string,
+//             image_large: PropTypes.string,
+//             __v: PropTypes.number,
+//         }
+//     ).isRequired,
+//     type: PropTypes.string,
+//     isLocked: PropTypes.bool
+// };
 
 export default ConstructorItemSwap;

@@ -1,5 +1,7 @@
+export type TId = string | number;
+  
 export type TIngredient = {
-    _id: string;
+    _id: TId;
     name: string;
     type: string;
     proteins: number;
@@ -13,10 +15,13 @@ export type TIngredient = {
     __v: number;
   };
   
+
+  
+  export type TSortedIngredient = TIngredient & { index: TId };
   export type TGroupedIngredient = TIngredient & { count: number };
   
   export type TOrder = {
-    _id: string;
+    _id: TId;
     ingredients: ReadonlyArray<TIngredient>;
     owner: TOwner;
     status: string;

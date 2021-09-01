@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from "react";
+import { useDispatch, useSelector } from '../../services/hooks';
 import { useDrop } from 'react-dnd';
 import {
   ADD_CONSTRUCTOR_INGREDIENT,
@@ -11,17 +11,19 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorItem from "./constructor-item";
 import ConstructorItemSwap from "./constructor-item-swap";
-import PropTypes from "prop-types";
+import { TIngredient, TId } from "../../services/types";
 import styles from './BurgerConstructor.module.css';
 
+interface IBurgerConstructor {
+  openModal: () => void,
+}
 
-
-function BurgerConstructor({ openModal }) {
+const BurgerConstructor: FC<IBurgerConstructor> = ({ openModal }) => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   const prodData = [...cart.data];
 
-  const onDropHandler = (data) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data });
+  const onDropHandler = (data: TIngredient ) => dispatch({ type: ADD_CONSTRUCTOR_INGREDIENT, payload: data });
   const [, dropTarget] = useDrop({
     accept: 'ingredient',
     drop: onDropHandler
@@ -42,18 +44,25 @@ function BurgerConstructor({ openModal }) {
       }, 0),
     [coverData, middleData]
   );
-  const renderMiddle = (item, indx) => {
+
+  interface IRenderMiddle {
+    item: TIngredient;
+    indx: string;
+    
+  }
+  const renderMiddle = (item: TIngredient, indx: TId) => {
     return (
       <ConstructorItemSwap
         key={indx}
         itemData={item}
         handlerId={indx}
         moveElem={moveElem}
-        index={indx} id={item._id}
+        index={indx}
+        id={item._id}
       />
     );
   };
-  const moveElem = (dragIndex, hoverIndex) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
+  const moveElem = (dragIndex: TId, hoverIndex: TId) => dispatch({ type: SWAP_CONSTRUCTOR_INGREDIENT, payload: { dragIndex, hoverIndex } });
 
 
   return (
@@ -115,8 +124,6 @@ function BurgerConstructor({ openModal }) {
 
 }
 
-BurgerConstructor.propTypes = { 
-  openModal: PropTypes.func.isRequired,
-};
+
 
 export default BurgerConstructor;
