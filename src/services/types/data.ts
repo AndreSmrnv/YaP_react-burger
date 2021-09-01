@@ -70,7 +70,10 @@ export type TSignDataWPassword = TSignData & {
     password?: string ;
 };
 export type TSignDataForgoutPassword = Omit<TSignData, 'name'>;
-
+export type TSignDataLogin = {
+  email: string;
+  password: string ;
+};  
 export type TOwner = TSignData & {    
     createdAt: string;
     updatedAt: string;

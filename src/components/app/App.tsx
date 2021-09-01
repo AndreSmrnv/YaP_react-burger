@@ -14,7 +14,6 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   ProfilePage,
-  IngredientPage,
   OrdersCardDetailsPage,
   OrdersFeedPage,
   NotFound404Page

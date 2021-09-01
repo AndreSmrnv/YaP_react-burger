@@ -1,5 +1,5 @@
 
-import type { TSignData, TSignDataWPassword, TSignDataForgoutPassword } from '../types/data';
+import type { TSignData, TSignDataWPassword, TSignDataForgoutPassword, TSignDataLogin } from '../types/data';
 import {
     GET_AUTH_REQUEST,
     GET_AUTH_SUCCESS,
@@ -181,7 +181,7 @@ function getRegister(data: TSignDataWPassword) {
     };
 }
 
-function getLogin(data: TSignData) {
+function getLogin(data: TSignDataLogin) {
     //console.log('getLogin', data);
     return function(dispatch: AppDispatch) {
    

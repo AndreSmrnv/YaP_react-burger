@@ -1,7 +1,8 @@
 import type {
   TSignData,
   TSignDataWPassword,
-  TSignDataForgoutPassword
+  TSignDataForgoutPassword,
+  TSignDataLogin
 } from '../types/data';
 
 import { API_URL } from '../constants/constValue';
@@ -36,7 +37,7 @@ export const postRegisterRequest = async (data: TSignDataWPassword) => {
   ;
 };
 
-export const postLoginRequest = async (data: TSignData) => {
+export const postLoginRequest = async (data: TSignDataLogin) => {
   //console.log("fetch post loginRequest");
   return await fetch(`${API_URL}/auth/login`, {
     method: 'POST',

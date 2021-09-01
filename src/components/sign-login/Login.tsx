@@ -1,31 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory, useLocation, Redirect } from 'react-router-dom';
+import React, { FC, useState } from 'react';
+import { useDispatch } from '../../services/hooks';
+import { Link} from 'react-router-dom';
 import {
   Button,
-  EmailInput,
   Input,
   PasswordInput
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Login.module.css';
 import { INITIAL_FORM_LOGIN } from '../../services/constants/initialValue'
 import { getLogin } from '../../services/actions/sign';
+import { TSignDataLogin } from '../../services/types';
 
 
-function Login() {
+const Login: FC = () => {
 
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-  const [form, setForm] = useState(INITIAL_FORM_LOGIN);
-  const { isAuthorized } = useSelector((store) => store.sign);
-  const onFieldChange = (e) => {
+ 
+  const [form, setForm] = useState<TSignDataLogin>(INITIAL_FORM_LOGIN);
+  //const { isAuthorized } = useSelector((store) => store.sign);
+  const onFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name: fieldName, type } = e.target;
     const value = type === 'checkbox' ? e.target.checked : e.target.value;
     setForm(prev => ({ ...prev, [fieldName]: value }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     //console.log('onSubmit Login');
     //console.log(form);
     dispatch(getLogin(form));
