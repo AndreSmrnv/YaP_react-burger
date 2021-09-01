@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from '../../services/hooks';
 import {
   Button,
   EmailInput,
@@ -9,11 +9,12 @@ import {
 import styles from './Profile.module.css';
 import { INITIAL_FORM_PROFILE } from '../../services/constants/initialValue';
 import { updateProfile, getProfile }  from '../../services/actions/sign';
+import { TSignDataWPassword } from '../../services/types';
 
 
-function Profile() {
+const Profile: FC = () => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState(INITIAL_FORM_PROFILE);
+  const [form, setForm] = useState<TSignDataWPassword>(INITIAL_FORM_PROFILE);
   const { isAuthorized, user, lastUpdated, isFetching } = useSelector((store) => store.sign);
 
   useEffect(
@@ -22,13 +23,13 @@ function Profile() {
     },
     [isAuthorized, lastUpdated]
   ); 
-  const onFieldChange = (e) => {
+  const onFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name: fieldName, type } = e.target;
     const value = type === 'checkbox' ? e.target.checked : e.target.value;
     setForm(prev => ({ ...prev, [fieldName]: value }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log('onSubmit Profile');
     console.log(form);
     dispatch(updateProfile(form));
