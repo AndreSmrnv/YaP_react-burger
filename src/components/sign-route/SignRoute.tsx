@@ -1,9 +1,21 @@
 import { Route, Redirect, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/hooks";
+import { FC } from "react";
 
-const SignRoute = ({ children, ...rest }) => {
+interface ISignRoute { 
+  path?: string | string[],
+  exact?: boolean
+}
+
+interface ILocation extends Location {
+  from: {
+    pathname: string
+  };
+}
+
+const SignRoute: FC<ISignRoute> = ({ children, ...rest }) => {
   const { isAuthorized } = useSelector((store) => store.sign);
-  const location = useLocation();
+  const location = useLocation<ILocation>();
   //console.log('SignRoute isAuthorized ', isAuthorized);
   return (
     <Route
