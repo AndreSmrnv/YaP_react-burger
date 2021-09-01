@@ -1,19 +1,15 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import {
   Orders
 } from '../../components';
 import styles from './Orders.module.css';
 
-
-
-function OrdersPage() {
+const OrdersPage: FC = () => {
   return (
     <div className={styles.wrapper}>
       <Orders />
     </div>  
   );
 }
-
 
 export default OrdersPage;
