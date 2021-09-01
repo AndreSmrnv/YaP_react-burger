@@ -1,10 +1,18 @@
 export type TId = string | number;
+
 export enum EItemType {
   'typeBun' = 'bun',
   'typeSauce' = 'sauce',
   'typeMain' = 'main',
   'typeEmpty' = 'empty'
 } 
+
+export enum EOrderStatus {
+  'done'= "Выполнен",
+  'pending'= "Готовиться",
+  'created'= "Создан"
+};
+
 export type TIngredient = {
     _id: TId;
     name: string;
@@ -28,16 +36,23 @@ export type TIngredient = {
   
   export type TOrder = {
     _id: TId;
-    ingredients: ReadonlyArray<TIngredient>;
-    owner: TOwner;
-    status: string;
+    ingredients: ReadonlyArray<TId>;
+    owner?: TOwner;
+    status: keyof typeof EOrderStatus;
     name: string;
     createdAt: string;
     updatedAt: string;
       number: number;
-    price:  number;
-    __v: number;
+    price?:  number;
+    __v?: number;
 };
+
+export type TViewedOrder = TOrder &
+  {
+  groupedIngredients: Array<TGroupedIngredient>;
+  ingredientsWDetails: Array<TIngredient>;
+  orderTotalPrice: number;
+  };
   
 export type TOrderWS = Omit<TOrder, 'owner' | '__v' | 'price'>;
 

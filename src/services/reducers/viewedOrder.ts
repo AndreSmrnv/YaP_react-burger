@@ -1,4 +1,4 @@
-import type { TOrder } from '../types/data';
+import type { TOrder, TViewedOrder } from '../types/data';
 import type { TViewedOrderActions } from '../actions';
 
 import {
@@ -11,7 +11,7 @@ import {
 } from '../constants/actionTypes';
 
 type TViewedOrderState = {
-  data: TOrder;
+  data: TViewedOrder;
   isLoaded: boolean,
   lastUpdated: number | null;
   isFetching: boolean,
@@ -20,7 +20,7 @@ type TViewedOrderState = {
 }
 
 const initialState: TViewedOrderState = {
-  data: {} as TOrder,
+  data: {} as TViewedOrder,
   isLoaded: false,
   lastUpdated: null,
   isFetching: false,
@@ -54,7 +54,7 @@ export const viewedOrderReducer = (state = initialState, action: TViewedOrderAct
         };
       }
       case GET_VIEW_ORDER_SUCCESS: {
-            console.log('GET_VIEW_ORDER_SUCCESS',action.payload)
+            //console.log('GET_VIEW_ORDER_SUCCESS',action.payload)
             return {
                 ...state,
                 fetchingFailed: false,

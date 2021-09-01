@@ -1,16 +1,19 @@
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { FC, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "../../services/hooks";
 import { useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrdersCard.module.css';
-import PropTypes from "prop-types";
+import { TOrder, EOrderStatus, TGroupedIngredient, TIngredient, TId, TOrderWSAll, TOrderWS } from "../../services/types";
 import { ORDER_STATUS } from '../../services/constants/constValue';
 import { formatDistanceDayToNow } from '../../services/functions';
 import { setViewOrder } from '../../services/actions';
 
+interface IOrdersCard {
+  order: TOrder //| TOrderWS
+}
 
-function OrdersCard({ order }) {
+const OrdersCard: FC<IOrdersCard> = ({ order }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { wsConnected : cardOfProfile } = useSelector((store) => store.wsSign);
@@ -19,7 +22,7 @@ function OrdersCard({ order }) {
   // console.log(ingredients);
   
   const orderIngredientsWDetails = useMemo(() => {
-    return order.ingredients?.map((id) =>
+    return order.ingredients?.map((id: TId) =>
       ingredients.find(
         ingredient => ingredient._id === id
       )
@@ -27,7 +30,7 @@ function OrdersCard({ order }) {
   }, [order, ingredients]);
 
   const orderIngredients = useMemo(() => {
-    const orderIngredientsWDetailsGroups = [];
+    const orderIngredientsWDetailsGroups: Array<TGroupedIngredient> = [];
     orderIngredientsWDetails.forEach(
       (elem) => {
         const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id == elem._id);
@@ -52,7 +55,7 @@ function OrdersCard({ order }) {
   }, [orderIngredients]);
 
   const openOrderDetails = () => {
-    console.log(cardOfProfile);
+    //console.log(cardOfProfile);
     dispatch(setViewOrder(
       {
         ...order,
@@ -85,7 +88,8 @@ function OrdersCard({ order }) {
         </h2>
         {cardOfProfile && (
           <p className={`text text_type_main-default ${order.status === "done" ? styles.done : ""}`}>
-            {ORDER_STATUS[order.status]}
+            {EOrderStatus[order.status]}
+            {/* {ORDER_STATUS[order.status]} */}
         </p>
         )}
         
@@ -95,7 +99,8 @@ function OrdersCard({ order }) {
               <div
                 className={styles.ingredient_wrapper}
                 key={idx}
-                style={{ zIndex: `${orderIngredients.length - idx}` }}
+                style={{ zIndex: orderIngredients.length - idx }}
+
               >
                 <div className={styles.ingredient}>
                   <img src={ingredient.image_mobile} width="64" />
@@ -124,18 +129,18 @@ function OrdersCard({ order }) {
 
 }
 
-OrdersCard.propTypes = {
-  order: PropTypes.shape(
-    {
-      number: PropTypes.number,
-      _id: PropTypes.string,
-      createdAt: PropTypes.string,
-      name: PropTypes.string,
-      status: PropTypes.string,
-      ingredients: PropTypes.array
-    }
-  ).isRequired
-};
+// OrdersCard.propTypes = {
+//   order: PropTypes.shape(
+//     {
+//       number: PropTypes.number,
+//       _id: PropTypes.string,
+//       createdAt: PropTypes.string,
+//       name: PropTypes.string,
+//       status: PropTypes.string,
+//       ingredients: PropTypes.array
+//     }
+//   ).isRequired
+// };
 
 
 export default OrdersCard;

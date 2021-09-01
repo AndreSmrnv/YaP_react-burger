@@ -1,4 +1,4 @@
-import type { TOrder } from '../types/data';
+import type { TOrder,TViewedOrder } from '../types/data';
 import {
     SET_VIEW_ORDER,
     RESET_VIEW_ORDER,
@@ -13,7 +13,7 @@ import { getOrderDetailsRequest } from '../api';
 
 export interface ISetViewOrder {
   readonly type: typeof SET_VIEW_ORDER;
-  readonly payload: TOrder;
+  readonly payload: TViewedOrder;
 };
 export interface IResetViewOrder {
   readonly type: typeof RESET_VIEW_ORDER;
@@ -24,7 +24,7 @@ export interface IGetViewOrderRequest {
 };
 export interface IGetViewOrderSuccess {
   readonly type: typeof GET_VIEW_ORDER_SUCCESS;
-  readonly payload: TOrder;
+  readonly payload: TViewedOrder;
 };
 export interface IGetViewOrderFailed {
   readonly type: typeof GET_VIEW_ORDER_FAILED;
@@ -43,7 +43,7 @@ export type TViewedOrderActions =
   | ISetViewOrderError
 ;
 
-export const setViewOrder = (data: TOrder): TViewedOrderActions => ({
+export const setViewOrder = (data: TViewedOrder): TViewedOrderActions => ({
   type: SET_VIEW_ORDER,
   payload:  data
   });
@@ -54,7 +54,7 @@ export const resetViewOrder = (): TViewedOrderActions => ({
 export const getViewOrderRequest = (): TViewedOrderActions => ({
   type: GET_VIEW_ORDER_REQUEST
 });
-export const getViewOrderSuccess = (data: TOrder): TViewedOrderActions => ({
+export const getViewOrderSuccess = (data: TViewedOrder): TViewedOrderActions => ({
   type: GET_VIEW_ORDER_SUCCESS,
   payload:  data
   });

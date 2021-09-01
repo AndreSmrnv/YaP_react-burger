@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useDrop } from 'react-dnd';
 import {
-  ADD_CONSTRUCTOR_INGREDIENT,
-  SWAP_CONSTRUCTOR_INGREDIENT
-} from '../../services/constants/actionTypes';
+  addConstructorIngredient,
+  swapConstructorIngredient
+} from "../../services/actions";
 import {
   Button,
   CurrencyIcon
@@ -13,7 +13,7 @@ import ConstructorItem from "./constructor-item";
 import ConstructorItemSwap from "./constructor-item-swap";
 import { TIngredient, TId } from "../../services/types";
 import styles from './BurgerConstructor.module.css';
-import { addConstructorIngredient, swapConstructorIngredient } from "../../services/actions";
+
 
 interface IBurgerConstructor {
   openModal: () => void,

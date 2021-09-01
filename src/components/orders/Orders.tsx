@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
-import { OrdersCard } from '../../components';
+import React, { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from '../../services/hooks';
+//import { useHistory, useLocation } from 'react-router-dom';
+import { OrdersCard } from '..';
 import { wsSignInit, wsSignClose } from '../../services/actions';
 import styles from './Orders.module.css';
 
 
-function Orders() {
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
+const Orders: FC = () => {
+  const dispatch = useDispatch();  
   const { wsConnected, data } = useSelector((store) => store.wsSign);
   const { orders } = data;
   useEffect(() => {
