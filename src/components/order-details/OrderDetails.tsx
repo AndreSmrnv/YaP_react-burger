@@ -1,15 +1,13 @@
-import React from "react";
-import { useSelector} from 'react-redux';
-// import PropTypes from 'prop-types';
+import React, { FC } from "react";
+import { useSelector} from '../../services/hooks';
 import spinWhite from '../../images/spin-white.svg';
-import orderDone from '../../images/order-done.svg'
+import orderDone from '../../images/order-done.svg';
+import { leftFillNum } from '../../services/functions';
 import styles from './OrderDetails.module.css';
 
-function leftFillNum(num, targetLength) {
-  return num.toString().padStart(targetLength, 0);
-}
 
-const OrderDetails = () => {
+
+const OrderDetails: FC = () => {
   const order = useSelector(state => state.order);
   return (
     <>
@@ -27,7 +25,5 @@ const OrderDetails = () => {
     </>
   );
 }
-
-
 
 export default OrderDetails;
