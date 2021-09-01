@@ -1,3 +1,3 @@
-import page from './BurgerIngredients.jsx';
+import page from './BurgerIngredients';
 
 export default page;
