@@ -50,7 +50,7 @@ export const setOrderError = (data: string): TOrderActions => ({
   payload:  data
 });  
 
-export function getOrderNumber(data : Array<TId>) {
+export const getOrderNumber: AppThunk = (data : Array<TId>) => {
     return function(dispatch: AppDispatch ) {
    
       dispatch(

@@ -51,9 +51,9 @@ const OrdersCardDetailsPage: FC = () => {
   // const order = useMemo(() => {
   //   return data && data.orders?.find(item => item._id === id)
   // }, [data]);
-  console.log('isFetching - ', isFetching)
-  console.log(order)
-  console.log('isLoaded - ',isLoaded)
+  //console.log('isFetching - ', isFetching)
+  //console.log(order)
+ // console.log('isLoaded - ',isLoaded)
   // if (history.action === 'POP' ) {   
     
   const orderIngredientsWDetails = useMemo(() => {
@@ -63,7 +63,7 @@ const OrdersCardDetailsPage: FC = () => {
       )
     )
   }, [order, ingredients]);
-  console.log('orderIngredientsWDetails ', orderIngredientsWDetails)
+  //console.log('orderIngredientsWDetails ', orderIngredientsWDetails)
   
   const orderIngredients = useMemo(() => {
     const orderIngredientsWDetailsGroups: Array<TGroupedIngredient> = [];

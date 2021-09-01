@@ -67,7 +67,7 @@ export const setViewOrderError = (data: string): TViewedOrderActions => ({
   });
 
 
-function getOrderDetails(id: string | number) {
+const getOrderDetails: AppThunk = (id: string | number) => {
   return function (dispatch : AppDispatch) {
     //const getOrderDetails = (id) => (dispatch) => {
     //console.log('getOrderDetails0')

@@ -147,7 +147,7 @@ export const getProfileClear = (): TSignActions => ({
   type: SET_PROFILE_CLEAR
 });
 
-function getRegister(data: TSignDataWPassword) {
+const getRegister: AppThunk = (data: TSignDataWPassword) => {
     //console.log('getRegister', data);
     return function(dispatch: AppDispatch) {
    
@@ -181,7 +181,7 @@ function getRegister(data: TSignDataWPassword) {
     };
 }
 
-function getLogin(data: TSignDataLogin) {
+const getLogin: AppThunk = (data: TSignDataLogin) => {
     //console.log('getLogin', data);
     return function(dispatch: AppDispatch) {
    
@@ -215,7 +215,7 @@ function getLogin(data: TSignDataLogin) {
     };
 }
 
-function getLogout(token: string) {
+const getLogout: AppThunk = (token: string) => {
     //console.log('getLogout', token);
     return function(dispatch: AppDispatch) {
    
@@ -249,7 +249,7 @@ function getLogout(token: string) {
     };
 }
 
-function updateProfile(data: TSignDataWPassword){
+const updateProfile: AppThunk = (data: TSignDataWPassword) => {
     //console.log('updateProfile', data);
     return function(dispatch: AppDispatch) {
    
@@ -289,7 +289,7 @@ function updateProfile(data: TSignDataWPassword){
     };
 }
 
-function getProfile()  {
+const getProfile: AppThunk = () => {
     //console.log('getProfile');
     return function(dispatch: AppDispatch) {
    
@@ -330,7 +330,7 @@ function getProfile()  {
 
 
 
-function getForgotPassword(data: TSignDataForgoutPassword, history : History) {
+const getForgotPassword: AppThunk = (data: TSignDataForgoutPassword, history : History) => {
     //console.log('getForgotPassword');
     return function() {
    
@@ -358,7 +358,7 @@ function getForgotPassword(data: TSignDataForgoutPassword, history : History) {
     };
 }
 
-function getResetPassword(data: TSignDataLogResetPassword, history : History) {
+const getResetPassword: AppThunk = (data: TSignDataLogResetPassword, history : History) => {
     //console.log('getResetPassword');
     return function() {
    

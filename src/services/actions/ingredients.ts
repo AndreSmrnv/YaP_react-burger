@@ -40,7 +40,7 @@ export const getIngredientsFailed = (): IGetIngredientsFailed => ({
   type: GET_INGREDIENTS_FAILED
 });
 
-export function getIngredients() {
+export const getIngredients: AppThunk = () => {
     return function(dispatch: AppDispatch) {
       dispatch(
         getIngredientsRequest()
