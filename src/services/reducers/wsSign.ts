@@ -15,7 +15,7 @@ import {
     error: string | null;
   }
 
-  const initialState: TWsSignState = {
+  export const initialState: TWsSignState = {
     wsConnected: false,
     data: {} as TOrderWSAll,
     error: null,
