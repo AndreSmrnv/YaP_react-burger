@@ -11,7 +11,7 @@ import * as actionsTypes from '../constants/actionTypes'
 
 
 
-describe("audit constructor reducer", () => {
+describe("audit constructorReducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {} as TConstructorActions)).toEqual(initialState
     );
@@ -24,16 +24,16 @@ describe("audit constructor reducer", () => {
         initialState,
         actions.addConstructorIngredient( payload ) )
         )
-      .toEqual( {
-        ...initialState,
-        data: [mocks.dataTIngredientEmpty],
-        sortedData: {
-          ...initialState.sortedData,
-          empty: mocks.dataTIngredientEmpty
+      .toEqual(
+        {
+          ...initialState,
+          data: [mocks.dataTIngredientEmpty],
+          sortedData: {
+            ...initialState.sortedData,
+            empty: mocks.dataTIngredientEmpty
+          }
         }
-      } );
-
-    
+      );    
   });
 
   it(`should handle remove item - ${actionsTypes.DELETE_CONSTRUCTOR_INGREDIENT}`, () => {
@@ -49,13 +49,15 @@ describe("audit constructor reducer", () => {
         },
         actions.deleteConstructorIngredient(payload)
       )
-    ).toEqual({
-      ...initialState,        
+    ).toEqual(
+      {
+        ...initialState,        
         sortedData: {
           ...initialState.sortedData,
           fillers: mocks.dataTIngredientFillers.filter((_,indx) => payload !== indx)
         }
-    });
+      }
+    );
   });
 
   it(`should handle clear all item - ${actionsTypes.RESET_CONSTRUCTOR}`, () => {
@@ -91,7 +93,8 @@ describe("audit constructor reducer", () => {
           },
           actions.swapConstructorIngredient( dragIndex, hoverIndex )         
       )
-    ).toEqual({
+    ).toEqual(
+        {
             ...initialState,
             sortedData: {
               ...initialState.sortedData,
@@ -100,12 +103,9 @@ describe("audit constructor reducer", () => {
                 mocks.dataTIngredientFillers[dragIndex],
                 mocks.dataTIngredientFillers[hoverIndex],               
               ]
-
             }
-    });
+      }
+    );
   });
-
- 
-
   
 });

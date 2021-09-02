@@ -15,7 +15,7 @@ import {
     error: string | null
   }
     
-  const initialState: TIngredientsState = {
+  export const initialState: TIngredientsState = {
     data: [],
     isFetching: false,
     fetchingFailed: false,
@@ -37,7 +37,7 @@ export const ingredientsReducer = (state = initialState, action: TIngredientsAct
           ...state,
           fetchingFailed: false,
           data: action.payload,
-          lastUpdated: Date.now(),
+          //lastUpdated: Date.now(),
           isFetching: false
         };
       }
