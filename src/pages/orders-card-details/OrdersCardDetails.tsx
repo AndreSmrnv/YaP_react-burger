@@ -117,7 +117,7 @@ const OrdersCardDetailsPage: FC = () => {
         </h4>
       )
     }
-    if (order?._id !== id) {
+    if (order?._id !== id || !orderTotalPrice) {
       return (
         <h4 className={`text text_type_main-medium mt-4 mb-8 ${styles.wrapper}`}>
           Ищем заказ, ожидайте...

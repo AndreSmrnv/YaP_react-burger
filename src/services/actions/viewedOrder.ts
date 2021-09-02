@@ -79,7 +79,7 @@ const getOrderDetails: AppThunk = (id: TId) => {
       .then(response => response.json()
       )
       .then(result => {
-        console.log('getOrderDetails result', result);
+        //console.log('getOrderDetails result', result);
         if (!result.success) throw result;
         dispatch(
           getViewOrderSuccess (result.orders[0])
