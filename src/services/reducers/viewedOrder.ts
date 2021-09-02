@@ -33,7 +33,7 @@ export const viewedOrderReducer = (state = initialState, action: TViewedOrderAct
     switch (action.type) {
       
       case SET_VIEW_ORDER: {
-        console.log('SET_VIEW_ORDER ', action.payload)
+        //console.log('SET_VIEW_ORDER ', action.payload)
             return {
               ...state,
               data: action.payload,

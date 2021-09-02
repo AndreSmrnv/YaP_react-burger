@@ -15,7 +15,7 @@ type TWsAllState = {
     error: string | null;
   }
 
-  const initialState: TWsAllState = {
+  export const initialState: TWsAllState = {
     wsConnected: false,
     data: {} as TOrderWSAll,
     error: null,
@@ -49,7 +49,8 @@ type TWsAllState = {
                 wsConnectionFailed: false
             };  
       
-        case WS_GET_MESSAGE:            
+        case WS_GET_MESSAGE: 
+        //console.log('WS_GET_MESSAGE',action.payload)    
             return {
                 ...state,
                 data: action.payload
