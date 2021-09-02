@@ -31,9 +31,9 @@ const OrdersCard: FC<IOrdersCard> = ({ order }) => {
 
   const orderIngredients = useMemo(() => {
     const orderIngredientsWDetailsGroups: Array<TGroupedIngredient> = [];
-    orderIngredientsWDetails.forEach(
+    orderIngredientsWDetails?.forEach(
       (elem) => {
-        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id == elem._id);
+        const existingGroups = orderIngredientsWDetailsGroups.find(groupItem => groupItem._id == elem?._id);
         if (!existingGroups) {          
           const count = order?.ingredients.filter(id => id == elem._id).length || 0;
           orderIngredientsWDetailsGroups.push(

@@ -1,4 +1,4 @@
-import { IItem, EItemIcon } from '../services/types';
+import { IItem, EItemIcon } from '../../services/types';
 interface IDataMenu {
   left: ReadonlyArray<IItem>;
   right: ReadonlyArray<IItem>;

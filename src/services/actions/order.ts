@@ -11,7 +11,7 @@ import {
   getToken
 } from '../token';
 import { AppDispatch, AppThunk } from "../types/redux";
-import  dataEmpty from '../../utils/data-mock-empty';
+import  dataEmpty from '../../utils/mocks/data-mock-empty';
 
 export interface IGetOrderRequest {
   readonly type: typeof GET_ORDER_REQUEST;

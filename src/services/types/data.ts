@@ -10,7 +10,8 @@ export enum EItemType {
 export enum EOrderStatus {
   'done'= "Выполнен",
   'pending'= "Готовиться",
-  'created'= "Создан"
+  'created' = "Создан",
+  'cancel' = "Отменен"
 };
 
 export type TIngredient = {

@@ -19,7 +19,7 @@ type TConstructorState = {
     lastUpdated: number | null
 };
 
-const initialState: TConstructorState= {
+export const initialState: TConstructorState= {
     data: [],
     sortedData: {
         bun: {} as TIngredient,
@@ -37,7 +37,7 @@ const initialState: TConstructorState= {
     switch (action.type) {
         case ADD_CONSTRUCTOR_INGREDIENT: {
 
-            let sortedData = { ...state.sortedData };
+            let sortedData = { ...state.sortedData };           
             if (action.payload.type === 'empty') {               
                 sortedData = { ...sortedData, empty: action.payload };
             }
@@ -51,7 +51,7 @@ const initialState: TConstructorState= {
                 ...state,
                 data: [...state.data, action.payload],
                 sortedData,
-                lastUpdated: Date.now()
+               // lastUpdated: Date.now()
             };
 
 
@@ -62,7 +62,7 @@ const initialState: TConstructorState= {
             return {
                 ...state,
                 sortedData,
-                lastUpdated: Date.now()
+               // lastUpdated: Date.now()
             };
         } 
         case SWAP_CONSTRUCTOR_INGREDIENT: {
@@ -73,7 +73,7 @@ const initialState: TConstructorState= {
             return {
                 ...state,
                 sortedData,
-                lastUpdated: Date.now()
+                //lastUpdated: Date.now()
             };
           }
           
@@ -81,7 +81,7 @@ const initialState: TConstructorState= {
             return {
                 ...state,
                 data: [...state.data, ...action.payload],               
-                lastUpdated: Date.now()
+                //lastUpdated: Date.now()
             };
         }    
         case RESET_CONSTRUCTOR: {

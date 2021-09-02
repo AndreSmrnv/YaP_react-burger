@@ -7,7 +7,7 @@ import {
 import { AppDispatch, AppThunk } from "../types/redux";
 import { addConstructorIngredient, TConstructorActions } from './index';
 import { apiGetIngredientsRequest } from '../api';
-import  dataEmpty from '../../utils/data-mock-empty';
+import  dataEmpty from '../../utils/mocks/data-mock-empty';
 
 export interface IGetIngredientsRequest {
   readonly type: typeof GET_INGREDIENTS_REQUEST;
