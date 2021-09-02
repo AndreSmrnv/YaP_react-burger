@@ -38,7 +38,7 @@ export type TIngredient = {
   export type TOrder = {
     _id: TId;
     ingredients: ReadonlyArray<TId>;
-    owner?: TOwner;
+    owner?: string | TOwner;
     status: keyof typeof EOrderStatus;
     name: string;
     createdAt: string;

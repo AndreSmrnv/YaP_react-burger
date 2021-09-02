@@ -17,7 +17,7 @@ type TOrderState = {
   error: string | null
 }
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   data: {} as TOrder,
     numberOrd: 0, 
     isFetching: false,
@@ -43,7 +43,7 @@ export const orderReducer = (state = initialState, action: TOrderActions): TOrde
                 fetchingFailed: false,
                 data: action.payload,
                 numberOrd: action.payload.number,
-                lastUpdated: Date.now(),
+                //lastUpdated: Date.now(),
                 isFetching: false
             };
       }
