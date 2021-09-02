@@ -25,7 +25,7 @@ type TSignState = {
   error: string | null
 }
 
-const initialState: TSignState = {
+export const initialState: TSignState = {
   user: {} as TSignDataWPassword,
   isAuthorized: false,
   isFetching: false,
@@ -49,7 +49,7 @@ export const signReduser = (state = initialState, action: TSignActions): TSignSt
         fetchingFailed: false,
         isAuthorized: true,
         user: action.payload,        
-        lastUpdated: Date.now(),
+        //lastUpdated: Date.now(),
         isFetching: false
       };
     case GET_AUTH_FAILED:
@@ -78,7 +78,7 @@ export const signReduser = (state = initialState, action: TSignActions): TSignSt
         fetchingFailed: false,
         isAuthorized: true,
         user: action.payload,        
-        lastUpdated: Date.now(),
+        //lastUpdated: Date.now(),
         isFetching: false
       };
     case GET_REGISTER_FAILED:
@@ -106,7 +106,7 @@ export const signReduser = (state = initialState, action: TSignActions): TSignSt
         fetchingFailed: false,
         isAuthorized: true,
         user: action.payload,        
-        lastUpdated: Date.now(),
+        //lastUpdated: Date.now(),
         isFetching: false
       };
     case GET_PROFILE_FAILED:

@@ -1,4 +1,4 @@
-import type { TOrder,TViewedOrder } from '../types/data';
+import type { TId, TOrder,TViewedOrder } from '../types/data';
 import {
     SET_VIEW_ORDER,
     RESET_VIEW_ORDER,
@@ -67,7 +67,7 @@ export const setViewOrderError = (data: string): TViewedOrderActions => ({
   });
 
 
-const getOrderDetails: AppThunk = (id: string | number) => {
+const getOrderDetails: AppThunk = (id: TId) => {
   return function (dispatch : AppDispatch) {
     //const getOrderDetails = (id) => (dispatch) => {
     //console.log('getOrderDetails0')
@@ -89,8 +89,7 @@ const getOrderDetails: AppThunk = (id: string | number) => {
       .catch(e => {
         // console.log(e);
         dispatch(
-          getViewOrderFailed()
-          
+          getViewOrderFailed()          
         );
         // dispatch({
         //   type: SET_VIEW_ORDER_ERROR ,

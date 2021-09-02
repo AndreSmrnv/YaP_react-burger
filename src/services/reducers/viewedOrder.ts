@@ -19,7 +19,7 @@ type TViewedOrderState = {
   error: string | null
 }
 
-const initialState: TViewedOrderState = {
+export const initialState: TViewedOrderState = {
   data: {} as TViewedOrder,
   isLoaded: false,
   lastUpdated: null,
@@ -33,11 +33,12 @@ export const viewedOrderReducer = (state = initialState, action: TViewedOrderAct
     switch (action.type) {
       
       case SET_VIEW_ORDER: {
+        console.log('SET_VIEW_ORDER ', action.payload)
             return {
               ...state,
               data: action.payload,
               isLoaded: true,
-              lastUpdated: Date.now()
+              //lastUpdated: Date.now()
             };
       }
       case RESET_VIEW_ORDER: {
@@ -60,7 +61,7 @@ export const viewedOrderReducer = (state = initialState, action: TViewedOrderAct
                 fetchingFailed: false,
                 data: action.payload,
                 isLoaded: false,
-                lastUpdated: Date.now(),
+                //lastUpdated: Date.now(),
                 isFetching: false
             };
       }

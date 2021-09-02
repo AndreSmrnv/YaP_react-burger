@@ -11,7 +11,7 @@ type TViewedItemState = {
   
 }
 
-const initialState: TViewedItemState = {
+export const initialState: TViewedItemState = {
   data: {} as TIngredient,
     lastUpdated: null
   };
@@ -24,7 +24,7 @@ export const viewedItemReducer = (state = initialState, action: TViewedItemActio
             return {
                 ...state,
                 data: action.payload,
-                lastUpdated: Date.now()
+                //lastUpdated: Date.now()
             };
       }
       case RESET_VIEW_ITEM: {
