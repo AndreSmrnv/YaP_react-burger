@@ -111,7 +111,7 @@ export const postResetPasswordRequest = async (data: TSignDataLogResetPassword) 
 };
 
 export const getOrderDetailsRequest = async (id: string | number) => {
-  console.log("fetch get OrderDetailsRequest");
+  //console.log("fetch get OrderDetailsRequest");
   return await fetch(`${API_URL}/orders/${id}`, {
     method: 'GET',
     headers: { ...headers.get}
