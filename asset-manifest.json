@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/YaP_react-burger/static/css/main.4d7f1a1d.chunk.css",
+    "main.js": "/YaP_react-burger/static/js/main.d96f2eda.chunk.js",
+    "main.js.map": "/YaP_react-burger/static/js/main.d96f2eda.chunk.js.map",
+    "runtime-main.js": "/YaP_react-burger/static/js/runtime-main.008de816.js",
+    "runtime-main.js.map": "/YaP_react-burger/static/js/runtime-main.008de816.js.map",
+    "static/css/2.23731ffc.chunk.css": "/YaP_react-burger/static/css/2.23731ffc.chunk.css",
+    "static/js/2.bf3aa233.chunk.js": "/YaP_react-burger/static/js/2.bf3aa233.chunk.js",
+    "static/js/2.bf3aa233.chunk.js.map": "/YaP_react-burger/static/js/2.bf3aa233.chunk.js.map",
+    "static/js/3.4822db21.chunk.js": "/YaP_react-burger/static/js/3.4822db21.chunk.js",
+    "static/js/3.4822db21.chunk.js.map": "/YaP_react-burger/static/js/3.4822db21.chunk.js.map",
+    "index.html": "/YaP_react-burger/index.html",
+    "static/css/2.23731ffc.chunk.css.map": "/YaP_react-burger/static/css/2.23731ffc.chunk.css.map",
+    "static/css/main.4d7f1a1d.chunk.css.map": "/YaP_react-burger/static/css/main.4d7f1a1d.chunk.css.map",
+    "static/js/2.bf3aa233.chunk.js.LICENSE.txt": "/YaP_react-burger/static/js/2.bf3aa233.chunk.js.LICENSE.txt",
+    "static/media/fonts.css": "/YaP_react-burger/static/media/iceland.77ad7fc2.woff",
+    "static/media/icon-info.0c317422.svg": "/YaP_react-burger/static/media/icon-info.0c317422.svg",
+    "static/media/order-done.05f77629.svg": "/YaP_react-burger/static/media/order-done.05f77629.svg",
+    "static/media/spin-white.e284a982.svg": "/YaP_react-burger/static/media/spin-white.e284a982.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.008de816.js",
+    "static/css/2.23731ffc.chunk.css",
+    "static/js/2.bf3aa233.chunk.js",
+    "static/css/main.4d7f1a1d.chunk.css",
+    "static/js/main.d96f2eda.chunk.js"
+  ]
+}
