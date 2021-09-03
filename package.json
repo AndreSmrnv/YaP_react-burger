@@ -2,7 +2,7 @@
   "name": "react-burger-by-smirnov-andre",
   "version": "0.4.3",
   "private": true,
-  "homepage": "https://andresmrnv.github.io/YaP_react-burger/",
+  "homepage": "https://spaceburger.adskey.ru/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "cypress:open": "./node_modules/.bin/cypress open",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
