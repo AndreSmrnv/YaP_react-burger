@@ -2,6 +2,7 @@
   "name": "react-burger-by-smirnov-andre",
   "version": "0.4.3",
   "private": true,
+  "homepage": "https://andresmrnv.github.io/YaP_react-burger/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
